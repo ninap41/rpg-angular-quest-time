@@ -1,0 +1,62 @@
+
+<div class="container" >
+ 
+
+    <h2 *ngIf="playersPoint.name">{{playersPoint.name}}</h2>
+    <div align="center" class="row">
+    
+        <div *ngIf="!currentEvent" class="card"> <!-- World DESCRIPTION  -->
+        <!-- <p style="color:green">Player.worldPoint LIST:{{ this.Player.worldPoint | json:format }}</p> -->
+        <p> "{{ playersPoint.description | json}}"</p>
+        (Hover over options for more detail)
+              <div *ngIf="playersPoint.directions">
+                    <hr>
+                    <p><i>Where shall you go? </i></p>
+                    <span *ngFor="let direction of playersPoint.directions;"style="padding: .5em;">
+                        <button [style.background-color]="direction.color" title="{{direction.description}}" (click)="traverse(direction);"  class="btn btn-info"> {{direction.name}} </button> 
+                    </span>
+                </div>
+
+     
+              <div *ngIf="playersPoint.inspects ">
+                    <hr>
+                    <p><i>What shall you do </i></p>
+                    <span *ngFor="let inspect of playersPoint.inspects; let idx = index" style="padding: .5em;">
+                        <button  title="{{inspect.description}}" (click)="inspectWorld(inspect.event, idx);"  class="btn btn-warning"> {{inspect.name}} </button> 
+                    </span>
+                </div>
+      </div> <!-- World DESCRIPTION END  -->
+      <!-- EVENT DESCRIPTION  -->
+      <div *ngIf="currentEvent" class="card"> 
+        <h4>Event: {{currentEvent.name}}</h4>
+        <p>{{currentEvent.description}}</p>
+        <span *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
+        
+        <div *ngIf="currentEvent.inspects ">
+
+            <p><i>Where shall you do (Hover over options for more detail).</i></p>
+            <span *ngFor="let inspect of currentEvent.inspects; let idx = index" style="padding: .5em;">
+                    <button  title="{{inspect.description}}" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button> 
+                    <!-- <span *ngIf></span> -->
+                
+            </span>
+         
+
+        </div>
+                <div *ngIf="currentEvent.access_directions_state === true">
+                <hr>
+                <span *ngFor="let direction of currentEvent.directions; let idx = index" style="padding: .5em;">
+                    <button  title="{{direction.description}}" (click)="traverseFromEvent(direction);"  class="btn btn-info"> {{direction.name}} </button> 
+                </span>
+                </div>
+        
+      </div>
+
+
+      <BR>
+
+    </div>
+
+    
+  
+</div>

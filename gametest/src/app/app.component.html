@@ -1,0 +1,46 @@
+<!-- ANGULAR MATERIALS DOCUMENTATION 
+https://material.angular.io/guide/getting-started-->
+
+<div id='body' class="container">
+    <div style="text-align:center">
+          <h1>
+           Welcome to {{ title }} the (rpg)!
+          </h1>
+          <!-- error:
+          {{error}} -->
+  
+    </div>
+    <div class="container">
+      <BR>
+
+            <div *ngIf="_characterService.gameStart === true">
+            <fieldset>
+                <i style="color:rgb(219, 152, 152)">&#10524; </i>
+                
+                <!-- <a style="text-decoration:none;" [routerLink]="['']"  (click)="newGame(Player)"routerLinkActive="active">  NEW GAME  </a> <i style="color:white">&#9472; </i> -->
+                <a style="text-decoration:none;" [routerLink]="['firstworld']"  routerLinkActive="active"> MAP </a> <i style="color:white">&#9472; </i>
+
+                <a style="text-decoration:none;" [routerLink]="['stats']"  routerLinkActive="active">  STATS </a><i style="color:white">&#9472; </i>
+                <a style="text-decoration:none;" [routerLink]="['bag']"  routerLinkActive="active"> BAG </a> <i style="color:white">&#9472; </i>
+                <a style="text-decoration:none;" [routerLink]="['']"  routerLinkActive="active"> RESTART</a> <i style="color:white">&#9472; </i>
+
+                <!-- <a style="text-decoration:none;" [routerLink]="['updateplayer']"  routerLinkActive="active"> UPDATE </a>  -->
+                <i style="color:grey">&#10523; </i>
+              
+             </fieldset>
+            </div>
+     
+
+        
+      <div class="jumbotron">
+   
+          <p>
+              <router-outlet></router-outlet>
+
+          </p>
+      </div>
+
+
+
+    </div>
+</div>

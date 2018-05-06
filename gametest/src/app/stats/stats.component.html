@@ -1,0 +1,21 @@
+<span *ngIf="gameStart == true">
+    
+          
+ 
+    <div style="text-align:left">
+     <i>Name:</i> {{Player.name}}<BR>
+    <i>Health:</i> {{Player.health}}<BR>
+   <i>Race: </i>{{Player.race}}<BR>
+    <i>LVL: </i>{{Player.lvl}}<BR>
+    <i>Strength:</i>{{Player.strength}}<BR>
+    <i>Speed: </i>{{Player.speed}}<BR>
+    <i>Weapon:</i> {{Player.weapon}}<BR>
+    <i>Gold: </i>{{Player.gold}}<BR>
+    <i>Hometown: </i>{{Player.hometown}}<BR>
+
+    <i>bag:</i> <BR><span *ngFor="let item of Player.bag">- {{item.name}}<BR></span><BR><br>
+    </div>
+
+  
+
+</span>

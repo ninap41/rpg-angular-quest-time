@@ -1,0 +1,102 @@
+
+    
+    <fieldset>
+    
+    <span *ngIf="gameStart == true">
+    
+                <h2>Stats</h2>
+                {{ Player.bag | json}}
+                <div class="container">
+                <span *ngIf="Player.name != ''">  
+                    <i>Name:</i> {{Player.name}}
+                </span><BR>
+
+                        <i>Health:</i> {{Player.health}}<BR>
+                        <i>Race: </i>{{Player.race}}<BR>
+                        <i>LVL: </i>{{Player.lvl}}<BR>
+                        <i>Strength:</i>{{Player.strength}}<BR>
+                        <i>Speed: </i>{{Player.speed}}<BR>
+                        <i>Weapon:</i> {{Player.weapon}}<BR>
+                        <i>Hometown:</i> {{Player.hometown}}<BR>
+                        <i>Karma:</i> {{Player.karma}}<BR>
+                        <i>Gold: </i>{{Player.gold}}<BR>
+
+                <span *ngIf="Player.spellbook">
+                    <i>Spells: </i>{{Player.spellbook}}
+                    <BR>
+                </span>
+                <span style="color:red;" *ngIf="Player.bag.length === 0;">
+                    <i>bag:</i> Your bag is empty
+                </span> 
+                    <span *ngFor="let item of Player.bag"> 
+                            <p title="item.description">{{item.name }}</p>
+                    </span><BR><br>
+                </div>
+                <button class="btn btn-primary" style="text-decoration:none;" [routerLink]="['/firstworld']" >Begin Adventure!</button>
+    </span>
+          <span *ngIf="gameStart != true ">
+            <i style="font-size: .5em"> ~ hover over selected weapons and wait a minute of two to see a description of each item ~</i>
+            <BR><BR>
+              <form (submit)="GameStart()" #PlayerForm="ngForm">
+                  Choose Race: 
+                  <select [(ngModel)]="Player.race" name="race">What's your race?
+                    <option value="Human">Human</option>
+                    <option value="Elf">Elf</option>
+                    <option value="Dwarf">Dwarf</option>
+                    <option  ng-model="selected_wizard" value="Wizard">Wizard</option>
+                    <option value="Orc">Orc</option>
+                  </select> 
+                  <BR>
+                 <span *ngIf="Player.race === 'Wizard'">
+                        <label for="weapon">Choose Staff:</label>
+
+                        <select  [(ngModel)]="Player.weapon" required name="weapon">
+                            
+                            <option value="Staff of Light">Staff of Light</option>
+                            <option value="Staff of Dark">Staff of Dark</option>
+                        </select> 
+                 </span>
+                 <span  *ngIf="Player.race === 'Human'">
+                        <label for="weapon">Choose Weapon:</label>
+
+                        <select required [(ngModel)]="Player.weapon" name="weapon">
+                            <option title="A gift fron your father who fell in the great war." value="Father's Sword">Father's Sword</option>
+                            <option value="Nothing">I carry nothing.</option>
+                        </select> 
+                 </span>
+                 <span *ngIf="Player.race === 'Orc'">
+                        <label for="weapon">Choose Weapon:</label>
+
+                        <select required [(ngModel)]="Player.weapon" name="weapon">
+                            <option title="Looks very sharp" value="Orc Shiving Knife">Shiving Knife</option>
+                            <option value="Nothing">I carry nothing.</option>
+                        </select> 
+                 </span>
+                 <span *ngIf="Player.race === 'Elf'">
+                        <label for="weapon">Choose Weapon:</label>
+                        <select required [(ngModel)]="Player.weapon" name="weapon">
+                            <option title="A gift from your father who fell in the great war of ages between Orcs and Men." value="Father's Bow">Father's Bow</option>
+                            <option value="Nothing">I carry nothing!</option>
+                        </select> 
+                 </span>
+                 <span *ngIf="Player.race === 'Dwarf'">
+                    <label for="weapon">Choose Weapon:</label>
+                    <select required [(ngModel)]="Player.weapon" name="weapon">
+                        <option title="A gift from your father who fell in the great war of ages between Orcs and Men." value="Father's Axe">Father's Bow</option>
+                        <option value="Nothing">I carry nothing I'm noble and fierce AF</option>
+                    </select> 
+                 </span>
+                   <BR>
+              
+                  Name: <input [(ngModel)]="Player.name" name='name' type='text'>
+                  <BR><BR>
+                  <button type="submit" value="Play!">Play!</button>
+                </form>
+                <BR>
+                <i style="font-size: .5em"> ~ WARNING: this is not a game connected to any sort of server and is in the development. Eventually you will be able to save your progress. Your progress cannot be saved. If you do not want to lose your character, please do not refresh the page and see how far you can make it! Enjoy. ~</i>
+
+            
+            
+          </span>
+     
+    </fieldset>

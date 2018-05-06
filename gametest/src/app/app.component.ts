@@ -1,0 +1,49 @@
+import { Component, OnInit} from '@angular/core';
+import { RouterModule, Routes, Router } from '@angular/router';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { CharacterService } from './character.service';
+import { ActivatedRoute } from '@angular/router';
+import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
+import { FormsModule } from '@angular/forms';
+import { ViewEncapsulation } from '@angular/core';
+
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/catch';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent implements OnInit {
+  title = 'Quest Time';
+
+  Player;
+  error;
+  gameState;
+  GameOn;
+  message;
+  constructor (
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _characterService: CharacterService,
+    private _http: Http
+  ) {
+
+  }
+
+  ngOnInit() {
+    this.Player = this._characterService.retrievePlayer();
+    this.error = this._characterService.error;
+    // this.gameState = this._characterService.startGame();
+  console.log(this.gameState);
+  console.log(this.Player);
+
+  }
+  newGame() {
+    this.Player = this._characterService.newgame();
+  }
+}

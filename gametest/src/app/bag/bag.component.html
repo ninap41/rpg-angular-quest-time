@@ -1,0 +1,20 @@
+
+    
+  
+<h2>{{Player.name}}'s {{ title }}</h2>
+<BR>
+<div *ngFor="let item of Player.bag">
+
+    <li>{{item.name}}</li>
+   
+</div>
+
+<div *ngIf="Player.bag.length === 0">
+    <p>Empty Bag</p>
+</div>
+
+
+
+
+
+
