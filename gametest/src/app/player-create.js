@@ -12,11 +12,11 @@ class Player {
         this.bag = [];
         this.backstory = "You are a lonely traveler."
         this.weapon = null;
-        this.karma = null;  
+        this.karma = 0;  
         this.reputation = 0;
 
         this.worldPoint = [];
-        this.spellbook = null;
+        this.spellbook = [];
         this.hometown = null;
      }
   
@@ -92,7 +92,7 @@ class Player {
             this.backstory = "You are a lonely traveler from the mines of Moria"
             this.weapon = null;  
             this.worldPoint = [];
-            this.hometown = "Barren Mines";
+            this.hometown = "The Barren Mines";
             }
 
         }
@@ -116,7 +116,7 @@ class Player {
         this.weapon = null;
         this.spellbook = [];
         this.worldPoint = [];
-        this.hometown = "Misty Mountains";
+        this.hometown = "The Misty Mountains";
         
         }
         
@@ -162,7 +162,7 @@ class Player {
         this.weapon = null;
         this.state = null;
         this.worldPoint = [];
-        this.hometown = "Misty Forest";
+        this.hometown = "The Misty Forest";
 
        
 

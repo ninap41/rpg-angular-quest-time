@@ -1,4 +1,15 @@
 #body {
-    max-width: 45em;
+    max-width: 55em;
     text-align: center;
+}
+a  {
+    font-family: 'GamalielMedium'; 
+    font-weight: normal; 
+    font-style: normal; 
+
+}
+.jumbotron:first-child{
+    margin-top: 0px;
+    padding-top: 0px;
+
 }

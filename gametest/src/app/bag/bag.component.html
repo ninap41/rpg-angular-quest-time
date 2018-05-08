@@ -1,20 +1,25 @@
 
     
-  
-<h2>{{Player.name}}'s {{ title }}</h2>
+
+<h2>{{Player.name}}'s Inventory</h2>
 <BR>
 <div *ngFor="let item of Player.bag">
 
-    <li>{{item.name}}</li>
+    <!-- <li>{{item.name}}</li> -->
+          
+          <ng-template type="button" class="btn btn-outline-secondary" #tipContent>
+              {{item.description}}
+              <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
+            </ng-template>
+          <li [ngbTooltip]="tipContent">
+                {{item.name}}
+          </li>
    
 </div>
 
 <div *ngIf="Player.bag.length === 0">
     <p>Empty Bag</p>
 </div>
-
-
-
 
 
 

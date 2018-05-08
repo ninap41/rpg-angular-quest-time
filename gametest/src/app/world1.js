@@ -24,14 +24,15 @@ const attributes = [
 ]
 
 
-var qty = 3;
+var qty = 0;
 
-const matches = {
+let matches = {
+    "value" : 'matches',
     "name" : 'Matches',
     'type' : 'scenario',
+    'limit' : true,
     'qty' : 3,
-    "description" : `Used to light places. Careful though. Only ${qty} here.`,
-    "uses" : false
+    "description" : `Used to light places.`,
     
 };
 
@@ -45,7 +46,7 @@ const events = {
     "dead_mother" : {
         'update_message': null,
         'event_state' : true,
-        "name":"An Life Deferred...",
+        "name":"A Life Deferred...",
         "description" : 'Your mother lays sound asleep beneath the covers. You race to her side, shaking her to consciousness. Shaking and shaking to no avail, you turn her limp body over to see a bowing blade, jutting right from her chest. A craftsmenship like you have never seen in these lands. A cackle sinks from behind the window, and you see the flickering flames beyond, the shattered glass. ',
         'inspects' : [
             {
@@ -61,7 +62,7 @@ const events = {
                 'name' : 'Look in Drawer',
                 'object' : matches,
                 'event' :'take',
-                'description' : `You see ${matches.name}. '${matches.description} `
+                'description' : `You see a red box and some candles.`
                 }
         ],
         "access_directions_state" : false,
@@ -75,6 +76,11 @@ const events = {
                 'name': 'Careful Window Exit',
                 'description' : 'You wait until the sound of pillaging orcs pass. You hear them, huffing and shouting an incoherent chant. The top of their torches and banners wave out of view. It may be safe to move',
                 'room' : 'window_ledge'
+            },
+            { 
+                'name': 'Storage Room',
+                'description' : 'Now that you have those matches...',
+                'room' : 'storage_room'
             }
         ]
 
@@ -160,8 +166,12 @@ const events = {
 
 let HumanWorldStart =
 { 
+    "name": 'CHARHOMETOWN',
+    'world_description' : 'You are in your hometown of CHARHOMETOWN.',
     "imageUrl":"../../assets/world-background/town.jpg",
     "home":{
+        'update_message': null,
+
         "name": "Home Main Room",
         "description":`You are CHARNAME 'CHARRACE of CHARHOMETOWN'. You've awoken from a nap. Loud sounds ensue outside your home, an unfamiliar experience for you. It is dark, but through the slits of your wooden home you can see a wavering glow. You hear some cries of a woman outside. Banter and chaos. The crackling of fire. There are two rooms before you, the east and the west. There is also the exit outside. You experience like you have never felt before`,
         "directions": [
@@ -179,6 +189,8 @@ let HumanWorldStart =
         ],
     },
     "home_return":{
+        'update_message': null,
+
         "name": "Home Main Room",
         "description":`You return to the Main Room, panicked and scared... You feel you need a weapon. You hear glass break somewhere in the house. A muffled yelp. `,
         "directions": [
@@ -197,40 +209,54 @@ let HumanWorldStart =
         
     },
     "mothers_room":{
+        'update_message': null,
+
         "name" : "Mother's room",
         "description": "Your mother is asleep in her bed after a greuling day in the fields. You'd ask her if the village parade was going on outside, but you don't wish to disturb her.",
         "directions": [
             {
                 "room": "home",
                 "name":"Home Bedroom",
+                "description" : "Return the main room? Might be smart.",
+
                
             },
             { "room":"storage_room",
                 "name":"Storage Room",
+                "description" : "It'd be way to dark to see in there without a candle or match",
+
                
             },
             {
                 "room":"outside",
-                "name":"Outside"
+                "name":"Outside",
+                "description" : "The window beside the door is veiled in a black smoke.",
+
             }
         ],
      
     },
 
     "mothers_room_revisited":{
+        'update_message': null,
+
         "name" : "Mother room",
         "description": "Amidst the commotion, your mother is still asleep. The room is slightly chilled. What should you do?",
         "directions": [
             {
-                "room": "home",
+                "room": "outside2",
                 "name":"Forget her. Window escape",
-                'karma' : 'bad'
+                "description" : "TIP: Actions like this have a negative impact on your Karma. Karma influences your fate.",
+
+                'karma' : ['bad', 2],
+  
                
             },
             {   "room":"storage_room",
                 "name":"Storage Room?",
                 "description" : "Something doesnt feel right... maybe I can arm myself there?",
-                'karma' : 'smart'
+                'karma' : 'good',
+                'karma' : ['good', 2],
 
                
             },
@@ -243,10 +269,11 @@ let HumanWorldStart =
         'inspects': [
              
             {
-                "name":"Inspect Mother's",
+                'update_message': null,
+
+                "name":"Inspect Mother",
                 "event":"dead_mother",
-                "description": "She Doesnt appear to be breathing?",
-                'karma' : 'good'
+                "description": "The intervals of breathing, chest rising and falling, seem slow...",
 
             },
            
@@ -254,38 +281,49 @@ let HumanWorldStart =
         ],
     },
     "storage_room":{
-        visits: 0,
+        'update_message': null,
+
         'name' : 'Storage Room',
         "description": "The Storage room is quite dusty you can barely see a thing",
         "directions":[
             {
                 "room": "mothers_room",
                 "name":"Mother's Room",
+                "description": "Your heart is beating fast as your hand hovers over the your mother's door handle"
                
             },
-            { "room":"storage_room",
-                "name":"Storage Room",
-               
-            },
+           
             {
                 "room":"outside",
-                "name":"Outside"
+                "name":"Outside",
+                "description": "As you twist the knob you hear a scream."
+
             }
         ],
-        
         "inspects": [
             {
-            "guard" : true,
-            "need" : 'matches',
-            "event": "light_storage",
-            "description": "It's so dark.. Maybe some matches?",
-            'karma' : 'good'
-            }
-        ]
+                "guard" : false,
+                "name": "Feel Around Room",
+                // "needs" : 'matches',
+                "eradicate" : 'matches',
+                "event": "light_storage_hurt",
+                "description": "Oh boy, hope you don't get hurt!",
+                   
 
-        
+                },
+                {
+                    "guard" : true,
+                    "name":"Light the way",
+                    "needs" : 'matches',
+                    "event": "local_storage",
+                    "description": "You have Matches in your Inventory!",
+                }
+            ],
+  
     },
     "outside":{
+        'updateessage': null,
+
         visits: 0,
         'name' : 'Outside',
         "description":"You see before you the fields of your father's farm ablaze. Orcs hanging from roofs, lighting haystacks with torches and the chants of Black Speech forbidden in your land. The",
@@ -293,21 +331,25 @@ let HumanWorldStart =
             {
                 "room":"stables",
                 "name":"Parents Stables",
+                "description": "If the horses have not but run away, you can take one. You pray your horse Grendel is alive and calm.",
                 "color" : 'red'
             }, 
             {
                 "room":"gaffer_thomas_house",
                 "name":"Gaffer Thomas House",
+                'description': 'Where is your friend thomas?! What if he is hurt?',
                 "color" : 'brown'
             }, 
             {
                 "room":"neighbors",
                 "name":"BrandyBuck Home",
+                'description': 'They could help you potentially.',
                 "color" : 'orange'
             }, 
             {
                 "room":"home_return",
-                "name":"Grab A Weapon From Your Home!",
+                "name":"Back Inside",
+                'description': 'You need to wake your mother, grab a weapon, and gather your things. This might be the smartest choice',
                 "color" : 'green'
             }, 
 
@@ -315,23 +357,25 @@ let HumanWorldStart =
         ]
     },
     "neighbors":{
+        'update_message': null,
+
         "name" : 'BrandyBuck Home',
         "description":"You see before you the fields of your father's farm ablaze. Orcs hanging from roofs, lighting haystacks with torches and the chants of Black Speech forbidden in your land. The",
         "directions":[
             {
                 "direction":"Back Inside",
+                'description': 'You need to wake your mother, grab a weapon, and gather your things. This might be the smartest choice',
                 "room":"home"
             }, 
-            {
-                "direction":"Back Inside",
-                "room":"home"
-            }, 
+         
 
         ]
     },
 
     // OUTSIDE HOME REALMS  // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS
     "outside2":{
+        'update_message': null,
+
         'eventtriggerchance': 2, //fifty fifty chance
         'event': 'firstspawn',
         'name' : 'Outside',

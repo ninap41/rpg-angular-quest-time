@@ -19,6 +19,8 @@ import { StatsComponent } from './stats/stats.component';
 import { BagComponent } from './bag/bag.component';
 import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
 import { SecondworldComponent } from './in-game/secondworld/secondworld.component';
+import { BattleComponent } from './battle/battle.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SecondworldComponent } from './in-game/secondworld/secondworld.componen
     StatsComponent,
     BagComponent,
     FirstworldComponent,
-    SecondworldComponent
+    SecondworldComponent,
+    BattleComponent,
+    ShopComponent
   ],
   imports: [
     HttpModule,

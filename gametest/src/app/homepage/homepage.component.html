@@ -5,32 +5,42 @@
     <span *ngIf="gameStart == true">
     
                 <h2>Stats</h2>
-                {{ Player.bag | json}}
+                <!-- {{ Player.bag | json}} -->
                 <div class="container">
                 <span *ngIf="Player.name != ''">  
                     <i>Name:</i> {{Player.name}}
                 </span><BR>
 
-                        <i>Health:</i> {{Player.health}}<BR>
+                    <i>Backstory:</i> <span class="blue">"{{Player.backstory}}"</span><BR>
+                
+
+
+                        <i>Health:</i> {{Player.health}} HP<BR>
                         <i>Race: </i>{{Player.race}}<BR>
                         <i>LVL: </i>{{Player.lvl}}<BR>
-                        <i>Strength:</i>{{Player.strength}}<BR>
+                        <i>Strength: </i>{{Player.strength}}<BR>
                         <i>Speed: </i>{{Player.speed}}<BR>
-                        <i>Weapon:</i> {{Player.weapon}}<BR>
-                        <i>Hometown:</i> {{Player.hometown}}<BR>
-                        <i>Karma:</i> {{Player.karma}}<BR>
+                        <i>Weapon: </i> <span style="color:red;" *ngIf="!Player.weapon">No weapon equipped.</span>{{Player.weapon}}<BR>
+                        <i>Hometown: </i> {{Player.hometown}}<BR>
+                        <i>Karma: </i> {{Player.karma}}<BR>
                         <i>Gold: </i>{{Player.gold}}<BR>
 
-                <span *ngIf="Player.spellbook">
-                    <i>Spells: </i>{{Player.spellbook}}
-                    <BR>
-                </span>
-                <span style="color:red;" *ngIf="Player.bag.length === 0;">
-                    <i>bag:</i> Your bag is empty
-                </span> 
-                    <span *ngFor="let item of Player.bag"> 
-                            <p title="item.description">{{item.name }}</p>
-                    </span><BR><br>
+                        <span *ngIf="Player.race === 'wizard'">
+                                    <span *ngIf="Player.spellbook.length > 0">
+                                        <i>Spells: </i>{{Player.spellbook}}
+                                        <BR>
+                                    </span>
+                                    <span style="color:red;" *ngIf="Player.spellbook.length === 0;">
+                                        <i>Spells:</i> You do not know any spells yet.
+                                    </span> <BR>
+                        </span>
+
+                        <span style="color:red;" *ngIf="Player.bag.length === 0;">
+                            <i>Bag:</i> Your bag is empty
+                        </span> 
+                        <span *ngFor="let item of Player.bag"> 
+                            Bag: <p title="item.description">{{item.name }}</p>
+                        </span><BR><br>
                 </div>
                 <button class="btn btn-primary" style="text-decoration:none;" [routerLink]="['/firstworld']" >Begin Adventure!</button>
     </span>
@@ -49,9 +59,7 @@
                   <BR>
                  <span *ngIf="Player.race === 'Wizard'">
                         <label for="weapon">Choose Staff:</label>
-
                         <select  [(ngModel)]="Player.weapon" required name="weapon">
-                            
                             <option value="Staff of Light">Staff of Light</option>
                             <option value="Staff of Dark">Staff of Dark</option>
                         </select> 
@@ -82,7 +90,7 @@
                  <span *ngIf="Player.race === 'Dwarf'">
                     <label for="weapon">Choose Weapon:</label>
                     <select required [(ngModel)]="Player.weapon" name="weapon">
-                        <option title="A gift from your father who fell in the great war of ages between Orcs and Men." value="Father's Axe">Father's Bow</option>
+                        <option title="A gift from your father who fell in the great war of ages between Orcs and Men." value="Father's Axe">Father's Axe</option>
                         <option value="Nothing">I carry nothing I'm noble and fierce AF</option>
                     </select> 
                  </span>

@@ -3,11 +3,15 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http'; // Client Module
+import {Observable} from 'rxjs/Observable';
+
 import 'rxjs/add/operator/map';    // RXJS operator Reactive. Same as Observable
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
 import {  WorldPlayer, HumanWorldStart } from './world1';
 import { weapons } from './item-create';
@@ -23,9 +27,13 @@ export class CharacterService {
  playerfordeets;
  bag;
  error;
+ serviceplayersPoint;
+ MaxHealth;
+
 
   constructor(
     private _router: Router,
+    protected http: Http
   ) { }
 
   startGame() {
@@ -33,6 +41,7 @@ export class CharacterService {
     console.log(this.Player);
     return this.gameStart;
   }
+
 
 
   retrievePlayer() {
@@ -72,7 +81,7 @@ export class CharacterService {
   createPlayer(player) {
     if (player.race === 'Human' ) {
       this.Player = new Human;
-}
+   }
     if (player.race === 'Elf' ) {
       this.Player = new Elf;
     }
@@ -84,22 +93,27 @@ export class CharacterService {
     }
     if (player.race === 'Wizard') {
       this.Player = new Wizard;
-
-
       }
+     this.MaxHealth = this.Player.health;
       this.Player.bag = weapons.basic_weapons.filter(function( obj ) {
-        if (obj.karma  && obj.karma === 'bad') {
-          this.Player.karma = -4;
-        }
           return obj.name === player.weapon;
       });
+      if (this.Player.bag.length > 0) {
+          if (this.Player.bag[0].karma_effect) {
+            if (this.Player.bag[0].karma_effect.type === 'negative') {
+              this.Player.karma -= this.Player.bag[0].karma_effect.effect;
+            } else {
+              this.Player.karma += this.Player.bag[0].karma_effect.effect;
+            }
+          }
+        }
       console.log(this.Player.bag);
       this.Player.name = player.name;
       console.log(this.Player);
       this.gameStart =  true;
       return this.Player;
-
   }
+
   findweapon(weaponname, weaponClass) { // finds weapon based on class
     const weapon = weapons[weaponClass].filter(function( obj ) {
       console.log(obj);
@@ -113,6 +127,12 @@ export class CharacterService {
     this.showNav = false;
     return this._router.navigate(['']);
   }
+  public handleError(error: Response) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
 
 }
+
+
 export { Player};

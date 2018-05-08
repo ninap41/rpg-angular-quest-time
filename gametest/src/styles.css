@@ -9,3 +9,20 @@ body {
     padding: 1em;
 
 }
+i {
+    color: grey;
+}
+.red {
+    color:rgb(251, 106, 106);
+}
+.green {
+    color: rgb(0, 154, 54);
+}
+.orange {
+    color: rgb(208, 146, 0);
+
+}
+.blue {
+    color: rgb(7, 0, 208);
+
+}

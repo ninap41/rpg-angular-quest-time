@@ -1,21 +1,20 @@
 <span *ngIf="gameStart == true">
     
-          
- 
-    <div style="text-align:left">
-     <i>Name:</i> {{Player.name}}<BR>
-    <i>Health:</i> {{Player.health}}<BR>
-   <i>Race: </i>{{Player.race}}<BR>
-    <i>LVL: </i>{{Player.lvl}}<BR>
-    <i>Strength:</i>{{Player.strength}}<BR>
-    <i>Speed: </i>{{Player.speed}}<BR>
-    <i>Weapon:</i> {{Player.weapon}}<BR>
-    <i>Gold: </i>{{Player.gold}}<BR>
-    <i>Hometown: </i>{{Player.hometown}}<BR>
-
-    <i>bag:</i> <BR><span *ngFor="let item of Player.bag">- {{item.name}}<BR></span><BR><br>
-    </div>
-
   
+
+    <i>Name: </i> {{Player.name}}<BR>
+        <i>Health: </i> <span class="green">{{Player.health}}</span>HP<BR>
+       <i>Race: </i> {{Player.race}}<BR>
+        <i>LVL: </i> <span class="green">{{Player.lvl}}</span><BR>
+        <i>Karma:  </i> <span class="green">{{Player.karma}}</span><BR>
+        <i>Strength: </i><span class="green">{{Player.strength}}</span> <BR>
+        <i>Speed:  </i> <span class="green">{{Player.speed}}</span><BR>
+            <span *ngIf="Player.race === 'wizard'">
+            <span *ngIf="Player.spellbook"> <i>Spellbook:  </i> </span> 
+            <span *ngIf="Player.spellbook && Player.spellbook.length ===0" class="red">no spells.<BR></span>
+            </span>
+        <i>Weapon: </i> {{Player.weapon}}<BR> <span class="red" *ngIf="Player.weapon === null">no weapon equipped.</span><BR>
+        <i>Gold: </i> <span class="orange">{{Player.gold}}</span>pcs<BR>
+        <i>Hometown: </i> <span class="blue">{{Player.hometown}}</span><BR>  <span class="red" *ngIf="Player.hometown === null">no hometown.</span>
 
 </span>

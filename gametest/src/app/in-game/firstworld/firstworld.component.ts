@@ -23,6 +23,9 @@ firstworldevents = events;
 playertest;
 currentEvent;
 errors;
+worldpoint;
+WorldName;
+updateMessage;
 // all of map
 
 
@@ -37,42 +40,58 @@ errors;
     this._characterService.gameStart = true;
     this.Player = this._characterService.retrievePlayer();
     this.playertest = JSON.parse(localStorage.getItem('Player'));
-
     this.firstworld = HumanWorldStart;
+    this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
     console.log('PLAYER TEST: '  + this.playertest.name );
+    console.log('Length: '  + this.Player.worldPoint.length);
+    console.log('content: '  + this.Player.worldPoint);
 
-    if ( this.Player.worldPoint.length === 0) {
+    if (this.Player.worldPoint.length === 0) {
       this.Player.worldPoint.push(this.firstworld.home);
-      this.playersPoint =  this.firstworld.home;
+      this.playersPoint = this.firstworld.home;
         this.check_name_and_home(this.playersPoint);
+        this.check_inspects_guard(this.playersPoint);
+        this.playersPoint.update_message = null;
 
     } else {
-      this.Player.worldPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
-      this.playersPoint = this.Player.worldPoint;
+      this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
       this.check_name_and_home(this.playersPoint);
+      this.check_inspects_guard(this.playersPoint);
+      this.playersPoint.update_message = null;
+
 
     }
-
-    // this._characterService.gameStart = true;
-    // this.Player = this._characterService.retrievePlayer();
-    // this.errors = this._characterService.error;
-    // this.firstworld = HumanWorldStart;
-
-    // if ( this.Player.worldPoint.length === 0 || !this.Player.worldPoint) {
-    //   this.Player.worldPoint.push(this.firstworld.home);
-    //   this.playersPoint =  this.firstworld.home;
-    //   this.check_name_and_home(this.playersPoint);
-    //   // console.log(this.playersPoint.description);
-
-    // } else {
-    //   this.Player.worldPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
-    //   this.playersPoint = this.Player.worldPoint;
-    //   this.check_name_and_home(this.playersPoint);
-    // }
-    // this.playersPoint = this.firstworld.home;
     console.log( 'this.playersPoint: ' + this.playersPoint +
     'this.playersPoint: ' +  this.Player.worldPoint);
+    this.check_name_and_home(this.playersPoint);
+    this.check_inspects_guard(this.playersPoint);
+    this.playersPoint.update_message = null;
+
+
+
   }
+
+
+  check_inspects_guard(point) {
+    if (point.inspects) {
+      for (const inspect of point.inspects) {
+        for (const item of this.Player.bag) {
+          if (item.value) {
+            if (item.value === inspect.needs && item.value) {
+              inspect.guard = false;
+            }
+            if (item.value === inspect.eradicate && item.value) {
+              inspect.guard = true;
+            }
+          }
+
+      }
+    }
+  }
+
+  }
+
+
 
   check_name_and_home(point) {
     if (point.description) {
@@ -82,6 +101,8 @@ errors;
       }
 
   }
+
+
 
   traverse(direction) {
     this.currentEvent = null;
@@ -96,12 +117,18 @@ errors;
         console.log ('event avoided');
         this.currentEvent = null;
         this.Player.worldPoint.push(this.firstworld[direction.room]);
-        this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];      }
+        this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
+        // this.check_name_and_home(this.playersPoint);
+        // this.check_inspects_guard(this.playersPoint);
+      }
     } else {
-
-    this.check_name_and_home(this.playersPoint);
+    // this.check_name_and_home(this.playersPoint);
+    // this.check_inspects_guard(this.playersPoint);
     }
   }
+
+
+
   traverseFromEvent(direction) {
     this.currentEvent = null;
     this.Player.worldPoint.push(this.firstworld[direction.room]);
@@ -117,44 +144,71 @@ errors;
         this.currentEvent = null;
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
         this.check_name_and_home(this.playersPoint);
-
+        this.check_inspects_guard(this.playersPoint);
       }
     } else {
-   
     this.check_name_and_home(this.playersPoint);
+    this.check_inspects_guard(this.playersPoint);
+    }
+
+  }
+
+  use_needed_item(action, idx) {
+    console.log(' use_needed_item');
+    for (let i = 0; i < this.Player.bag.length; i ++) {
+      if (action.needs === this.Player.bag[i].value && this.Player.bag[i].qty > 0) {
+        if (this.Player.bag[i].limit === true) {
+          this.Player.bag[i].qty  -= 1;
+          if (this.Player.bag[i].qty === 0) {
+            const usedItem = this.Player.bag[i].name;
+            this.Player.bag.splice(i, 1);
+            this.playersPoint.inspects[idx].guard = true; // gets rid of event if you run out of things;
+            this.playersPoint.update_message = `You used the last of the ${usedItem}.`;
+            return false;
+          }
+        } else {
+          console.log('permanent item');
+        }
+      }
     }
   }
+
   inspectWorld(action, idx) {
-    this.currentEvent = this.firstworldevents[action];
+
+    const inspectEvent = action.event;
+    if (action.needs) {
+      this.use_needed_item(action, idx);
+    }
+    this.check_inspects_guard(this.playersPoint);
+    this.currentEvent = this.firstworldevents[inspectEvent];
     console.log(this.currentEvent);
-    // this.playersPoint.inspects[idx] = null;
-    // console.log('eradicated: ' +  this.playersPoint.inspects[idx] );
   }
+
+
   inspectEvent(action, idx) {
     if (action.event === 'take') {
       this._characterService.updatePlayerBag(action.object);
-      console.log('do not be empty: ' + this.currentEvent.inspects[idx]);
       this.currentEvent.updateMessage = `'You found ${action.object.name}. ${action.object.description}.
       Check Your Inventory'`;
       this.currentEvent.inspects.splice(idx, 1);
       if (this.currentEvent.inspects < 1) {
-        console.log(this.currentEvent.access_directions_state);
         this.currentEvent.access_directions_state = true;
-
       }
     } else {
       this.currentEvent.updateMessage = `You did not take ${this.currentEvent.inspects[idx].object.name}.`;
     }
-    // this.currentEvent.inspects[idx] = null;
   }
+
   aquire() {
 
   }
+
   updateCharacterStats() {
 
   }
   goBack() {
     this.Player.worldPoint.pop();
+    this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
 
   }
 

@@ -1,52 +1,89 @@
 
-<div class="container" >
- 
+    <h1 class="pointTitle" *ngIf="playersPoint.name">
+        {{WorldName}} : {{playersPoint.name}}</h1>
+    <BR>
 
-    <h2 *ngIf="playersPoint.name">{{playersPoint.name}}</h2>
+
     <div align="center" class="row">
-    
-        <div *ngIf="!currentEvent" class="card"> <!-- World DESCRIPTION  -->
+
+            <span *ngIf="playersPoint.update_message"> {{playersPoint.update_message}} </span>
+
+        <div *ngIf="!currentEvent" class="col-sm card card-adventure"> <!-- World DESCRIPTION  -->
         <!-- <p style="color:green">Player.worldPoint LIST:{{ this.Player.worldPoint | json:format }}</p> -->
         <p> "{{ playersPoint.description | json}}"</p>
+        {{Player.description | json}}
+
         (Hover over options for more detail)
+
+
+        <!-- PLAYERS POINTS.DIRECTIONS
+        PLAYERS POINTS.DIRECTIONS               traverse(direction) playerspoint.direction OBJ
+        PLAYERS POINTS.DIRECTIONS
+        PLAYERS POINTS.DIRECTIONS
+        PLAYERS POINTS.DIRECTIONS -->
+    
               <div *ngIf="playersPoint.directions">
                     <hr>
                     <p><i>Where shall you go? </i></p>
                     <span *ngFor="let direction of playersPoint.directions;"style="padding: .5em;">
-                        <button [style.background-color]="direction.color" title="{{direction.description}}" (click)="traverse(direction);"  class="btn btn-info"> {{direction.name}} </button> 
+                        <button [ngbTooltip]="tipContentDirection" [style.background-color]="direction.color"  (click)="traverse(direction);"  class="btn btn-info"> 
+                            {{direction.name}} 
+                        </button> 
+                        <ng-template type="button" class="btn btn-outline-secondary" #tipContentDirection>{{direction.description}}</ng-template>
                     </span>
                 </div>
 
+            <!-- PLAYERS POINTS.DIRECTIONS.INSPECTS
+        PLAYERS POINTS.DIRECTIONS.INSPECTS
+        PLAYERS POINTS.DIRECTIONS.INSPECTS   inspectWorld(inspect.event, idx, inspect.needs)   playerspoint.direction.inspect OBJ
+        PLAYERS POINTS.DIRECTIONS.INSPECTS
+        PLAYERS POINTS.DIRECTIONS.INSPECTS -->
      
-              <div *ngIf="playersPoint.inspects ">
+              <div *ngIf="playersPoint.inspects">
                     <hr>
                     <p><i>What shall you do </i></p>
                     <span *ngFor="let inspect of playersPoint.inspects; let idx = index" style="padding: .5em;">
-                        <button  title="{{inspect.description}}" (click)="inspectWorld(inspect.event, idx);"  class="btn btn-warning"> {{inspect.name}} </button> 
+                    
+                            <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> {{inspect.name}}</button> 
+                            <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects>{{inspect.description}} </ng-template>
+                   
                     </span>
                 </div>
       </div> <!-- World DESCRIPTION END  -->
       <!-- EVENT DESCRIPTION  -->
-      <div *ngIf="currentEvent" class="card"> 
+
+
+      <div *ngIf="currentEvent" class="card card-adventure event col-sm"> 
+
         <h4>Event: {{currentEvent.name}}</h4>
         <p>{{currentEvent.description}}</p>
-        <span *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
+        <span style="color:green" *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
         
-        <div *ngIf="currentEvent.inspects ">
+        <div *ngIf="currentEvent.inspects">
 
-            <p><i>Where shall you do (Hover over options for more detail).</i></p>
+                    <!-- PLAYERS POINTS.DIRECTIONS.INSPECTSCURRENTEVENT.INSPECTS
+        PLAYERS CURRENTEVENT.INSPECTS
+        PLAYERS CURRENTEVENT.INSPECTS       inspectEvent(inspect, idx) currentEvent.inspects OBJ
+        PLAYERS CURRENTEVENT.INSPECTS
+        PLAYERS CURRENTEVENT.INSPECTS -->
+            <p><i>What shall you do (Hover over options for more detail).</i></p>
             <span *ngFor="let inspect of currentEvent.inspects; let idx = index" style="padding: .5em;">
-                    <button  title="{{inspect.description}}" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button> 
-                    <!-- <span *ngIf></span> -->
-                
-            </span>
-         
 
+                    <button  [ngbTooltip]="tipContentEventInspects" title="{{inspect.description}}" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button> 
+                    <ng-template type="button" class="btn btn-outline-secondary" #tipContentEventInspects>{{inspect.description}} </ng-template>
+            </span>
         </div>
                 <div *ngIf="currentEvent.access_directions_state === true">
                 <hr>
+   <!-- PLAYERS 
+        PLAYERS CURRENTEVENT.DIRECTIONS      traverseFromEvent(direction)
+        PLAYERS CURRENTEVENT.DIRECTIONS      currentEvent.directions OBJ
+        PLAYERS CURRENTEVENT.DIRECTIONS
+        PLAYERS CURRENTEVENT.DIRECTIONS -->
                 <span *ngFor="let direction of currentEvent.directions; let idx = index" style="padding: .5em;">
-                    <button  title="{{direction.description}}" (click)="traverseFromEvent(direction);"  class="btn btn-info"> {{direction.name}} </button> 
+                    <button  [ngbTooltip]="tipContentDirectionEvent" (click)="traverseFromEvent(direction);"  class="btn btn-info"> {{direction.name}} </button> 
+                    <ng-template type="button" class="btn btn-outline-secondary" #tipContentDirectionEvent>{{direction.description}}</ng-template>
+
                 </span>
                 </div>
         
@@ -55,8 +92,16 @@
 
       <BR>
 
+    <div class="col-sm">
+       
+        <div class="card card-stats">
+            <app-stats></app-stats>
+        </div>
+        <div class="card card-bag">
+            <app-bag></app-bag>
+        </div>
+    </div>
+
     </div>
 
     
-  
-</div>
