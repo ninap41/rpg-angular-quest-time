@@ -64,6 +64,9 @@ currentEvent = false;
   }
 
   updatePlayerBag(item) {
+    if (item.id) {
+      item.id = Math.floor(Math.random() * 10000000000);
+    }
     this.Player.bag.push(item);
     console.log('new Bag:' +  this.Player.bag);
     console.log('new item:' +  item);

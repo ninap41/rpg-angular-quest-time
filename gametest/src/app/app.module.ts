@@ -25,6 +25,7 @@ import { SecondworldComponent } from './in-game/secondworld/secondworld.componen
 import { BattleComponent } from './battle/battle.component';
 import { ShopComponent } from './shop/shop.component';
 import { FullBagComponent } from './full-bag/full-bag.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FullBagComponent } from './full-bag/full-bag.component';
     SecondworldComponent,
     BattleComponent,
     ShopComponent,
-    FullBagComponent
+    FullBagComponent,
+    HelpComponent
   ],
   imports: [
     HttpModule,

@@ -28,6 +28,7 @@ const attributes = [
 var qty = 0;
 
 let matches = {
+    'id' : Math.floor(Math.random() * 10000000000),
     "value" : 'matches',
     "name" : 'Matches',
     'type' : 'scenario',
@@ -51,7 +52,7 @@ const enemies= {
         'speed' : 4,
         'damage' : 3,
         'weapon' : orc_knife,
-        'flee_chance': 3,
+        'flee_chance': 2,
     },
 
 }
@@ -67,13 +68,12 @@ const events = {
             'name' : 'Unlodge Knife',
             'object' : orc_knife,
             'event' :'take',
-            // 'subevent_onevent' : '',
             'description' : 'A jagged knife lays lodged in her chest, you must rip it out to get it.'
             },
             {
                 'guard' : false,
                 'name' : 'Look in Drawer',
-                'object' : items.matches,
+                'object' : matches,
                 'event' :'take',
                 'description' : `You see a red box and some candles.`
                 }
@@ -110,7 +110,6 @@ const events = {
             'name' : 'Mysterious Vial',
             'object' : items.potion_of_luck,
             'event' :'take',
-            'subevent_onevent' : '',
             'description' : `You have no idea what this is but it's glowing bright green.`
             },
             {
@@ -145,6 +144,7 @@ const events = {
         'inspects' : [
             {
             'guard' : false,
+            'needsweapon': true,
             'name' : 'Fight',
             'event' :'fight',
             'subevent_onevent' : '',
@@ -152,6 +152,7 @@ const events = {
             },
             {
             'guard' : false,
+            'needsweapon': true,
             'name' : 'Run',
             'event' :'run',
             'description' : `Running away is often risky. You have very little chance of fleeing.`
@@ -353,7 +354,6 @@ let HumanWorldStart =
             {
                 "guard" : false,
                 "name": "Feel Around Room",
-                // "needs" : 'matches',
                 "eradicate" : 'matches',
                 "event": "light_storage_hurt",
                 "description": "Oh boy, hope you don't get hurt!",

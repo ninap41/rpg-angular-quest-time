@@ -18,7 +18,9 @@ const routes: Routes = [
         {path: 'in-game/secondworld', component: SecondworldComponent},
     ]},
 
-    {path: 'firstworld', component: FirstworldComponent},
+    {path: 'firstworld', component: FirstworldComponent,  children: [
+        {path: 'home/first-world/bag', component: BagComponent},
+    ]},
 
     { path: 'home/in-game',   component: InGameComponent, children: [
         {path: 'home/in-game/firstworld', component: FirstworldComponent},

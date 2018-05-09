@@ -26,3 +26,15 @@
     font-weight: normal; 
     font-style: normal; 
  }
+
+ ul > li {
+     list-style-type: none;
+     text-emphasis: left;
+ }
+ .btn-default{
+     border: 1px solid grey;
+
+ }
+ ul{
+     text-emphasis: left;
+ }

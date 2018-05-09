@@ -29,6 +29,7 @@ errors;
 worldpoint;
 WorldName;
 updateMessage;
+weaponGuard;
 // all of map
 
 
@@ -40,7 +41,7 @@ updateMessage;
      }
 
   ngOnInit() {
-
+    this.weaponGuard = this._battleService.weaponGuard;
     this._characterService.gameStart = true;
     this.Player = this._characterService.retrievePlayer();
     this.playertest = JSON.parse(localStorage.getItem('Player'));
@@ -69,6 +70,18 @@ updateMessage;
   check_inspects_guard(point) {
     if (point.inspects) {
       for (const inspect of point.inspects) {
+        if (inspect.needsweapon) {
+          if (inspect.needsweapon === true) {
+            if (this.Player.weapon === null) {
+            inspect.needsweapon = true;
+            inspect.description = `${this.Player.name}, you must have a weapon equipped in order to fight!`;
+            console.log('please equip weapon');
+            } else {
+              console.log('youre good bro');
+            }
+          }  else {
+          }
+        }
         for (const item of this.Player.bag) {
           if (item.value) {
             if (item.value === inspect.needs && item.value) {
@@ -100,6 +113,8 @@ updateMessage;
   //     }
   // }
   traverse(direction) {
+    console.log('traverse()');
+    this._characterService.global_update_message = null;
     this.currentEvent = null;
     this.Player.worldPoint.push(this.firstworld[direction.room]);
     this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
@@ -124,6 +139,8 @@ updateMessage;
 
 
   traverseFromEvent(direction) {
+    console.log('traverseFromEvent()');
+
     this.currentEvent = null;
     this.Player.worldPoint.push(this.firstworld[direction.room]);
     this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
@@ -149,7 +166,7 @@ updateMessage;
   }
 
   use_needed_item(action, idx) {
-    console.log(' use_needed_item');
+    console.log(' use_needed_item()');
     for (let i = 0; i < this.Player.bag.length; i ++) {
       if (action.needs === this.Player.bag[i].value && this.Player.bag[i].qty > 0) {
         if (this.Player.bag[i].limit === true) {
@@ -170,10 +187,10 @@ updateMessage;
   }
 
   inspectWorld(action, idx) {
+    console.log('inspectWorld()');
 
     if (this.playersPoint.eventtriggerchance) {
       const trigger =  Math.floor(Math.random() * this.playersPoint.eventtriggerchance);
-
       if (trigger === 1) {
         this.currentEvent = this.firstworldevents[this.playersPoint.event];
         console.log(this.currentEvent);
@@ -190,17 +207,22 @@ updateMessage;
     }
     //
     const inspectEvent = action.event;
+
     if (action.needs) {
       this.use_needed_item(action, idx);
+
     }
     this.check_inspects_guard(this.playersPoint);
     this.currentEvent = this.firstworldevents[inspectEvent];
-    console.log(this.currentEvent);
   }
 
 
   inspectEvent(action, idx) {
+    this.check_inspects_guard(this.playersPoint);
+
+    console.log('inspectEvent');
     if (action.event === 'take') {
+      console.log('ah');
       this._characterService.updatePlayerBag(action.object);
       this.currentEvent.updateMessage = `'You found ${action.object.name}. ${action.object.description}.
       Check Your Inventory'`;
@@ -210,17 +232,30 @@ updateMessage;
       }
     } else if (action.event === 'run') {
       console.log('run');
-
       const currentEnemy = this.currentEvent.enemy;
-      this._battleService.fleeFight(currentEnemy );
-
-    } else if (action.event === 'fight') {
+        Math.floor(Math.random() * this.Player.karma);
+        const luck = Math.floor(Math.random() * this.Player.karma);
+        if (luck >= currentEnemy.flee_chance) {
+          console.log(luck);
+          this._characterService.global_update_message = `You fled ${currentEnemy.name}. Your 'Karma' may have saved you.`;
+          this.currentEvent = null;
+        } else {
+          this._battleService.fightStart(currentEnemy, action);
+        }
+      this.currentEvent = null;
+      // this._battleService.fleeFight(currentEnemy, action, this.currentEvent);
+    }
+     if (action.event === 'fight') {
       console.log('fight');
       const currentEnemy = this.currentEvent.enemy;
-      this._battleService.fightStart(currentEnemy);
+      this._battleService.fightStart(currentEnemy, action);
     }  else {
-      this.currentEvent.updateMessage = `You did not take ${this.currentEvent.inspects[idx].object.name}.`;
+      // if (this.currentEvent.inspects[idx].object) {
+      //   this.currentEvent.updateMessage = `You did not take ${this.currentEvent.inspects[idx].object.name}.`;
+
+      // }
     }
+    this._characterService.retrievePlayer();
   }
 
   aquire() {
@@ -233,7 +268,5 @@ updateMessage;
   goBack() {
     this.Player.worldPoint.pop();
     this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
-
   }
-
 }

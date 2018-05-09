@@ -2,6 +2,7 @@
     <h1 class="pointTitle" *ngIf="playersPoint.name">
         {{WorldName}} : {{playersPoint.name}}</h1>
     <BR>
+    
 
 
     <div align="center" class="row">
@@ -12,6 +13,9 @@
         <!-- <p style="color:green">Player.worldPoint LIST:{{ this.Player.worldPoint | json:format }}</p> -->
         <p> "{{ playersPoint.description | json}}"</p>
         {{Player.description | json}}
+        <span class="orange" *ngIf="_characterService.global_update_message">
+                {{_characterService. global_update_message}}
+            </span>
 
         (Hover over options for more detail)
 
@@ -29,7 +33,7 @@
                         <button [ngbTooltip]="tipContentDirection" [style.background-color]="direction.color"  (click)="traverse(direction);"  class="btn btn-info"> 
                             {{direction.name}} 
                         </button> 
-                        <ng-template type="button" class="btn btn-outline-secondary" #tipContentDirection>{{direction.description}}</ng-template>
+                        <ng-template type="button" class="btn btn-outline-secondary" #tipContentDirection>ddd{{direction.description}}</ng-template>
                     </span>
                 </div>
 
@@ -44,8 +48,8 @@
                     <p><i>What shall you do </i></p>
                     <span *ngFor="let inspect of playersPoint.inspects; let idx = index" style="padding: .5em;">
                     
-                            <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> {{inspect.name}}</button> 
-                            <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects>{{inspect.description}} </ng-template>
+                            <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> ffff {{inspect.name}}</button> 
+                            <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects> zzzz{{inspect.description}} </ng-template>
                    
                     </span>
                 </div>
@@ -85,10 +89,11 @@
         PLAYERS CURRENTEVENT.INSPECTS -->
             <p><i>What shall you do (Hover over options for more detail).</i></p>
             <span *ngFor="let inspect of currentEvent.inspects; let idx = index" style="padding: .5em;">
-
-                    <button  [ngbTooltip]="tipContentEventInspects" title="{{inspect.description}}" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button> 
-                    <ng-template type="button" class="btn btn-outline-secondary" #tipContentEventInspects>{{inspect.description}} </ng-template>
-            </span>
+               
+                    <ng-template #tipContentInspect>Please Equip Weapon. An enemy is before you and you should have a weapon equipped at all times.</ng-template>
+                    <span [ngbTooltip]="tipContentInspect" *ngIf="inspect.needsweapon === true && _battleService.weaponGuard === true && idx === 0">?</span>
+                    <button title="Please Equip Weapon" [disabled]="inspect.needsweapon === true && _battleService.weaponGuard === true" [ngbTooltip]="tipContentEventInspects" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning">ttt {{inspect.name}} </button>  
+                </span>
         </div>
                 <div *ngIf="currentEvent.access_directions_state === true">
                 <hr>
@@ -111,14 +116,43 @@
 
 
 
-
-
-
-
       <div *ngIf="_battleService.currentFight"  class="card card-battle event col-sm">
-          triggered
+            <div *ngIf="_battleService.currentFight === true">
+                    <h3> {{_battleService.currentEnemy.name}}</h3>
+                    <BR><BR>
+                    {{ _battleService.battle_update_message}}
+                    <BR>
+                        <ul>
+                            <li>Health:{{_battleService.currentEnemy.health}}</li>
+                            <li>Lvl:{{_battleService.currentEnemy.lvl}}</li>
+                            <li>Lvl:{{_battleService.currentEnemy.lvl}}</li>
+                            <li>Weapon:{{_battleService.currentEnemy.weapon.name}}</li>
+                            <li>Description:{{_battleService.currentEnemy.description}}</li>
+                        </ul>
+                
+
+  
+
+                  
+
+                    <button  style="display: inline-block;" class="btn btn-default red">Strike</button>
+                    <button style="display: inline-block;" class="btn btn-default yellow">Heal</button>
+                    <button style="display: inline-block;" class="btn btn-default green">Block</button>
+                    <button  style="display: inline-block;"class="btn btn-default orange">Taunt</button>
+        
+        </div>
+
 
       </div>
+
+
+
+
+
+
+
+
+
 
 
       <BR>

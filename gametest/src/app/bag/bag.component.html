@@ -4,28 +4,27 @@
 <h2>{{Player.name}}'s Inventory</h2>
 <BR>
 <div *ngFor="let item of Player.bag; let idx = index">
-
-          
           <ng-template type="button" class="btn btn-outline-secondary" #tipContent>
-                <p><i>'{{item.description}}'</i> </p>
+                <span><i>'{{item.description}}'</i> </span>
                 <span *ngIf="item.type === 'weapon'">
                         <br>
                         <span>Lvl: {{item.lvl}}</span><BR>
                         <span>Damage: {{item.damage}} </span><BR>
                         <span>Durability: {{item.durability}} </span><BR>
                         <span> Karma Effect: {{item.karma_effect.name}}  </span><BR>
-                        <i>'{{item.karma_effect.description}}'</i>
+                        <i>'{{item.karma_effect.description}}'</i><BR>
+                          <span *ngIf="item.equipped === true"> Equipped</span>
+                        <span [ngClass]="{'green': item.equipped ===true, 'orange': item.equipped === false }">{{item.name}}</span>
                 </span>
 
               <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
             </ng-template>
           <li [ngbTooltip]="tipContent">
-              <span *ngIf="item.type === 'weapon'" (click)="_battleService.weaponequip(item, idx)">
-                            <img width="20px" src="/assets/icons/equip-weapon.png">
-              </span>
-                {{item.name}}
+                <span [ngClass]="{'green': item.equipped ===true}">{{item.name}}</span>
+                <span *ngIf="item.type === 'weapon' && this.Player.weapon === null;" (click)="_battleService.weaponequip(item, idx, 'equip')">
+                  <img width="10px" src="/assets/icons/equip-weapon.png">
+                </span>
           </li>
-   
 </div>
 
 <div *ngIf="Player.bag.length === 0">
