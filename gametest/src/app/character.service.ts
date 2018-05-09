@@ -14,7 +14,9 @@ import 'rxjs/add/observable/throw';
 
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
 import {  WorldPlayer, HumanWorldStart } from './world1';
-import { weapons } from './item-create';
+import { weapons, items } from './item-create';
+
+import { npcs } from './npc-create';
 
 
 @Injectable()
@@ -30,6 +32,8 @@ export class CharacterService {
  serviceplayersPoint;
  MaxHealth;
 
+ global_update_message;
+currentEvent = false;
 
   constructor(
     private _router: Router,
@@ -45,7 +49,7 @@ export class CharacterService {
 
 
   retrievePlayer() {
-    // localStorage.setItem('Player', JSON.stringify(this.Player));
+    localStorage.setItem('Player', JSON.stringify(this.Player));
     return this.Player;
   }
   isPlayer() {
@@ -107,6 +111,9 @@ export class CharacterService {
             }
           }
         }
+        this.Player.bag.push(weapons.basic_weapons[0]);
+        this.Player.bag.push(weapons.basic_weapons[1]);
+
       console.log(this.Player.bag);
       this.Player.name = player.name;
       console.log(this.Player);

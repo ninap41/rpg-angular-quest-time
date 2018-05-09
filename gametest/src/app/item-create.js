@@ -5,7 +5,7 @@
                 'type' : 'weapon',
                 'name' : 'Orc Shiving Knife',
                 'lvl' :1 ,
-                damage : 3,
+                'damage' : 3,
                 'karma_effect' : {
                     'type' : 'negative',
                     'effect' : 5,
@@ -91,4 +91,74 @@
      
 
     }
-    export { weapons };
+
+
+    const items = {
+        'matches' : {
+            'type' : 'scenario',
+            "value" : 'matches',
+            "name" : 'Matches',
+            'type' : 'scenario',
+            'limit' : true,
+            'qty' : 3,
+            "description" : `Used to light places.`,
+            
+        },
+        'liquid_courage' : {
+            'type' : 'usable',
+            "value" : 'liquid_courage',
+            "name" : 'Liquid Courage',
+            'influence' : 'positive',
+            'influence_impact' : 10,
+            'influence_stat' : 'health',
+            'limit' : true,
+            'qty' : 1,
+            "description" : `A little something to boost morale and get you through the day. Increased HP by 10`,
+            
+        },
+        'bread' : {
+            'type' : 'usable',
+            "value" : 'liquid_courage',
+            "name" : 'CHARHOMETOWN Bread',
+            'influence' : 'positive',
+            'influence_impact' : 5,
+            'influence_stat' : 'health',
+            'limit' : true,
+            'qty' : 1,
+            "description" : `Bread of your people. Reminds you of your home.`,
+        },
+        'potion_of_luck' : {
+            'type' : 'usable',
+            "value" : 'potion_of_luck',
+            "name" : 'Potion of Luck',
+            'damage' : 3,
+            'limit' : true,
+            'qty' : 1,
+            "description" : `A potion that increases Karma by 10. (Bad events trigger less when karma is high)`,
+        },
+        'book_of_fire_spell' : {
+            'type' : 'spell',
+            "value" : 'book_of_fire_spell',
+            "name" : 'Book of basic Fire Spell',
+            'influence_type' : 'offensive', // defensive is other
+            'damage' : 4,
+            'spell_type': 'offensive',
+            'limit' : true,
+            'qty' : 1,
+            "description" : `A spell that can inflicts +4 damage to enemy each turn`,
+        },
+
+               
+    }
+
+
+    export { weapons, items};
+//     'karma_effect' : {
+//         'type' : 'negative',
+//         'effect' : 5,
+//         'name': 'Blood Curse',
+//         'description' : '-5 karma... Blood of a 24 Orcs have been laid upon this blade.',
+//     },
+//     'durability' : 8,
+//     'description' : 'Still stained with your mothers blood, this is a cruel weapon.'
+// },

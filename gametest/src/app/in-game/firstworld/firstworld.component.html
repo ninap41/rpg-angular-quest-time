@@ -8,7 +8,7 @@
 
             <span *ngIf="playersPoint.update_message"> {{playersPoint.update_message}} </span>
 
-        <div *ngIf="!currentEvent" class="col-sm card card-adventure"> <!-- World DESCRIPTION  -->
+        <div *ngIf="!currentEvent  && _battleService.currentFight === false" class="col-sm card card-adventure"> <!-- World DESCRIPTION  -->
         <!-- <p style="color:green">Player.worldPoint LIST:{{ this.Player.worldPoint | json:format }}</p> -->
         <p> "{{ playersPoint.description | json}}"</p>
         {{Player.description | json}}
@@ -53,10 +53,27 @@
       <!-- EVENT DESCRIPTION  -->
 
 
-      <div *ngIf="currentEvent" class="card card-adventure event col-sm"> 
+
+
+
+
+
+
+
+
+
+      <div *ngIf="currentEvent && _battleService.currentFight === false" class="card card-adventure event col-sm"> 
 
         <h4>Event: {{currentEvent.name}}</h4>
         <p>{{currentEvent.description}}</p>
+        <span [ngbTooltip]="enemySpecs" *ngIf="currentEvent.enemy">Enemy: <b class="red">{{currentEvent.enemy.name}}</b></span>
+         <!-- ENEMY SPECS -->   <ng-template type="button" class="btn btn-outline-secondary" #enemySpecs>
+                                        <span> Health: <b>{{currentEvent.enemy.health}} HP</b></span><BR>
+                                        <span>Lvl: <b>{{currentEvent.enemy.lvl}} </b></span><BR>
+                                        <span>Speed: <b>{{currentEvent.enemy.speed}}</b></span><BR>
+                                        <span>Weapon: <b>{{currentEvent.enemy.weapon.name}}</b></span><BR>
+                                        </ng-template>
+
         <span style="color:green" *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
         
         <div *ngIf="currentEvent.inspects">
@@ -87,6 +104,20 @@
                 </span>
                 </div>
         
+      </div>
+
+
+
+
+
+
+
+
+
+
+      <div *ngIf="_battleService.currentFight"  class="card card-battle event col-sm">
+          triggered
+
       </div>
 
 

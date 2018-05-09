@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Routes, RouterModule } from '@angular/router';
 import { CharacterService } from './character.service';
+import { BattleService } from './battle.service';
+import { ItemService } from './item.service';
+
 import { InGameComponent } from './in-game/in-game.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { StatsComponent } from './stats/stats.component';
@@ -21,6 +24,7 @@ import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
 import { SecondworldComponent } from './in-game/secondworld/secondworld.component';
 import { BattleComponent } from './battle/battle.component';
 import { ShopComponent } from './shop/shop.component';
+import { FullBagComponent } from './full-bag/full-bag.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { ShopComponent } from './shop/shop.component';
     FirstworldComponent,
     SecondworldComponent,
     BattleComponent,
-    ShopComponent
+    ShopComponent,
+    FullBagComponent
   ],
   imports: [
     HttpModule,
@@ -54,6 +59,9 @@ import { ShopComponent } from './shop/shop.component';
   ],
   providers: [
     CharacterService,
+    BattleService,
+    ItemService
+
 
   ],
   bootstrap: [AppComponent]

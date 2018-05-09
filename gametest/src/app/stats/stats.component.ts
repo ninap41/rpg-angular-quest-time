@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
+import { BattleService } from '../battle.service';
+import { ItemService } from '../item.service';
+
 
 @Component({
   selector: 'app-stats',
@@ -11,6 +14,8 @@ Player;
 gameStart = true;
   constructor(
     private _characterService: CharacterService,
+    private _battleService: BattleService,
+    private _itemService: ItemService
   ) {
 
   }

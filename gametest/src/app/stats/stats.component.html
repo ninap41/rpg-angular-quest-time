@@ -13,7 +13,12 @@
             <span *ngIf="Player.spellbook"> <i>Spellbook:  </i> </span> 
             <span *ngIf="Player.spellbook && Player.spellbook.length ===0" class="red">no spells.<BR></span>
             </span>
-        <i>Weapon: </i> {{Player.weapon}}<BR> <span class="red" *ngIf="Player.weapon === null">no weapon equipped.</span><BR>
+        <i>Weapon: </i> <BR>
+            <span class="red" *ngIf="Player.weapon === null">no weapon equipped.</span>
+            <span class="green" *ngIf="Player.weapon">{{Player.weapon.name}} <span (click)="_battleService.weaponequip(Player.weapon)"><img width="20px" src="/assets/icons/equip-weapon.png"></span>
+        </span>
+            
+            <BR>
         <i>Gold: </i> <span class="orange">{{Player.gold}}</span>pcs<BR>
         <i>Hometown: </i> <span class="blue">{{Player.hometown}}</span><BR>  <span class="red" *ngIf="Player.hometown === null">no hometown.</span>
 

@@ -1,5 +1,6 @@
 
-import { weapons } from './item-create';
+import { weapons, items } from './item-create';
+import { npcs } from './npc-create';
 import { Wizard,  Ninja, Elf, Dwarf, Human, Orc, Player} from './player-create';
 
 
@@ -34,12 +35,24 @@ let matches = {
     'qty' : 3,
     "description" : `Used to light places.`,
     
-};
+}
 
 const orc_knife = weapons.basic_weapons[0];
 
 
 const enemies= {
+    'baracder' : {
+        'name': 'Baravder The Orc',
+        'race' : 'Orc',
+        'lvl' : 2,
+        'health' : 80,
+        'description': `He's a big ugly boy`,
+        'opening_line': `"I saw you through the window you poor bastard. I'm going to gut you like your mother. Come here!"`,
+        'speed' : 4,
+        'damage' : 3,
+        'weapon' : orc_knife,
+        'flee_chance': 3,
+    },
 
 }
 const events = {
@@ -60,7 +73,7 @@ const events = {
             {
                 'guard' : false,
                 'name' : 'Look in Drawer',
-                'object' : matches,
+                'object' : items.matches,
                 'event' :'take',
                 'description' : `You see a red box and some candles.`
                 }
@@ -90,29 +103,29 @@ const events = {
         'update_message': null,
         'event_state' : true,
         "name":"A light in dark places",
-        "description" : 'You illuminate the storage closet to see supplies',
+        "description" : 'You illuminate the storage closet to see supplies. A a few vials and a book. You dont have time to think, just take them.',
         'inspects' : [
             {
-            'guard' : true,
-            'name' : 'Unlodge Knife',
-            'object' : 'apple',
+            'guard' : false,
+            'name' : 'Mysterious Vial',
+            'object' : items.potion_of_luck,
             'event' :'take',
             'subevent_onevent' : '',
-            'description' : 'A jagged knife lays lodged in her chest, you must rip it out to get it.'
+            'description' : `You have no idea what this is but it's glowing bright green.`
             },
             {
                 'guard' : false,
-                'name' : 'Look in Drawer',
-                'object' : matches,
+                'name' : 'Grab Book',
+                'object' : items.book_of_fire_spell,
                 'event' :'take',
-                'description' : `You see ${matches.name}. '${matches.description} `
+                'description' : `You have no idea what this is, and honestly, why would you grab a book at a time like this?`
                 }
         ],
         "access_directions_state" : false,
         "directions": [
             { 
                 'name': 'Outside',
-                'description' : 'Brave the outside and risk death? At least you have another weapon now.',
+                'description' : 'With your mother dead and your spirits down, what else is there to lose? Head outside.',
                 'room' : 'outside2'
             },
             { 
@@ -123,14 +136,15 @@ const events = {
         ]
 
     },
-    "firstspawn" : {               // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
+    "firstspawn" : {    
+        'enemy' : enemies.baracder,           // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
         'update_message': null,
         'event_state' : true,
         "name":"First Encounter...",
-        "description" : 'Enemy Appears, a massive drooling. He Carries a large Mace he swings by his belt. You have two options to Run or Fight. Its too early in the game to introduce battle dynamics ',
+        "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baracder.name}'. He Carries a ${enemies.baracder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baracder.opening_line}". You have two options to Run or Fight. Its too early in the game to introduce battle dynamics `,
         'inspects' : [
             {
-            'guard' : true,
+            'guard' : false,
             'name' : 'Fight',
             'event' :'fight',
             'subevent_onevent' : '',
@@ -139,7 +153,7 @@ const events = {
             {
             'guard' : false,
             'name' : 'Run',
-            'event' :'flee',
+            'event' :'run',
             'description' : `Running away is often risky. You have very little chance of fleeing.`
             }
         ],
@@ -151,7 +165,7 @@ const events = {
                 'room' : 'stables'
             },
             { 
-                'name': 'Run Away into high brush',
+                'name': 'Run Away into High Brush',
                 'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
                 'room' : 'high_brush'
             }
@@ -169,9 +183,9 @@ let HumanWorldStart =
     "name": 'CHARHOMETOWN',
     'world_description' : 'You are in your hometown of CHARHOMETOWN.',
     "imageUrl":"../../assets/world-background/town.jpg",
+
     "home":{
         'update_message': null,
-
         "name": "Home Main Room",
         "description":`You are CHARNAME 'CHARRACE of CHARHOMETOWN'. You've awoken from a nap. Loud sounds ensue outside your home, an unfamiliar experience for you. It is dark, but through the slits of your wooden home you can see a wavering glow. You hear some cries of a woman outside. Banter and chaos. The crackling of fire. There are two rooms before you, the east and the west. There is also the exit outside. You experience like you have never felt before`,
         "directions": [
@@ -185,13 +199,48 @@ let HumanWorldStart =
                 "name":"Storage Room",
                 "room":"storage_room",
                 "description" : 'there could be supplies inside... It might be useful to inspect.'
-            }
+            },
+          
+        ], // take out
+        'inspects': [
+             
+            {
+                'guard' : false,
+                'update_message': null,
+                "name":"Trigger Fight",
+                "event":"firstspawn",
+                "description": "The intervals of breathing, chest rising and falling, seem slow...",
+
+            },
+           
+
         ],
     },
     "home_return":{
         'update_message': null,
 
         "name": "Home Main Room",
+        "description":`You return to the Main Room, panicked and scared... You feel you need a weapon. You hear glass break somewhere in the house. A muffled yelp. `,
+        "directions": [
+            {
+                "name":"Mother's Room",
+                "room": "mothers_room_revisited",
+                "description" : 'there are footsteps rustling behind the door, sound of moaning and a window shutting.'
+            },
+            {
+                "name":"Storage Room",
+                "room":"storage_room",
+                "description" : 'there could be supplies inside... Something strange is going on outside.'
+            }
+        ],
+     
+        
+    },
+
+    "window_ledge":{
+        'update_message': null,
+
+        "name": "Back of The House",
         "description":`You return to the Main Room, panicked and scared... You feel you need a weapon. You hear glass break somewhere in the house. A muffled yelp. `,
         "directions": [
             {
@@ -322,7 +371,6 @@ let HumanWorldStart =
   
     },
     "outside":{
-        'updateessage': null,
 
         visits: 0,
         'name' : 'Outside',
@@ -374,8 +422,6 @@ let HumanWorldStart =
 
     // OUTSIDE HOME REALMS  // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS
     "outside2":{
-        'update_message': null,
-
         'eventtriggerchance': 2, //fifty fifty chance
         'event': 'firstspawn',
         'name' : 'Outside',
