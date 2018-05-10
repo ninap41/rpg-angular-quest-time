@@ -141,6 +141,9 @@ currentEvent = false;
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
   }
+  levelUP() {
+    console.log(`you leveled up to ${this.Player.lvl}`);
+  }
 
 }
 

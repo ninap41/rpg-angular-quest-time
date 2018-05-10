@@ -20,7 +20,7 @@
               <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
             </ng-template>
           <li [ngbTooltip]="tipContent">
-                <span [ngClass]="{'green': item.equipped ===true}">{{item.name}}</span>
+                <span [ngClass]="{'green': item.equipped === true}">{{item.name}}</span>
                 <span *ngIf="item.type === 'weapon' && this.Player.weapon === null;" (click)="_battleService.weaponequip(item, idx, 'equip')">
                   <img width="10px" src="/assets/icons/equip-weapon.png">
                 </span>

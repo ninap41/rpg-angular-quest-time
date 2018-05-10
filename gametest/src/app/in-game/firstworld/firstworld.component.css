@@ -38,3 +38,11 @@
  ul{
      text-emphasis: left;
  }
+ .col-sm {
+     padding-left: 10px;
+     padding-right: 10px;
+ }
+ .col-sm:nth-child(1) {
+     padding:1em;
+
+}

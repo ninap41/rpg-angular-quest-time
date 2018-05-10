@@ -26,6 +26,7 @@ export class BattleService {
 battle_update_message = '';
  currentEnemy;
  weaponGuard = true;
+ success_fail_message;
 
 
   constructor(
@@ -103,7 +104,7 @@ battle_update_message = '';
 
 
 
-  fightStart(currentEnemy, action) {
+  fightStart(currentEnemy, action, flee_token) {
     console.log(action);
     this.currentEnemy = currentEnemy;
     console.log('enemy!' + currentEnemy);
@@ -115,13 +116,16 @@ battle_update_message = '';
       this.currentFight  = true;
       this.weaponGuard = true;
     }
-    this._characterService.global_update_message = `Uh oh. You must fight ${currentEnemy.name}. If your 'run' failed, check your karma.`;
+    if (flee_token === true) {
+      this.battle_update_message = `Uh Oh, you must fight ${currentEnemy.name}. You unsuccesfully fled the battle.`;
+    } else {
+      this.battle_update_message = `Fight with
+      has ${this.currentEnemy.name} begun. Your weapon,
+      has ${this.Player.weapon.name} has automatically been equipped.`;
+     console.log(this.currentEnemy);
+     console.log('fight start');
+    }
 
-    this.battle_update_message = `Fight with
-     has ${this.currentEnemy.name} begun. Your weapon,
-     has ${this.Player.weapon.name} has automatically been equipped.`;
-    console.log(this.currentEnemy);
-    console.log('fight start');
   }
 
 

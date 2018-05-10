@@ -7,41 +7,55 @@
                 <h2>Stats</h2>
                 <!-- {{ Player.bag | json}} -->
                 <div class="container">
-                <span *ngIf="Player.name != ''">  
-                    <i>Name:</i> {{Player.name}}
-                </span><BR>
+                        <span *ngIf="Player.name != ''">  
+                            <i>Name:</i> {{Player.name}}
+                        </span><BR>
+                            <i>Backstory:</i> <span class="blue">"{{Player.backstory}}"</span><BR>
+                            <i>Health:</i> {{Player.health}} HP<BR>
+                            <i>Race: </i>{{Player.race}}<BR>
+                            <i>LVL: </i>{{Player.lvl}}<BR>
+                            <i>Strength: </i>{{Player.strength}}<BR>
+                            <i>Speed: </i>{{Player.speed}}<BR>
+                            <i>Weapon: </i> <span style="color:red;" *ngIf="!Player.weapon">No weapon equipped.</span>{{Player.weapon}}<BR>
+                            <i>Hometown: </i> {{Player.hometown}}<BR>
+                            <i>Karma: </i> {{Player.karma}}<BR>
+                            <i>Gold: </i>{{Player.gold}}<BR>
 
-                    <i>Backstory:</i> <span class="blue">"{{Player.backstory}}"</span><BR>
-                
-
-
-                        <i>Health:</i> {{Player.health}} HP<BR>
-                        <i>Race: </i>{{Player.race}}<BR>
-                        <i>LVL: </i>{{Player.lvl}}<BR>
-                        <i>Strength: </i>{{Player.strength}}<BR>
-                        <i>Speed: </i>{{Player.speed}}<BR>
-                        <i>Weapon: </i> <span style="color:red;" *ngIf="!Player.weapon">No weapon equipped.</span>{{Player.weapon}}<BR>
-                        <i>Hometown: </i> {{Player.hometown}}<BR>
-                        <i>Karma: </i> {{Player.karma}}<BR>
-                        <i>Gold: </i>{{Player.gold}}<BR>
 
                         <span *ngIf="Player.race === 'wizard'">
-                                    <span *ngIf="Player.spellbook.length > 0">
+                                <span *ngIf="Player.spellbook.length > 0">
                                         <i>Spells: </i>{{Player.spellbook}}
-                                        <BR>
-                                    </span>
-                                    <span style="color:red;" *ngIf="Player.spellbook.length === 0;">
+                                </span>   <BR>
+                                <span style="color:red;" *ngIf="Player.spellbook.length === 0;">
                                         <i>Spells:</i> You do not know any spells yet.
-                                    </span> <BR>
+                                </span> <BR>
                         </span>
-
+                        
                         <span style="color:red;" *ngIf="Player.bag.length === 0;">
-                            <i>Bag:</i> Your bag is empty
+                                <i>Bag:</i> Your bag is empty
                         </span> 
-                        <span *ngFor="let item of Player.bag"> 
-                            Bag: <p title="item.description">{{item.name }}</p>
-                        </span><BR><br>
+                        Bag: 
+                            <span *ngFor="let item of Player.bag"> 
+                                    <span  [ngbTooltip]="firstItemView" title="item.description">{{item.name }}</span>
+                                    <ng-template #firstItemView>
+                                                <span><i>'{{item.description}}'</i> </span>
+                                                <span *ngIf="item.type === 'weapon'"> <br>
+                                                    <span>Lvl: {{item.lvl}}</span><BR>
+                                                    <span>Damage: {{item.damage}} </span><BR>
+                                                    <span>Durability: {{item.durability}} </span><BR>
+                                                    <span> Karma Effect: {{item.karma_effect.name}}  </span><BR>
+                                                    <i>'{{item.karma_effect.description}}'</i><BR>
+                                                    <span *ngIf="item.equipped === true"> Equipped</span>
+                                                    <span [ngClass]="{'green': item.equipped ===true, 'orange': item.equipped === false }">{{item.name}}</span>
+                                             </span>
+                        
+                                    <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
+                                    </ng-template>
+                            </span><br><br>
                 </div>
+
+
+
                 <button class="btn btn-primary" style="text-decoration:none;" [routerLink]="['/firstworld']" >Begin Adventure!</button>
     </span>
           <span *ngIf="gameStart != true ">
@@ -102,9 +116,6 @@
                 </form>
                 <BR>
                 <i style="font-size: .5em"> ~ WARNING: this is not a game connected to any sort of server and is in the development. Eventually you will be able to save your progress. Your progress cannot be saved. If you do not want to lose your character, please do not refresh the page and see how far you can make it! Enjoy. ~</i>
-
-            
-            
           </span>
      
     </fieldset>

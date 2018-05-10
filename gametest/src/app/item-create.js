@@ -123,56 +123,61 @@
             "description" : `Used to light places.`,
             
         },
+        'helpbook' : {
+            'id' : Math.floor(Math.random() * 10000000000),
+
+            'type' : 'help',
+            "value" : 'helpbook',
+            "name" : 'Help Book',
+            'influence_stat_karma' : ['positive', 5],
+            'limit' : false,
+            'qty' : 1,
+            'update_message' : 'Reading that felt better. +5 to karma',
+            "description" : `A help book for a dingus who has never played an rpg`,
+            
+        },
         'liquid_courage' : {
             'id' : Math.floor(Math.random() * 10000000000),
 
             'type' : 'usable',
             "value" : 'liquid_courage',
             "name" : 'Liquid Courage',
-            'influence' : 'positive',
-            'influence_impact' : 10,
-            'influence_stat' : 'health',
+            'influence_stat_health' : ['positive', 10],
             'limit' : true,
             'qty' : 1,
             "description" : `A little something to boost morale and get you through the day. Increased HP by 10`,
-            
         },
         'bread' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
             'type' : 'usable',
             "value" : 'liquid_courage',
             "name" : 'CHARHOMETOWN Bread',
-            'influence' : 'positive',
-            'influence_impact' : 5,
-            'influence_stat' : 'health',
+            'influence_stat_health' : ['positive', 10],
             'limit' : true,
             'qty' : 1,
             "description" : `Bread of your people. Reminds you of your home.`,
         },
         'potion_of_luck' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
             'type' : 'usable',
             "value" : 'potion_of_luck',
             "name" : 'Potion of Luck',
-            'damage' : 3,
+            'influence_stat_karma' : ['positive', 5],
             'limit' : true,
             'qty' : 1,
             "description" : `A potion that increases Karma by 10. (Bad events trigger less when karma is high)`,
         },
         'book_of_fire_spell' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
             'type' : 'spell',
             "value" : 'book_of_fire_spell',
             "name" : 'Book of basic Fire Spell',
             'influence_type' : 'offensive', // defensive is other
-            'damage' : 4,
+            'damage' : [ 'offensive', 4],
             'spell_type': 'offensive',
             'limit' : true,
             'qty' : 1,
-            "description" : `A spell that can inflicts +4 damage to enemy each turn`,
+            "description" : `A spell that can inflicts +4 damage to enemy each use`,
         },
 
                
