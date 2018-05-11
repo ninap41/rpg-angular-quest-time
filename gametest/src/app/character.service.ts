@@ -31,6 +31,7 @@ export class CharacterService {
  error;
  serviceplayersPoint;
  MaxHealth;
+ help = false;
 
  global_update_message;
 currentEvent = false;

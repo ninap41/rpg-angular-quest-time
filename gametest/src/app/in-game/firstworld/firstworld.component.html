@@ -1,8 +1,7 @@
 
 
         <h1 class="pointTitle" *ngIf="playersPoint.name">
-        {{WorldName}} : {{playersPoint.name}}</h1>
-    <BR>
+        {{WorldName}} : {{playersPoint.name}}</h1><BR>
     
 
 
@@ -60,13 +59,6 @@
 
 
 
-
-
-
-
-
-
-
       <div *ngIf="currentEvent && _battleService.currentFight === false" class="card card-adventure event col-sm"> 
 
         <h4>Event: {{currentEvent.name}}</h4>
@@ -107,7 +99,6 @@
                 <span *ngFor="let direction of currentEvent.directions; let idx = index" style="padding: .5em;">
                     <button  [ngbTooltip]="tipContentDirectionEvent" (click)="traverseFromEvent(direction);"  class="btn btn-info"> {{direction.name}} </button> 
                     <ng-template type="button" class="btn btn-outline-secondary" #tipContentDirectionEvent>{{direction.description}}</ng-template>
-
                 </span>
                 </div>
         
@@ -116,12 +107,9 @@
 
 
 
-
-
       <div *ngIf="_battleService.currentFight"  class="card card-battle event col-sm">
             <div *ngIf="_battleService.currentFight === true">
                     <h3> {{_battleService.currentEnemy.name}}</h3>
-               
                     {{ _battleService.battle_update_message}}
                     <BR>
                         <ul>
@@ -130,15 +118,11 @@
                             <li>Weapon: {{_battleService.currentEnemy.weapon.name}}</li>
                             <li>Description: {{_battleService.currentEnemy.description}}</li>
                         </ul>
-                
                     <button  style="display: inline-block;" (click)="fight('strike')" class="btn btn-default red">Strike</button>
                     <button style="display: inline-block;" (click)="fight('heal')" class="btn btn-default yellow">Heal</button>
                     <button style="display: inline-block;" (click)="fight('block')" class="btn btn-default green">Block</button>
                     <button  style="display: inline-block;" (click)="fight('taunt')" class="btn btn-default orange">Taunt</button>
-        
-        </div>
-
-
+            </div>
       </div>
 
 
@@ -154,13 +138,12 @@
       <BR>
 
     <div class="col-sm">
-       
-        <div class="card card-stats">
-            <app-stats></app-stats>
-        </div>
-        <div class="card card-bag">
-            <app-bag></app-bag>
-        </div>
+            <div class="card card-stats">
+                <app-stats></app-stats>
+            </div>
+            <div class="card card-bag">
+             <app-bag></app-bag>
+            </div>
     </div>
 
     </div>

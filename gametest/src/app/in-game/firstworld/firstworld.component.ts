@@ -18,8 +18,6 @@ Player = new Player;
 lastspot;
 startingPoint; // initial
 playersPoint; // current
-eastRoom; // a room in map
-westRoom; // a room in map
 gameState;
 firstworld;
 firstworldevents = events;
@@ -105,6 +103,11 @@ xp = 0;
     }
    }
   }
+  activate_help(action) {
+    if (action.object.name === 'Help Book') {
+      this._characterService.help = true;
+    }
+  }
 
   check_name_and_home(point) {
     if (point.description) {
@@ -114,14 +117,6 @@ xp = 0;
       }
   }
 
-  // check_name_and_home_enemy(currentEvent) {
-  //   if (this.currentEvent.description) {
-  //     this.currentEvent.description =  this.currentEvent.description.replace('CHARHOMETOWN', this.Player.hometown);
-  //     this.currentEvent.description = this.currentEvent.description.replace('CHARNAME', this.Player.name);
-  //     this.currentEvent.description = this.currentEvent.description.replace('CHARRACE', this.Player.race); // put in service
-  //     this.currentEvent.enemy.opening_line = this.currentEvent.enemy.opening_line.replace('CHARRACE', this.Player.race);
-  //     }
-  // }
   traverse(direction) {
     if (direction.karma_impact) {
       this.karma_update(direction);
@@ -231,6 +226,7 @@ xp = 0;
       this.use_needed_item(action, idx);
     }
     if (!action.needs && action.event === 'take') {
+      this.activate_help(action);
       this.Player.bag.push(action.object);
       this.playersPoint.inspects.splice(idx, 1);
       this._characterService.global_update_message = `You took ${action.object.name}.`;
@@ -238,28 +234,29 @@ xp = 0;
     this.check_inspects_guard(this.playersPoint);
     this.currentEvent = this.firstworldevents[inspectEvent];
     /// in case of influence event which happens no matter what.
-    if (this.currentEvent.influence_event) {
-      const trigger =  Math.floor(Math.random() * this.Player.karma);
-      console.log(trigger);
-      if (trigger <  this.currentEvent.influence_event.impact_chance) {
-        if (this.currentEvent.influence_event.impact[0] === 'negative') {
-          console.log('negative');
-          this.Player[this.currentEvent.influence_event.impact[1]] -= this.currentEvent.influence_event.impact[2];
-          this._characterService.global_update_message = this.currentEvent.influence_event.description;
-
-        } if  (this.currentEvent.influence_event.impact[0] === 'positive')  {
-          this.Player[this.currentEvent.influence_event.impact[1]] += this.currentEvent.influence_event.impact[2];
-          this._characterService.global_update_message = this.currentEvent.influence_event.description3;
-
+    if (this.currentEvent) {
+          if (this.currentEvent.influence_event) {
+            const trigger =  Math.floor(Math.random() * this.Player.karma);
+            console.log(trigger);
+            if (trigger <  this.currentEvent.influence_event.impact_chance) {
+              if (this.currentEvent.influence_event.impact[0] === 'negative') {
+                console.log('negative');
+                this.Player[this.currentEvent.influence_event.impact[1]] -= this.currentEvent.influence_event.impact[2];
+                this._characterService.global_update_message = this.currentEvent.influence_event.description;
+              } if  (this.currentEvent.influence_event.impact[0] === 'positive')  {
+                this.Player[this.currentEvent.influence_event.impact[1]] += this.currentEvent.influence_event.impact[2];
+                this._characterService.global_update_message = this.currentEvent.influence_event.description3;
+              }
+            } else {
+              this._characterService.global_update_message = this.currentEvent.influence_event.description2;
+              }
+          }  else {
+            console.log('no influence');
+          }
         }
-      } else {
-        this._characterService.global_update_message = this.currentEvent.influence_event.description2;
-      }
 
-
-
-    }
   }
+
 
 
   inspectEvent(action, idx) {
@@ -331,7 +328,7 @@ xp = 0;
       }
       this._battleService.currentFight = false;
       this.currentEvent.inspects.splice(0, 2);
-      // this.playersPoint.eventtriggerchance = 0;
+      this.playersPoint.eventtriggerchance = 0;
       this.currentEvent.currentEnemy = null;
       this.currentEvent.access_directions_state = true;
       this.currentEvent = null;

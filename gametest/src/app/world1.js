@@ -63,6 +63,8 @@ const events = {
         'update_message': null,
         'event_state' : true,
         "name":"A Life Deferred...",
+        'influence_event': null,
+
         "description" : 'Your mother lays sound asleep beneath the covers. You race to her side, shaking her to consciousness. Shaking and shaking to no avail, you turn her limp body over to see a bowing blade, jutting right from her chest. A craftsmenship like you have never seen in these lands. A cackle sinks from behind the window, and you see the flickering flames beyond, the shattered glass. ',
         'inspects' : [
             {
@@ -105,12 +107,15 @@ const events = {
     "local_storage" : {    //LOCALSTORAGE EVENT  //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT
         'update_message': null,
         'event_state' : true,
+        'influence_event': null,
         "name":"A light in dark places",
         "description" : 'You illuminate the storage closet to see supplies. A a few vials and a book. You dont have time to think, just take them.',
         'inspects' : [
             {
             'guard' : false,
             'name' : 'Mysterious Vial',
+            'influence_event': null,
+
             'object' : items.potion_of_luck,
             'event' :'take',
             'description' : `You have no idea what this is but it's glowing bright green.`
@@ -118,6 +123,8 @@ const events = {
             {
                 'guard' : false,
                 'name' : 'Grab Book',
+                'influence_event': null,
+
                 'object' : items.book_of_fire_spell,
                 'event' :'take',
                 'description' : `You have no idea what this is, and honestly, why would you grab a book at a time like this?`
@@ -135,6 +142,40 @@ const events = {
                 'description' : 'You wait until the sound of pillaging orcs pass. You hear them, huffing and shouting an incoherent chant. The top of their torches and banners wave out of view. It may be safe to move',
                 'room' : 'window_ledge'
             }
+        ]
+
+    },
+
+    "gaffers_room_bedside" : {    //LOCALSTORAGE EVENT  //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT
+        'update_message': null,
+        'event_state' : true,
+        'influence_event': null,
+        "name":"A Confession of an Old Friend",
+        "description" : 'There on his desk you light a candle. You move it carefully away from the window, duck below his bed, and see fallen under his bed two items: Parchment (Still wet with ink) and a Healing Vial.',
+        'inspects' : [
+            {
+            'guard' : false,
+            'name' : 'Potion of Healing',
+            'object' : items.potion_of_healing,
+            'event' :'take',
+            'description' : `It glows bright, bright red!`
+            },
+            {
+                'guard' : false,
+                'name' : `Gaffer's Letter`,
+                'object' : items.gaffers_letter,
+                'event' :'take',
+                'description' : `Gaffer's handwriting looks rushed? It reads with a worried hand.`
+                }
+        ],
+        "access_directions_state" : false,
+        "directions": [
+            { 
+                'name': `Back Main Room`,
+                'description' : 'Well this was a little dramatic. You read over is letter and are shocked.',
+                'room' : 'gaffer_thomas_house'
+            },
+         
         ]
 
     },
@@ -172,6 +213,8 @@ const events = {
         'enemy' : enemies.baracder,           // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
         'update_message': null,
         'event_state' : true,
+        'influence_event': null,
+
         "name":"First Encounter...",
         "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baracder.name}'. He Carries a ${enemies.baracder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baracder.opening_line}". You have two options to Run or Fight. Its too early in the game to introduce battle dynamics `,
         "description2" : `The Orc you defeated ${enemies.baracder.name} body is limp. you're happy to gaze upon his corpse. You have avenged your mother well.`,
@@ -205,21 +248,19 @@ const events = {
                 'room' : 'high_brush'
             },
             {
-                'karma_impact': ['positive', 1],
                 "room":"stables1",
                 "name":"Parents Stables",
                 "description" : "A horse would be the perfect way to outrun the orcs.",
                 // "color" : 'red'
             }, 
             {
-                'karma_impact': ['positive', 1],
                 "room":"gaffer_thomas_house",
                 "name":"Gaffer Thomas House",
                 "description" : "A possible chance for you to steal some goods. There may not be enough time.",
                 // "color" : 'brown'
             }, 
             {
-                'karma_impact': ['positive', 3],
+                'karma_impact': ['positive', 1],
                 "room":"brandybuck_home",
                 "name":"BrandyBuck Home",
                 "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
@@ -243,10 +284,11 @@ let HumanWorldStart =
     "home":{
         'update_message': null,
         "name": "Home Main Room",
+        'influence_event': null,
+
         "description":`You are CHARNAME 'CHARRACE of CHARHOMETOWN'. You've awoken from a nap. Loud sounds ensue outside your home, an unfamiliar experience for you. It is dark, but through the slits of your wooden home you can see a wavering glow. You hear some cries of a woman outside. Banter and chaos. The crackling of fire. There are two rooms before you, the east and the west. There is also the exit outside. You experience like you have never felt before`,
         "directions": [
             {
-                'karma_impact': ['positive', 1],
                 "name":"Mother's Room",
                 "room": "mothers_room",
                 "description" : 'there are footsteps rustling behind the door, sound of moaning and a window shutting.'
@@ -281,6 +323,7 @@ let HumanWorldStart =
  
     "home_return":{
         'update_message': null,
+        'influence_event': null,
 
         "name": "Home Main Room",
         "description":`You return to the Main Room, panicked and scared... You feel you need a weapon. You hear glass break somewhere in the house. A muffled yelp. `,
@@ -302,6 +345,8 @@ let HumanWorldStart =
 
     "window_ledge" : {
         'update_message': null,
+        'influence_event': null,
+
         "name": "Back of The House",
         "description":`You stretch your CHARRACE legs over the edge of the window. The crackling of fire sounds all around you. You see Gaffer Thomas running toward the stables and a barrel beside you.`,
         "directions": [
@@ -340,6 +385,8 @@ let HumanWorldStart =
     "middle_of_town" : {
         'update_message': null,
         "name": "Through The Town!",
+        'influence_event': null,
+
         "description":`You hear Thomas Gaffer calling your name "CHARNAME, what are you doing!`,
         "directions": [
             {
@@ -357,6 +404,8 @@ let HumanWorldStart =
     "mothers_room":{
         'update_message': null,
         "name" : "Mother's room",
+        'influence_event': null,
+
         "description": "Your mother is asleep in her bed after a greuling day in the fields. You'd ask her if the village parade was going on outside, but you don't wish to disturb her.",
         "directions": [
             {
@@ -385,6 +434,7 @@ let HumanWorldStart =
 
     "mothers_room_revisited":{
         'update_message': null,
+        'influence_event': null,
 
         "name" : "Mother room",
         "description": "Amidst the commotion, your mother is still asleep. The room is slightly chilled. What should you do?",
@@ -425,8 +475,44 @@ let HumanWorldStart =
 
         ],
     },
+    "gaffers_room":{
+        'update_message': null,
+        'influence_event': null,
+
+        'name' : `Gaffer's Room`,
+        "description": "It's dimly lit. You do not see any of Gaffer's fam, nor little sister. ",
+        "directions":[
+  
+            {
+                'karma_impact': ['negative', 4],
+                "room":"gaffers_kitchen",
+                "name":"Gaffers Kitchen",
+                "description": "You're thinking of stealing some things in case you're feeling faint."
+
+            },
+            {
+                "room":"outside",
+                "name":"Outside",
+                "description": "As you twist the knob you hear a scream."
+
+            }
+        ],
+        "inspects": [
+  
+                {
+                    'karma_impact': ['positive', 3],
+                    "guard" : true,
+                    "name":"Light Candle",
+                    "needs" : 'matches',
+                    "event": "gaffers_room_bedside",
+                    "description": "You should light the candle at the his bedside to see whats on his table.",
+                }
+            ],
+  
+    },
     "storage_room":{
         'update_message': null,
+        'influence_event': null,
 
         'name' : 'Storage Room',
         "description": "The Storage room is quite dusty you can barely see a thing",
@@ -467,18 +553,78 @@ let HumanWorldStart =
   
     },
     "stables1" : {
-        'name' : 'Outside',
-        "description":"You see before you the fields of your father's farm ablaze. Orcs hanging from roofs, lighting haystacks with torches and the chants of Black Speech forbidden in your land."
+        'name' : 'Stables',
+        'influence_event': null,
 
+        "description":`Keeping your head low beneath the tall grass you come up to the stables gate. Thomas waits beside it. He is shaking. To your dismay 
+        there is a lock! You both look at eachother in solem silence... you can see through the planks your favorite horse melody neighing. 
+        'It's okay' you whisper, 'I'll be in there soon.' You sigh deeply. You can either find another way or find a key.`,
+        "directions":[
+            {
+                "room": "gaffer_thomas_house",
+                "name":"Gaffer Thomas's House",
+                "description": "Your heart is beating fast as your hand hovers over the your mother's door handle"
+               
+            },
+           
+            {
+                "room":"outside2",
+                "name":"Outside",
+                'event' : 'jarl_slay',
+                "description": "Head back out where two Orcs are slaying the town Jarl."
+            }
+        ],
+        "inspects": [
+            {
+                'karma_impact': ['negative', 1],
+                "guard" : false,
+                "name": "Make a Plan",
+                "eradicate" : `gaffers_letter`,
+                "event": "brandy_buck_plan",
+                "description": "Work with gaffer to figure out a solution.",
+                   
+
+                },
+                {
+                    'karma_impact': ['positive', 3],
+                    "guard" : true,
+                    "name":`'I found your letter, Gaffer.`,
+                    "needs" : 'gaffers_letter',
+                    "event": "gaffer_confrontation",
+                    "description": "Confront Gaffer about his letter.",
+                },
+                {
+                    'karma_impact': ['negative', 1],
+                    "guard" : false,
+                    "name": "Try To Bash Your Way In",
+                    "eradicate" : `stables_key`,
+                    "event": "mordorian_runt",
+                    "description": `You're strong, why not push your way in?`,
+                       
+    
+                    },
+                    {
+                        'karma_impact': ['positive', 3],
+                        "guard" : true,
+                        "name":`'Use the Key`,
+                        "needs" : 'stables_key',
+                        "event": "gaffer_confrontation",
+                        "description": "Open the stables and get your horse. ",
+                    }
+            ],
+  
+    
     },
     "outside":{
 
         visits: 0,
         'name' : 'Outside',
+        'influence_event': null,
+
         "description":"You see before you the fields of your father's farm ablaze. Orcs hanging from roofs, lighting haystacks with torches and the chants of Black Speech forbidden in your land.",
         "directions":[
             {
-                "room":"stables",
+                "room":"stables1",
                 "name":"Parents Stables",
                 "description": "If the horses have not but run away, you can take one. You pray your horse Grendel is alive and calm.",
                 "color" : 'red'
@@ -509,6 +655,8 @@ let HumanWorldStart =
     },
     "gaffer_thomas_house" : {
         'character' : 'Thomas',
+        'influence_event': null,
+
         'update_message': null,
         "name" : 'Gaffer Thomas Home',
         "description" : `You sneak towards your lifelong friends home, staying towards the town's fences. In the shadow of the Barracks and through the tall grass.
@@ -541,6 +689,8 @@ let HumanWorldStart =
     "brandybuck_home" : {
         'character' : 'Mendel',
         'update_message': null,
+        'influence_event': null,
+
         "name" : 'BrandyBuck Home',
         "description" : "Scurrying around the front yard is Mendal, Mendal Brandybuck. he is being chased around his yard by an Orc Rider tugging his reins in circles. He hisses to an adjacent comrade who points down in disdain 'The Great Wizard of Barandtuk has orders to burn it to the ground. Not harrass halflings!'. ",
         "directions":[
@@ -562,17 +712,20 @@ let HumanWorldStart =
             },
         ],
     },
+    
 
     // OUTSIDE HOME REALMS  // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS
     "outside2":{
         'eventtriggerchance': 2, //fifty fifty chance
         'event': 'firstspawn',
+        'influence_event': null,
+
         'name' : 'Outside',
         "description":`You stumble out the door nearly bashing into Thomas shouting CHARNAME! Bless your little CHARRACE heart. Make for the next town over as fast as you can. I'll meet you there.`,
         "directions":[
             {
                 "room":"stables1",
-                "name":"Parents Stables",
+                "name":"Stables",
                 "description" : "A horse would be the perfect way to outrun the orcs.",
                 // "color" : 'red'
             }, 

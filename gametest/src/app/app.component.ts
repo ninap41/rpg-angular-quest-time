@@ -7,8 +7,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
 import { FormsModule } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
+import * as _ from 'lodash';
 
-
+// !_.find(data, {name: 'helpbook'})
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
