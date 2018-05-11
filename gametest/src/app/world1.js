@@ -267,11 +267,73 @@ const events = {
                 // "color" : 'orange'
             }, 
         ]
-
     },
+        "mordorian_runt" : {    
+            'enemy' : enemies.baracder,           // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
+            'update_message': null,
+            'event_state' : true,
+            'influence_event': null,
+    
+            "name":"First Encounter...",
+            "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baracder.name}'. He Carries a ${enemies.baracder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baracder.opening_line}". You have two options to Run or Fight. Its too early in the game to introduce battle dynamics `,
+            "description2" : `The Orc you defeated ${enemies.baracder.name} body is limp. you're happy to gaze upon his corpse. You have avenged your mother well.`,
+            'enemy_object': null,
+            'inspects' : [
+                {
+                'karma_impact': ['positive', 2],
+                'guard' : false,
+                'needsweapon': true,
+                'name' : 'Fight',
+                'event' :'fight',
+                'subevent_onevent' : '',
+                'description' : 'You may have to battle this big boy'
+                },
+                {
+                'karma_impact': ['negative', 2],
+                'guard' : false,
+                'needsweapon': true,
+                'name' : 'Run',
+                'event' :'run',
+                'description' : `Running away is often risky. You have very little chance of fleeing.`
+                }
+            ],
+            "access_directions_state" : false,
+            "directions": [
+                { 
+                    'karma_impact': ['negative', 2],
+    
+                    'name': 'Run Away into High Brush',
+                    'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
+                    'room' : 'high_brush'
+                },
+                {
+                    "room":"stables1",
+                    "name":"Parents Stables",
+                    "description" : "A horse would be the perfect way to outrun the orcs.",
+                    // "color" : 'red'
+                }, 
+                {
+                    "room":"gaffer_thomas_house",
+                    "name":"Gaffer Thomas House",
+                    "description" : "A possible chance for you to steal some goods. There may not be enough time.",
+                    // "color" : 'brown'
+                }, 
+                {
+                    'karma_impact': ['positive', 1],
+                    "room":"brandybuck_home",
+                    "name":"BrandyBuck Home",
+                    "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
+                    // "color" : 'orange'
+                }, 
+            ]
+    
+        },
+
+    }
 
 
-}
+
+// "mordorian_runt
 
 
 
