@@ -44,7 +44,9 @@ const orc_knife = weapons.basic_weapons[0];
 const enemies= {
     'baracder' : {
         'name': 'Baravder The Orc',
-        'xp': 75,
+        'loss_message': 'Baravder came down with one final swing. You collapse in your own blood, gasping for words. Baravder crouches down and hisses, "Prepare to join your mother...", before your surroundings fade to black.',
+        
+        'xp': 50,
         'race' : 'Orc',
         'lvl' : 2,
         'health' : 80,
@@ -52,11 +54,41 @@ const enemies= {
         'opening_line': `"I saw you through the window you poor bastard. I'm going to gut you like your mother. Come here!"`,
         'speed' : 4,
         'gold' : 10,
-        'damage' : 3,
+        'damage' : 5,
         'weapon' : orc_knife,
-        'flee_chance': 2,
+        'flee_chance': 3,
     },
+    'mordorian_runt' : {
+        'name': 'Caleth The Mordorian Runt',
+        'loss_message': 'Caleth delivers one last sneaky swipe, splitting your abdomen with his knife. You double over and collapse. Gaffer shaking fearful beside you. Caleth spits, "This is the end of you, haha...".',
 
+        'xp': 50,
+        'race' : 'Orc',
+        'lvl' : 3,
+        'health' : 60,
+        'description': `He has teeth, a snarled mouth, and a hook nose. The nails on his right hand appear sharpened.`,
+        'opening_line': `"Oh, Hello. Does the little CHARRACE want to make an escape?"`,
+        'speed' : 4,
+        'gold' : 25,
+        'damage' : 7,
+        'weapon' : orc_knife,
+        'flee_chance': 5,
+    },
+    'the_rider' : {
+        'name': 'Agmar the Orc Rider',
+        'loss_message': `Agmar's steed squels, raises it's hoof and comes down on you. Mendel whimpering abandoned and alone at your failure to defend him. Agmar pierces your chest with his blade.`,
+        'xp': 100,
+        'race' : 'Fallen King',
+        'lvl' : 4,
+        'health' : 130,
+        'description': `He is cloaked. His armor gnarled. His horse's eyes Red. `,
+        'opening_line': `Get out of the way, CHARRACE. Or I will slay you too.`,
+        'speed' : 4,
+        'gold' : 100,
+        'damage' : 10,
+        'weapon' : orc_knife,
+        'flee_chance': 10,
+    },
 }
 const events = {
     "dead_mother" : {
@@ -146,6 +178,65 @@ const events = {
 
     },
 
+    "ransack_halfing" : {    //LOCALSTORAGE EVENT  //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT
+        'update_message': null,
+        'event_state' : true,
+        'influence_event': null,
+        "name":"Ransack Halfling",
+        "description" : 'Hurry, by the chest, gather what you need.',
+        'inspects' : [
+            {
+            'guard' : false,
+            'name' : 'Bread',
+            'influence_event': null,
+
+            'object' : items.bread,
+            'event' :'take',
+            'description' : `${items.bread.description}`
+            },
+            {
+                'guard' : false,
+                'name' : 'More Bread',
+                'influence_event': null,
+    
+                'object' : items.bread,
+                'event' :'take',
+                'description' : `${items.bread.description}`
+                },
+            {
+                'guard' : false,
+                'name' : 'Cheese',
+                'influence_event': null,
+
+                'object' : items.cheese,
+                'event' :'take',
+                'description' : ` ${items.cheese.description}`
+                },
+                {
+                    'guard' : false,
+                    'name' : 'Stables Key',
+                    'influence_event': null,
+                    'object' : items.stables_key,
+                    'event' :'take',
+                    'description' : ` ${items.stables_key.description}`
+                    }
+        ],
+        "access_directions_state" : false,
+        "directions": [
+            { 
+                'name': 'Outside',
+                'description' : 'With your mother dead and your spirits down, what else is there to lose? Head outside.',
+                'room' : 'outside2'
+            },
+            { 
+                'name': 'Careful Window Exit',
+                'description' : 'You wait until the sound of pillaging orcs pass. You hear them, huffing and shouting an incoherent chant. The top of their torches and banners wave out of view. It may be safe to move',
+                'room' : 'window_ledge'
+            }
+        ]
+
+    },
+
     "gaffers_room_bedside" : {    //LOCALSTORAGE EVENT  //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT
         'update_message': null,
         'event_state' : true,
@@ -214,9 +305,8 @@ const events = {
         'update_message': null,
         'event_state' : true,
         'influence_event': null,
-
         "name":"First Encounter...",
-        "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baracder.name}'. He Carries a ${enemies.baracder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baracder.opening_line}". You have two options to Run or Fight. Its too early in the game to introduce battle dynamics `,
+        "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baracder.name}'. He Carries a ${enemies.baracder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baracder.opening_line}". You have two options to Run or Fight.`,
         "description2" : `The Orc you defeated ${enemies.baracder.name} body is limp. you're happy to gaze upon his corpse. You have avenged your mother well.`,
         'enemy_object': null,
         'inspects' : [
@@ -269,14 +359,18 @@ const events = {
         ]
     },
         "mordorian_runt" : {    
-            'enemy' : enemies.baracder,           // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
+            'enemy' : enemies.mordorian_runt,           // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
             'update_message': null,
             'event_state' : true,
-            'influence_event': null,
-    
-            "name":"First Encounter...",
-            "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baracder.name}'. He Carries a ${enemies.baracder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baracder.opening_line}". You have two options to Run or Fight. Its too early in the game to introduce battle dynamics `,
-            "description2" : `The Orc you defeated ${enemies.baracder.name} body is limp. you're happy to gaze upon his corpse. You have avenged your mother well.`,
+            'influence_event': {
+                'impact_chance': 4,
+                'impact' : ['negative','health', 5],
+                'description' :  `You pant, looking at your shoulder you realize a large splinter bleeds from it.-5HP`,
+                'description2' :  `Luckily the slam of your body into the wall  does not hurt you, but you don't make it in! Do not attempt this again.`,
+            },
+            "name":"Halt There",
+            "description" : `Pulling on your shoulder and throwing you to the ground is none other than '${enemies.mordorian_runt.name}'. He holds a ${enemies.mordorian_runt.weapon.name} up to your neck. Thomas throws him off you, who carries no weapon at all. He's shaking at what he's just done. Caleth spits, "${enemies.mordorian_runt.opening_line}". You have two options to Run or Fight.`,
+            "description2" : `You defeated ${enemies.mordorian_runt.name}. It appears you can not bash your way in.`,
             'enemy_object': null,
             'inspects' : [
                 {
@@ -308,9 +402,10 @@ const events = {
                 },
                 {
                     "room":"stables1",
-                    "name":"Parents Stables",
+                    "name":"Keep Searching",
                     "description" : "A horse would be the perfect way to outrun the orcs.",
-                    // "color" : 'red'
+
+                    "color" : 'orange'
                 }, 
                 {
                     "room":"gaffer_thomas_house",
@@ -329,6 +424,79 @@ const events = {
     
         },
 
+        "fight_the_rider" : {    
+            'enemy' : enemies.the_rider,           // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
+            'update_message': null,
+            'event_state' : true,
+ 
+            "name":"Black Rider",
+            "description" : `The rider sniffs the air and looks down upon you. He is '${enemies.the_rider.name}'. He holds a ${enemies.mordorian_runt.weapon.name} from him horse pointed at you. He looks away fom Mendel and hisses, "${enemies.the_rider.opening_line}". You have one option: Fight.`,
+            "description2" : `You defeated ${enemies.the_rider.name}. His fall's from atop his horse, now a corpse beside Mendel. Mendel whimpers 'take what you need' whilst holding out his homes key. You take it. He is shaking, eyes vacant. He lays there, staring at the dead cloaked figure, motionless.`,
+            'enemy_object': items.mendels_key,
+            'inspects' : [
+                {
+                'karma_impact': ['positive', 2],
+                'guard' : false,
+                'needsweapon': true,
+                'name' : 'Fight',
+                'event' :'fight',
+                'subevent_onevent' : '',
+                'description' : 'You may have to battle this big boy'
+                },
+            
+            ],
+            "access_directions_state" : false,
+            "directions": [
+                { 
+                    'karma_impact': ['negative', 2],
+
+                    'name': 'Run Away into High Brush',
+                    'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
+                    'room' : 'high_brush'
+                },
+                {
+                    "room":"stables1",
+                    "name":"Keep Searching",
+                    "description" : "A horse would be the perfect way to outrun the orcs.",
+
+                    "color" : 'orange'
+                }, 
+                {
+                    "room":"gaffer_thomas_house",
+                    "name":"Gaffer Thomas House",
+                    "description" : "A possible chance for you to steal some goods. There may not be enough time.",
+                    // "color" : 'brown'
+                }, 
+                {
+                    'karma_impact': ['positive', 1],
+                    "room":"brandybuck_home",
+                    "name":"BrandyBuck Home",
+                    "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
+                    // "color" : 'orange'
+                }, 
+            ]
+    
+        },
+        "end_game": {
+            "description":`Your karma fell too low. So low your luck ran out and a Orc came down with his battle axe on your back as you were running away.`,
+            'name': "Dead.",
+        'event_state' : true,
+            'restart' : true,
+        'influence_event' : null,
+        "access_directions_state" : true,
+        'enemy_object': null,
+        'inspects' :  null,
+        },
+        "enemy_end": {
+            "description":`Your enemy defeated you. What a shame.`,
+            'name': "Dead.",
+        'event_state' : true,
+            'restart' : true,
+        'influence_event' : null,
+        "access_directions_state" : true,
+        'enemy_object': null,
+        'inspects' :  null,
+        }
     }
 
 
@@ -386,7 +554,6 @@ let HumanWorldStart =
     "home_return":{
         'update_message': null,
         'influence_event': null,
-
         "name": "Home Main Room",
         "description":`You return to the Main Room, panicked and scared... You feel you need a weapon. You hear glass break somewhere in the house. A muffled yelp. `,
         "directions": [
@@ -418,9 +585,16 @@ let HumanWorldStart =
                 "description" : `That's where Thomas is heading. Safety in numbers.`
             },
             {
-    
+                "name":"Brandybuck Home",
+                "room": "brandybuck_home",
+                "description" : `Go to Brandybuck Home. Merridock is in trouble. Two rider's tower over him.`
+            },
 
-                "name": "Through the middle of town",
+            {
+    
+                'karma_impact': ['negative', 3],
+
+                "name": "Leave Thomas, Go to Armory",
                 "room": "middle_of_town",
                 "description" :  `You're feeling rather gallant are'nt you? Maybe some liquid courage? Or is it too risky?`
             }
@@ -498,31 +672,23 @@ let HumanWorldStart =
         'update_message': null,
         'influence_event': null,
 
-        "name" : "Mother room",
+        "name" : "Mother's Room",
         "description": "Amidst the commotion, your mother is still asleep. The room is slightly chilled. What should you do?",
         "directions": [
             {
-                'karma_impact': ['negative', 3],
+                'karma_impact': ['negative', 8],
                 "room": "window_ledge",
                 "name":"Forget her. Window escape",
                 "description" : "TIP: Actions like this have a negative impact on your Karma. Karma influences your fate.",
-
-  
                
             },
             {  
                  "room":"storage_room",
                 "name":"Storage Room?",
                 "description" : "Something doesnt feel right... maybe I can arm myself there?",
-    
-
                
             },
-            {
-                "room":"outside",
-                "name":"Outside",
-                "description" : "You might as well make a sprint for it outside... To the next town over?"
-            }
+       
         ],
         'inspects': [
              
@@ -553,10 +719,9 @@ let HumanWorldStart =
 
             },
             {
-                "room":"outside",
+                "room":"outside2",
                 "name":"Outside",
                 "description": "As you twist the knob you hear a scream."
-
             }
         ],
         "inspects": [
@@ -585,10 +750,11 @@ let HumanWorldStart =
                 "description": "Your heart is beating fast as your hand hovers over the your mother's door handle"
                
             },
-           
             {
+                'karma_impact': ['negative', 3],
+
                 "room":"outside",
-                "name":"Outside",
+                "name":"Don't Inspect Mother, Go Outside",
                 "description": "As you twist the knob you hear a scream."
 
             }
@@ -617,7 +783,6 @@ let HumanWorldStart =
     "stables1" : {
         'name' : 'Stables',
         'influence_event': null,
-
         "description":`Keeping your head low beneath the tall grass you come up to the stables gate. Thomas waits beside it. He is shaking. To your dismay 
         there is a lock! You both look at eachother in solem silence... you can see through the planks your favorite horse melody neighing. 
         'It's okay' you whisper, 'I'll be in there soon.' You sigh deeply. You can either find another way or find a key.`,
@@ -685,32 +850,14 @@ let HumanWorldStart =
 
         "description":"You see before you the fields of your father's farm ablaze. Orcs hanging from roofs, lighting haystacks with torches and the chants of Black Speech forbidden in your land.",
         "directions":[
-            {
-                "room":"stables1",
-                "name":"Parents Stables",
-                "description": "If the horses have not but run away, you can take one. You pray your horse Grendel is alive and calm.",
-                "color" : 'red'
-            }, 
-            {
-                'karma_impact': ['positive', 1],
-                "room" : "gaffer_thomas_house",
-                "name" : "Gaffer Thomas House",
-                'description' : 'Where is your friend thomas?! What if he is hurt?',
-                "color" : 'brown'
-            }, 
-            {
-                'karma_impact': ['positive', 1],
-                "room": 'brandybuck_home',
-                "name":"Brandybuck Home",
-                'description': 'They could help you potentially.',
-                "color" : 'orange'
-            }, 
+       
             {
                 "room":"home_return",
                 "name":"Back Inside",
-                'description': 'You need to wake your mother, grab a weapon, and gather your things. This might be the smartest choice',
+                'description': 'You need to wake your mother, grab a weapon, and gather your things. This might be the smartest choice.',
                 "color" : 'green'
             }, 
+        
 
 
         ]
@@ -754,36 +901,96 @@ let HumanWorldStart =
         'influence_event': null,
 
         "name" : 'BrandyBuck Home',
-        "description" : "Scurrying around the front yard is Mendal, Mendal Brandybuck. he is being chased around his yard by an Orc Rider tugging his reins in circles. He hisses to an adjacent comrade who points down in disdain 'The Great Wizard of Barandtuk has orders to burn it to the ground. Not harrass halflings!'. ",
+        "description" : "Scurrying around the front yard is Mendal, Mendal Brandybuck. he is being chased around his yard by an Orc Rider tugging his reins in circles. He hisses to an adjacent comrade who points down in disdain 'The Great Wizard of Barandtuk has orders to burn it to the ground. Not harrass halflings! ",
+        "description2" : "Mendal lay's still on the grass. The dead rider beside him. ",
+
         "directions":[
+      
             {
-                "name":"Back Home",
-                'description': 'Head Back Home',
-                "room":"home"
+              
+                "name":"Back to Road",
+                'description': 'Towards Stables',
+                "room": "outside2"
             }, 
+
+            {
+              
+                "name":"House Backdoor",
+                'description': 'Towards Stables',
+                "room": "brandybuck_backdoor",
+            }, 
+          
     
         ],
         'inspects': [
              
             {
-                'karma_impact': ['positive', 6],
+                'karma_impact': ['positive', 2],
                 'update_message': null,
-                "name":"Inspect Mendal",
+                "name":"Approach Mendal",
                 "event":"fight_the_rider",
                 "description": "You must check up on him.",
             },
+            
         ],
     },
+    "brandybuck_backdoor":{
+        'influence_event': null,
+        'name' : 'Backdoor',
+        "description":`You sneak up to the back of the brandybuck home. The door is locked but you see a window. `,
+        "directions":[
+          
+            {
+                "room":"gaffer_thomas_house",
+                "name":"Gaffer Thomas House",
+                "description" : "A possible chance for you to steal some goods. There may not be enough time.",
+                // "color" : 'brown'
+            }, 
+            {
+                "room":"brandybuck_home",
+                "name":"Back to Mendel",
+                "description" : "Go back to the front of the home.",
+                // "color" : 'orange'
+            }, 
+        ],
+            'inspects': [
+             
+                {
+                    'karma_impact': ['negative', 4],
+                    "guard" : true,
+                    "name":`Pry Open Window with Knife`,
+                    'eradicate' : 'mendels_key',
+                    "needs" : 'Orc Shiving Knife',
+                    "event": "ransack_halfing",
+                    "description": "Steal from the Halfling",
+                },
+
+                {
+                    'karma_impact': ['positive', 3],
+                    "guard" : true,
+                    "name":`Use the Mendels Key`,
+                    "needs" : 'mendels_key',
+                    "event": "ransack_halfing",
+                    "description": "His last dying words were 'take what you need'",
+                }
+            
+            ],
+        
+
+
+        
+    },
+
     
 
     // OUTSIDE HOME REALMS  // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS
     "outside2":{
-        'eventtriggerchance': 2, //fifty fifty chance
+        'eventtriggerchance': 3, //fifty fifty chance
         'event': 'firstspawn',
         'influence_event': null,
 
         'name' : 'Outside',
-        "description":`You stumble out the door nearly bashing into Thomas shouting CHARNAME! Bless your little CHARRACE heart. Make for the next town over as fast as you can. I'll meet you there.`,
+        "description":`You stumble out the door nearly bashing into Thomas shouting CHARNAME! Bless your little CHARRACE heart. I'm gonna make for the stables. I'll meet you there.`,
         "directions":[
             {
                 "room":"stables1",

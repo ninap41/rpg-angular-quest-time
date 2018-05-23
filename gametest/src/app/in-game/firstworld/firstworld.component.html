@@ -49,7 +49,7 @@
                     <span *ngFor="let inspect of playersPoint.inspects; let idx = index" style="padding: .5em;">
                     
                             <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> {{inspect.name}}</button> 
-                            <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects> zzzz{{inspect.description}} </ng-template>
+                            <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects> {{inspect.description}} </ng-template>
                    
                     </span>
                 </div>
@@ -73,7 +73,8 @@
                                         </ng-template>
 
         <span style="color:green" *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
-        
+        <span *ngIf="currentEvent.restart === true"> <a href="http://localhost:4200/">Restart</a></span>
+
         <div *ngIf="currentEvent.inspects">
 
                     <!-- PLAYERS POINTS.DIRECTIONS.INSPECTSCURRENTEVENT.INSPECTS
@@ -81,7 +82,8 @@
         PLAYERS CURRENTEVENT.INSPECTS       inspectEvent(inspect, idx) currentEvent.inspects OBJ
         PLAYERS CURRENTEVENT.INSPECTS
         PLAYERS CURRENTEVENT.INSPECTS -->
-            <p><i>What shall you do (Hover over options for more detail).</i></p>
+                 <p><i>What shall you do (Hover over options for more detail).</i></p>
+
             <span *ngFor="let inspect of currentEvent.inspects; let idx = index" style="padding: .5em;">
                
                     <ng-template #tipContentInspect>Please Equip Weapon. An enemy is before you and you should have a weapon equipped at all times.</ng-template>
@@ -110,18 +112,34 @@
       <div *ngIf="_battleService.currentFight"  class="card card-battle event col-sm">
             <div *ngIf="_battleService.currentFight === true">
                     <h3> {{_battleService.currentEnemy.name}}</h3>
+                    <div class="battle_updates">
                     {{ _battleService.battle_update_message}}
+                    </div>
                     <BR>
                         <ul>
-                            <li>Health: {{_battleService.currentEnemy.health}}</li>
-                            <li>Lvl: {{_battleService.currentEnemy.lvl}}</li>
+                            <li>Health: <span class="green">{{_battleService.currentEnemy.health}}</span></li>
+                            <li>Lvl:<span class="green">{{_battleService.currentEnemy.lvl}}</span> </li>
                             <li>Weapon: {{_battleService.currentEnemy.weapon.name}}</li>
                             <li>Description: {{_battleService.currentEnemy.description}}</li>
                         </ul>
-                    <button  style="display: inline-block;" (click)="fight('strike')" class="btn btn-default red">Strike</button>
-                    <button style="display: inline-block;" (click)="fight('heal')" class="btn btn-default yellow">Heal</button>
-                    <button style="display: inline-block;" (click)="fight('block')" class="btn btn-default green">Block</button>
-                    <button  style="display: inline-block;" (click)="fight('taunt')" class="btn btn-default orange">Taunt</button>
+                    <button  style="display: inline-block;" (click)="fight('Strike')" class="btn btn-default red">Strike</button>
+                    <button style="display: inline-block;" (click)="_battleService.showUsables = !_battleService.showUsables" class="btn btn-default yellow">Bag</button>
+                    <button style="display: inline-block;" (click)="fight('Block')" class="btn btn-default green">Block</button>
+                    <button   [disabled]="_battleService.max_Taunt > 5" style="display: inline-block;" (click)="fight('Taunt')" class="btn btn-default orange">Taunt</button>
+                    <span *ngIf="_battleService.max_Taunt > 5 ">
+                        <b [ngbTooltip]="tauntInfo">?</b>
+                    <ng-template type="button" class="btn btn-outline-secondary" #tauntInfo>Can only taunt a max of 5 times!</ng-template>
+                </span>
+                        <BR>
+                        <div *ngIf="_battleService.showUsables === true" class="usables">
+                        
+                            <uL *ngFor="let item of Player.bag; let idx = index;">
+                             
+                               <li (click)="fight(idx)" *ngIf="item.type === 'usable'; else notUsable"> {{item.name}} <b>USE</b></li>
+                           
+                               <ng-template #notUsable>{{item.name}} <b class="red">X</b><i>not usable</i></ng-template>
+                            </uL>
+                        </div>
             </div>
       </div>
 

@@ -17,7 +17,7 @@ class Player {
         this.weapon = null;
         this.karma = 0;  
         this.reputation = 0;
-
+        this.charisma = 0;
         this.worldPoint = [];
         this.spellbook = [];
         this.hometown = null;
@@ -32,10 +32,11 @@ class Player {
             this.race = 'Human';
             this.name = name;
             this.health = 100;
-            this.strength = 3;
+            this.strength = 8;
             this.speed = 3;
             this.gold = 10;
-            this.karma = 0;
+            this.karma = 3;
+
             this.reputation = 0;
 
 
@@ -84,10 +85,12 @@ class Player {
             this.race = 'Dwarf';
             this.name = name;
             this.health = 140;
-            this.strength = 10;
+            this.strength = 14;
             this.speed = 10;
             this.gold = 10;
             this.karma = 0;
+            
+
             this.reputation = 0;
 
 
@@ -106,14 +109,14 @@ class Player {
         super(name);
         this.race = 'Wizard';
         this.health = 90;
-        this.strength = 10;
+        this.strength = 6;
         this.speed = 10;
         this.wisdom = 15;
         this.gold = 10;
         this.bag =  [];
 
         this.karma = 0;
-        this.reputation = 0;
+        this.reputation = 5;
 
         this.backstory = "You are a lonely traveler who got a little senile and lost his way in the mountains."
         this.weapon = null;
@@ -135,7 +138,7 @@ class Player {
             this.wisdom = 6;
             this.gold = 10;
             this.karma = 0;
-            this.reputation = 0;
+            this.reputation = 1;
             this.bag =  []
             this.backstory = "You are a lonely traveler who was taken in by Humans and raised out of the Black Lands. You bear the marks on your chest of Mordoria, but dress to fit in amoung the race of men."
             this.weapon = 'Mallet';

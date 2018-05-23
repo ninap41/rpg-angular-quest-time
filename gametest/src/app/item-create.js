@@ -6,6 +6,7 @@
 
                 'type' : 'weapon',
                 'name' : 'Orc Shiving Knife',
+                'value' : 'Orc Shiving Knife',
                 'lvl' :1 ,
                 'damage' : 3,
                 'karma_effect' : {
@@ -18,17 +19,17 @@
                 'description' : 'Still stained with your mothers blood, this is a cruel weapon.',
                 'equipped': false,
             },
+
             {
 
                 'id' : Math.floor(Math.random() * 10000000000),
-
                 'type' : 'weapon',
                 'name' : 'Staff of Light',
                 'lvl' :1 ,
                 'damage' : 4,
                 'karma_effect' : {
                     'type' : 'positive',
-                    'effect' : 10,
+                    'effect' : 7,
                     'name': 'Mountain Light',
                     'description' : '+10 karma, blessed by the greyboeards in the mountains.',
                 },
@@ -36,6 +37,7 @@
                 'description' : 'A shimmering at the head of the staff draws in your attention. You feel calm and powerful.',
                 'equipped': false,
             },
+
             {
                 'id' : Math.floor(Math.random() * 10000000000),
 
@@ -45,7 +47,7 @@
                 'damage' : 7,
                 'karma_effect' : {
                     'type' : 'negative',
-                    'effect' : 10,
+                    'effect' : 7,
                     'name': 'Black Magic Curse',
                     'description' : '-10 karma',
                 },
@@ -134,6 +136,25 @@
             "description" : `Key to your parents stables. Found in the sneaky halflings grubby palms!`,
             
         },
+        'Orc Shiving Knife' : 
+            {
+                'id' : Math.floor(Math.random() * 10000000000),
+                'value' : 'Orc Shiving Knife',
+                'type' : 'weapon',
+                'name' : 'Orc Shiving Knife',
+                'lvl' :1 ,
+                'damage' : 3,
+                'karma_effect' : {
+                    'type' : 'negative',
+                    'effect' : 5,
+                    'name': 'Blood Curse',
+                    'description' : '-5 karma... Blood of a 24 Orcs have been laid upon this blade.',
+                },
+                'durability' : 8,
+                'description' : 'Still stained with your mothers blood, this is a cruel weapon.',
+                'equipped': false,
+            },
+        
         'helpbook' : {
             'id' : Math.floor(Math.random() * 10000000000),
 
@@ -152,16 +173,44 @@
 
             'type' : 'scenario',
             "value" : 'gaffers_letter',
-            "name" : `Gaffer`,
+            "name" : `Gaffer's Letter`,
             'influence_karma' : ['positive', 5],
             'limit' : false,
             'qty' : 1,
             'update_message' : 'Reading that felt better. +5 to karma',
-            "description" : ` Dear Loved One, \r\n I apologize for all my shortcomings. 
-            The Orcs would not be here if it were not for me. The dark wizard promised my family safety if I but give him my father 
-            ancient summoning charm to break down our towns magic defenses. Little did I know he 
-            needed the blood of 50 innocents for his conjuring. If anyone finds this. Please kill me. and CHARNAME, 
-            I have loved you with all my heart since we were children. Please forgive me... 1\n Love, 1\n Thomas Gaffer.`,
+            "description" : ` Dear Loved One, \r\n
+            I apologize for all my shortcomings. The Orcs would not be here if it were not for me. 
+            The dark wizard promised my family safety if I but give him my father ancient summoning 
+            charm to break down our towns magic defenses. Little did I know he needed the blood of 
+            50 innocents for his conjuring. If anyone finds this. Please kill me. and CHARNAME, 
+            I have loved you with all my heart since we were children. Please forgive me... 
+            \r\n Love, \r\nThomas Gaffer.`,
+
+            
+        },
+        'mendels_key' : {
+            'id' : Math.floor(Math.random() * 10000000000),
+
+            'type' : 'scenario',
+            "value" : 'mendels_key',
+            "name" : `Brandybuck Key`,
+            'influence_karma' : ['positive', 2],
+            'limit' : false,
+            'qty' : 1,
+            "description" : `Key to the Brandybuck Home's backdoor`,
+
+            
+        },
+        'stables_key' : {
+            'id' : Math.floor(Math.random() * 10000000000),
+
+            'type' : 'scenario',
+            "value" : 'stables_key',
+            "name" : `Stables_Key`,
+            'influence_karma' : ['positive', 2],
+            'limit' : false,
+            'qty' : 1,
+            "description" : `Key to the stables`,
 
             
         },
@@ -172,6 +221,7 @@
             "value" : 'liquid_courage',
             "name" : 'Liquid Courage',
             'influence_health' : ['positive', 10],
+            'influence_karma' : ['positive', 4],
             'limit' : true,
             'qty' : 2,
             "description" : `A little something to boost morale and get you through the day. Increased HP by 10`,
@@ -180,7 +230,7 @@
             'id' : Math.floor(Math.random() * 10000000000),
             'type' : 'usable',
             "value" : 'bread',
-            "name" : 'CHARHOMETOWN Bread',
+            "name" : 'Bread',
             'influence_health' : ['positive', 10],
             'limit' : true,
             'qty' : 1,
@@ -190,8 +240,8 @@
             'id' : Math.floor(Math.random() * 10000000000),
             'type' : 'usable',
             "value" : 'cheese',
-            "name" : 'CHARHOMETOWN Cheese',
-            'influence_health' : ['positive', 10],
+            "name" : 'Cheese',
+            'influence_health' : ['positive', 50],
             'limit' : true,
             'qty' : 1,
             "description" : `Brie cheese of your people.`,

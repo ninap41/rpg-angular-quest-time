@@ -24,6 +24,9 @@
                 <span *ngIf="item.type === 'weapon' && this.Player.weapon === null;" (click)="_battleService.weaponequip(item, idx, 'equip')">
                   <img width="10px" src="/assets/icons/equip-weapon.png">
                 </span>
+                <span *ngIf="item.type === 'usable'" (click)="use_item(item, idx);">
+                    <img width="10px" src="/assets/icons/health-normal.png">
+                  </span>
           </li>
 </div>
 

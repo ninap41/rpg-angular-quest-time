@@ -46,3 +46,17 @@
      padding:1em;
 
 }
+
+.battle_updates {
+    padding: 2em;
+    min-height: 10em;
+    border: 1px solid black;
+    color: black;
+
+}
+.usables {
+    padding: 2em;
+    height: 10em;
+    overflow: scroll;
+    border: 1px solid grey;
+}

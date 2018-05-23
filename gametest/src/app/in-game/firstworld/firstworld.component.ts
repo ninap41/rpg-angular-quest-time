@@ -29,6 +29,10 @@ WorldName;
 updateMessage;
 weaponGuard;
 xp = 0;
+temp_strength;
+temp_karma;
+temp_speed;
+
 // all of map
 
 
@@ -62,7 +66,17 @@ xp = 0;
     this.Check_all();
   }
 
+  check_karma() {
+    if (this.Player.karma < -9) {
+      this.currentEvent = events.end_game;
+    }
+
+  }
+
   Check_all() {
+    if (this.currentEvent) {
+    this.check_event_name_home(this.currentEvent);
+  }
     this.check_name_and_home(this.playersPoint);
     this.check_inspects_guard(this.playersPoint);
   }
@@ -74,7 +88,22 @@ xp = 0;
       this.Player.karma += point.karma_impact[1];
     }
   }
+  check_event_name_home(event) {
+    if (event) {
+      if (event.enemy) {
+        event.enemy.description = event.enemy.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+        event.enemy.description = event.enemy.description.replace('CHARNAME', this.Player.name);
+        event.enemy.description = event.enemy.description.replace('CHARRACE', this.Player.race); // put in service
+        event.enemy.opening_line = event.enemy.opening_line.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+        event.enemy.opening_line = event.enemy.opening_line.replace('CHARNAME', this.Player.name);
+        event.enemy.opening_line = event.enemy.opening_line.replace('CHARRACE', this.Player.race); // put in service
+      }
+      event.description = event.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+    event.description = event.description.replace('CHARNAME', this.Player.name);
+    event.description = event.description.replace('CHARRACE', this.Player.race); // put in service
+    }
 
+  }
   check_inspects_guard(point) {
     if (point.inspects) {
       for (const inspect of point.inspects) {
@@ -104,6 +133,8 @@ xp = 0;
    }
   }
   activate_help(action) {
+    this.check_karma();
+
     if (action.object.name === 'Help Book') {
       this._characterService.help = true;
     }
@@ -118,6 +149,8 @@ xp = 0;
   }
 
   traverse(direction) {
+
+
     if (direction.karma_impact) {
       this.karma_update(direction);
     }
@@ -140,12 +173,14 @@ xp = 0;
       }
     } else {
     this.Check_all();
+    this.check_karma();
     }
   }
 
 
 
   traverseFromEvent(direction) {
+
     if (direction.karma_impact) {
       this.karma_update(direction);
     }
@@ -168,10 +203,12 @@ xp = 0;
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
         this.check_name_and_home(this.playersPoint);
         this.check_inspects_guard(this.playersPoint);
+        this.check_karma();
       }
     } else {
     this.check_name_and_home(this.playersPoint);
     this.check_inspects_guard(this.playersPoint);
+    this.check_karma();
     }
 
   }
@@ -200,6 +237,7 @@ xp = 0;
     if (action.karma_impact) {
       this.karma_update(action);
     }
+    this.check_karma();
     console.log('inspectWorld()');
 
     if (this.playersPoint.eventtriggerchance) {
@@ -214,10 +252,12 @@ xp = 0;
         this.Player.worldPoint.push(this.firstworld[action.room]);
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
         this.Check_all();
+        this.check_karma();
       }
     } else {
 
     this.Check_all();
+    this.check_karma();
     }
     //
     const inspectEvent = action.event;
@@ -254,12 +294,14 @@ xp = 0;
             console.log('no influence');
           }
         }
+        this.check_karma();
 
   }
 
 
 
   inspectEvent(action, idx) {
+
     if (action.karma_impact) {
       this.karma_update(action);
     }
@@ -283,34 +325,55 @@ xp = 0;
           this._characterService.global_update_message = `You fled ${currentEnemy.name}. Your 'Karma' may have saved you.`;
           this.currentEvent = null;
         } else {
-          const flee_token = true;
-          this._battleService.fightStart(currentEnemy, action, flee_token);
+
+          action.event = 'fight';
+          // const flee_token = true;
+          // this._battleService.fightStart(currentEnemy, action, flee_token);
         }
       this.currentEvent = null;
       }
           if (action.event === 'fight') {
       console.log('fight');
+       this.temp_strength = this._characterService.Player.strength;
+      this.temp_karma = this._characterService.Player.karma;
+      this.temp_speed = this._characterService.Player.speed;
       const currentEnemy = this.currentEvent.enemy;
+      this.Check_all();
       const flee_token = false;
       this._battleService.fightStart(currentEnemy, action, flee_token);
         }  else {
 
           }
     this._characterService.retrievePlayer();
+    this.check_karma();
   }
 
   aquire() {
 
   }
-  fight() {
-   if (this.Player.health <= 0) {
-    console.log('You should be dead now');
+  fight(action) {
+    // temp store Players Originally stats
+   if (this._characterService.Player.health <= 0) {
+    this._battleService.max_Taunt = 0;
+
+    this._characterService.Player.health = 0;
+    this._battleService.currentFight = false;
+    const message = this.currentEvent.enemy.loss_message;
+    this.currentEvent = events.enemy_end;
+    this._characterService.global_update_message = null;
+    this.currentEvent.description = message;
      }
-    if (this._battleService.currentEnemy.health > 0) { // base case
+    if (this._battleService.currentEnemy.health <= 0) { // base case
       console.log('win');
+      this._battleService.max_Taunt = 0;
+      if (this.currentEvent.enemy_object) {
+        this.Player.bag.push(this.currentEvent.enemy_object);
+        this._characterService.global_update_message = `You recieved '${this.currentEvent.enemy_object}' `;
+      }
       if ( this.currentEvent.description2) {
         this.currentEvent.description = this.currentEvent.description2;
       }
+
       this.xp += this._battleService.currentEnemy.xp;
       const win = `'You have defeated '${this._battleService.currentEnemy.name}'`;
       if (this.xp > 70) {
@@ -328,15 +391,43 @@ xp = 0;
       }
       this._battleService.currentFight = false;
       this.currentEvent.inspects.splice(0, 2);
+      this.playersPoint.event = null;
       this.playersPoint.eventtriggerchance = 0;
       this.currentEvent.currentEnemy = null;
       this.currentEvent.access_directions_state = true;
       this.currentEvent = null;
       this._battleService.currentEnemy = null;
+      this._characterService.Player.strength = this.temp_strength;
+      this._characterService.Player.karma = this.temp_karma;
+      this._characterService.Player.speed = this.temp_speed;
+      const restore = `Stats from before the battle have been restored.`;
+      this._characterService.global_update_message = win.concat(restore);
+      this.post_battle_unequip();
       this.Check_all();
     }  else {
       console.log('still fighting');
+     if (action === 'Strike') {
+       this._battleService.enemyAttack(action);
+       this.fight('dead');
+      console.log('strike');
+     } else if (action === 'Block') {
+      console.log('block');
+      this._battleService.enemyAttack(action);
+      this.fight('dead');
+
+
+     } else if (action === 'Taunt') {
+      console.log('taunt');
+      this._battleService.enemyAttack(action);
+      this.fight('dead');
+
+
+     } else if (typeof action === 'number' ) {
+      console.log(action);
+      this._battleService.use_item_mid_battle(action);
+     }
     }
+    this.check_karma();
   }
 
   updateCharacterStats() {
@@ -345,5 +436,14 @@ xp = 0;
   goBack() {
     this.Player.worldPoint.pop();
     this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
+  }
+
+  post_battle_unequip() {
+    for (let i = 0; i < this._characterService.Player.bag.length; i++) {
+      if (this._characterService.Player.bag[i].name === this._characterService.Player.weapon.name) {
+        this._battleService.weaponequip(this._characterService.Player.bag[i], i, 'unequip');
+        return;
+      }
+    }
   }
 }

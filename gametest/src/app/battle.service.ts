@@ -27,7 +27,9 @@ battle_update_message = '';
  currentEnemy;
  weaponGuard = true;
  success_fail_message;
-
+ showUsables = false;
+max_Taunt = 0;
+BattleItem;
 
   constructor(
     private _router: Router,
@@ -121,13 +123,148 @@ battle_update_message = '';
     } else {
       this.battle_update_message = `Fight with
       has ${this.currentEnemy.name} begun. Your weapon,
-      has ${this.Player.weapon.name} has automatically been equipped.`;
+     '${this.Player.weapon.name}' is held firm in your hand, good to go.`;
      console.log(this.currentEnemy);
      console.log('fight start');
     }
 
   }
 
+  enemyAttack(charAction) {
+    const char_attack = this._characterService.Player.strength + this._characterService.Player.weapon.damage;
+    let enemy_attack = this.currentEnemy.damage + this.currentEnemy.weapon.damage;
+      const enemy_actions = [ 'Blocked', 'Retaliated', 'Attacked'];
+      const enemy_action = enemy_actions[Math.floor(Math.random() * enemy_actions.length)];
+      if (charAction) {
+        if (charAction === 'Strike') {
+          console.log(`Attack point(s) : ${char_attack}` );
+        console.log('players health: ' + this._characterService.Player.health);
+              if (enemy_action === 'Blocked') {
+                const avoid_block_success_min = Math.floor(Math.random() * this.currentEnemy.speed);
+                const speed_impact = Math.floor(Math.random() * this._characterService.Player.speed);
+                if (speed_impact >= avoid_block_success_min) {
+                  this.currentEnemy.health -= char_attack;
+                  this.battle_update_message = `'${this.currentEnemy.name}'  '${enemy_action}', but failed to avoid the attack.
+                  ${char_attack} point(s)  damage to ${this.currentEnemy.name}. `;
+                } else {
+                  console.log(enemy_action);
+                  this.battle_update_message = `'${this.currentEnemy.name}'  '${enemy_action}', avoiding
+                  ${char_attack} point(s)  damage from ${this._characterService.Player.name}. `;
+                }
+
+              }
+              if (enemy_action === 'Retaliated') {
+                console.log(enemy_action);
+                enemy_attack = enemy_attack / 2 ;
+                this._characterService.Player.health -= enemy_attack;
+                this.battle_update_message = ` ${this.currentEnemy.name} retaliated against ${this._characterService.Player.name}'s attack.
+                They "${enemy_action}" back, inflicting ${ enemy_attack} point(s)  damage on ${this._characterService.Player.name}`;
+              }
+              if (enemy_action === 'Attacked') {
+                console.log(enemy_action);
+                this.battle_update_message = ` ${this._characterService.Player.name} attacked
+                ${this.currentEnemy.name}, who took ${char_attack} point(s)  damage.
+                He "${enemy_action}" and you took '${this.currentEnemy.damage}' point(s)  damage!.`;
+                this.currentEnemy.health -= char_attack ;
+                this._characterService.Player.health -= enemy_attack;
+
+              }
+      }
+      if (charAction === 'Block') {
+      console.log('players health: ' + this._characterService.Player.health);
+            if (enemy_action === 'Blocked') {
+              console.log(enemy_action);
+              this.battle_update_message = ` ${this.currentEnemy.name} and you both asserted a defensive stance.`;
+            }
+            if (enemy_action === 'Attacked') {
+              const avoid_block_success_min = Math.floor(Math.random() * this.currentEnemy.speed);
+              const speed_impact = Math.floor(Math.random() * this._characterService.Player.speed);
+              if (speed_impact >= avoid_block_success_min) {
+                this.currentEnemy.health -= char_attack;
+                this.battle_update_message = `'${this.currentEnemy.name}'  '${enemy_action}', but failed to avoid the attack.
+                ${char_attack} point(s)  damage to ${this.currentEnemy.name}. `;
+              } else {
+                console.log(enemy_action);
+                this.battle_update_message = `'${this.currentEnemy.name}'  '${enemy_action}', avoiding
+                ${char_attack} point(s)  damage from ${this._characterService.Player.name}. `;
+              }
+              console.log(enemy_action);
+              this.battle_update_message = ` ${this.currentEnemy.name}  "${enemy_action} ", but you blocked their Strike.`;
+            }
+            if (enemy_action === 'Retaliated') {
+              console.log(enemy_action);
+              this.battle_update_message = `${this.currentEnemy.name} attempted a retaliation, but you both asserted a defensive stance.`;
+            }
+    }
+    if (charAction === 'Taunt') {
+      let char_taunt = this._characterService.Player.reputation + this._characterService.Player.strength;
+      char_taunt = Math.floor(Math.random() * char_taunt);
+      let enemy_taunt = this.currentEnemy.damage + this.currentEnemy.flee_chance;
+      enemy_taunt = Math.floor(Math.random() * enemy_taunt);
+      const effect = char_taunt -= enemy_taunt;
+      this.max_Taunt += 1;
+      if (char_taunt >= enemy_taunt) {
+        this._characterService.Player.karma += effect / 2 ;
+        this._characterService.Player.speed += effect / 2;
+        this._characterService.Player.strength += effect / 2 ;
+        this.battle_update_message = `${this._characterService.Player.name} taunted ${this.currentEnemy.name} successfully.
+        Their Karma, Strength, Speed increased by ${effect / 2} point(s).`;
+      }  else {
+        this._characterService.Player.karma -= effect / 2;
+        this._characterService.Player.speed -= effect / 2 ;
+        this._characterService.Player.strength -= effect / 2 ;
+        this.battle_update_message = `${this._characterService.Player.name} taunted ${this.currentEnemy.name} unsuccessfully.
+        Their Karma, Strength and Speed decreased by ${effect / 2} point(s).`;
+      }
+
+    }
+
+  }
+  }
+
+  use_item_mid_battle(idx) {
+    const enemy_actions = [  'Taunted', 'Taunted', 'Attacked'];
+    const enemy_attack = this.currentEnemy.damage + this.currentEnemy.weapon.damage;
+      const enemy_action = enemy_actions[Math.floor(Math.random() * enemy_actions.length)];
+    const item = this._characterService.Player.bag[idx];
+    let str;
+    if (item.influence_health) {
+      if (item.influence_health[0] === 'positive') {
+        this._characterService.Player.health += item.influence_health[1];
+        str = `You consumed '${item.name}', restoring ${item.influence_health[1]} point(s)
+        of health! `;
+      } else {
+        this._characterService.Player.health -= item.influence_health[1];
+        str = `You consumed '${item.name}', losing ${item.influence_health[1]} point(s)
+        of health! `;
+      }
+    }
+    if (enemy_action === 'Taunted') {
+      this._characterService.Player.speed -= this.currentEnemy.speed / 2;
+      this._characterService.Player.strength -= this.currentEnemy.speed  / 2;
+      this._characterService.Player.karma -= this.currentEnemy.speed  / 2;
+      this.battle_update_message = str.concat(`While using
+      '${this.currentEnemy.name}' Taunted you! You lost ${this.currentEnemy.speed / 2} point(s)
+      of your speed, strength, and karma. `);
+    }
+    if (enemy_action === 'Attacked') {
+      this._characterService.Player.health -= enemy_attack;
+      this.battle_update_message = str.concat('<br>' + `While using '${item.name}', '${this.currentEnemy.name}' attacked you! <br> you took
+      ${enemy_attack} point(s) damage!`);
+    }
+    this.use_battle_item(idx, item);
+    console.log(item.name);
+  }
+
+  use_battle_item(idx, item) {
+    if (item.quantity > 0) {
+      this._characterService.Player[idx].quantity -= 1;
+
+    } else {
+      this._characterService.Player.bag.splice(idx, 1);
+    }
+
+  }
 
   fightEnd(currentEnemy) {
     this.Player.lvl += 1;
