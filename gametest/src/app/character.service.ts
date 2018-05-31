@@ -30,7 +30,7 @@ export class CharacterService {
  bag;
  error;
  serviceplayersPoint;
- MaxHealth = 0;
+ MaxHealth;
  help = false;
 
  global_update_message;
@@ -46,6 +46,7 @@ currentEvent = false;
     console.log(this.Player);
     return this.gameStart;
   }
+
 
 
 
@@ -115,8 +116,8 @@ currentEvent = false;
             }
           }
         }
-        this.Player.bag.push(weapons.basic_weapons[0]);
-        this.Player.bag.push(weapons.basic_weapons[1]);
+        // this.Player.bag.push(weapons.basic_weapons[0]);
+        // this.Player.bag.push(weapons.basic_weapons[1]);
 
       console.log(this.Player.bag);
       this.Player.name = player.name;
@@ -142,9 +143,15 @@ currentEvent = false;
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
   }
-  levelUP() {
-    console.log(`you leveled up to ${this.Player.lvl}`);
-  }
+
+//   levelUP(prev_lvl) {
+//     this.Player.lvl += 1;
+//     this.Player.health += 20;
+//     this.MaxHealth += 30;
+//     this.Player.speed += 10;
+//     this.Player.karma += 5;
+//     return;
+//  }
 
 }
 

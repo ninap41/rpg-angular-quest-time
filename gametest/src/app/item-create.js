@@ -74,6 +74,22 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
+                'karma_effect' : {
+                    'type' : 'negative',
+                    'effect' : 1,
+                    'name': 'Blood Curse',
+                    'description' : '-5 karma... Blood of a 24 Orcs have been laid upon this blade.',
+                },
+                'type' : 'weapon',
+                'name' : `Mordorian Sword`,
+                'lvl' :1 ,
+                'damage' : 8,
+                'durability' : 14,
+                'description' : 'A sword forged with Obsidian shards. ',
+                'equipped': false,
+            },
+            {
+                'id' : Math.floor(Math.random() * 10000000000),
 
                 'type' : 'weapon',
                 'name' : `Father's Bow`,
@@ -178,13 +194,18 @@
             'limit' : false,
             'qty' : 1,
             'update_message' : 'Reading that felt better. +5 to karma',
-            "description" : ` Dear Loved One, \r\n
-            I apologize for all my shortcomings. The Orcs would not be here if it were not for me. 
+            "description" : ` 
+            Dear Loved One, 
+
+                I apologize for all my shortcomings. The Orcs would not be here if it were not for me. 
             The dark wizard promised my family safety if I but give him my father ancient summoning 
-            charm to break down our towns magic defenses. Little did I know he needed the blood of 
-            50 innocents for his conjuring. If anyone finds this. Please kill me. and CHARNAME, 
-            I have loved you with all my heart since we were children. Please forgive me... 
-            \r\n Love, \r\nThomas Gaffer.`,
+            charm to break down our towns magic defenses. Little did I know he needed the blood of 50
+            innocents for his conjuring. If anyone finds this...
+            
+            To CHARNAME, I have loved you with all my heart since we were children. Please forgive me... 
+             
+            Love, 
+                Thomas Gaffer.`,
 
             
         },

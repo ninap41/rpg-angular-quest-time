@@ -24,19 +24,20 @@ title = 'Bag';
 
 use_item(item, idx) {
 
-    let str;
-    let str2;
+    let str = '';
     if (item.influence_health) {
       if (item.influence_health[0] === 'positive') {
-       if (this._characterService.Player.health + item.influence_health[1] >= this._characterService.MaxHealth) {
-        str += `Your health is already Max. No increase in health.`;
+       if (this._characterService.Player.health + item.influence_health[1] > this._characterService.MaxHealth) {
+        this._characterService.Player.health = this._characterService.MaxHealth;
+        str = `Your health is already Max. No increase in health.`;
        } else {
-        str = `You consumed '${item.name}', restoring ${item.influence_health[1]} point(s)
+        this._characterService.Player.health += item.influence_health[1];
+        str += `You consumed '${item.name}', restoring ${item.influence_health[1]} point(s)
         of health!`;
        }
       } else {
         this._characterService.Player.health -= item.influence_health[1];
-        str = `You consumed '${item.name}', losing ${item.influence_health[1]} point(s)
+        str += `You consumed '${item.name}', losing ${item.influence_health[1]} point(s)
         of health! `;
       }
     }
@@ -48,11 +49,11 @@ use_item(item, idx) {
 
       } else {
         this._characterService.Player.karma -= item.influence_karma[1];
-        str2 = `You consumed '${item.name}', losing ${item.influence_karma[1]} point(s)
+        str += `You consumed '${item.name}', losing ${item.influence_karma[1]} point(s)
         of karma! `;
       }
     }
-    if (item.quantity > 0) {
+   if (item.quantity > 0) {
       this._characterService.Player[idx].quantity -= 1;
 
     } else {

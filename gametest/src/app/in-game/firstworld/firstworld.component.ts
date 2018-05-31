@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../../character.service';
 import { BattleService } from '../../battle.service';
+import { AudioService } from '../../audio.service';
 
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HumanWorldStart, events } from '../../world1';
@@ -32,18 +33,21 @@ xp = 0;
 temp_strength;
 temp_karma;
 temp_speed;
-
+audio;
 // all of map
 
 
   constructor(
     private _characterService: CharacterService,
     private _battleService: BattleService,
+    private _audioService: AudioService,
+
     private _router: Router) {
       this.Player = this._characterService.retrievePlayer();
      }
 
   ngOnInit() {
+
     this.weaponGuard = this._battleService.weaponGuard;
     this._characterService.gameStart = true;
     this.Player = this._characterService.retrievePlayer();
@@ -171,6 +175,11 @@ temp_speed;
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
         this.Check_all();
       }
+    }  else if (this.playersPoint.eventtriggerchance === null && this.playersPoint.event !== null) {
+      this.currentEvent = this.firstworldevents[this.playersPoint.event];
+      console.log('event begun');
+
+
     } else {
     this.Check_all();
     this.check_karma();
@@ -245,6 +254,7 @@ temp_speed;
       if (trigger === 1) {
         this.currentEvent = this.firstworldevents[this.playersPoint.event];
         console.log(this.currentEvent);
+        this.Check_all();
         console.log('event begun');
       } else {
         console.log ('event avoided');
@@ -322,15 +332,17 @@ temp_speed;
         const luck = Math.floor(Math.random() * this.Player.karma);
         if (luck >= currentEnemy.flee_chance) {
           console.log(luck);
+          this.Check_all();
           this._characterService.global_update_message = `You fled ${currentEnemy.name}. Your 'Karma' may have saved you.`;
           this.currentEvent = null;
         } else {
+          action.event = 'run';
+          const flee_token = true;
+         const currentEnem = this.currentEvent.enemy;
+          this._battleService.fightStart(currentEnem, action, flee_token);
 
-          action.event = 'fight';
-          // const flee_token = true;
-          // this._battleService.fightStart(currentEnemy, action, flee_token);
         }
-      this.currentEvent = null;
+      // this.currentEvent = null;
       }
           if (action.event === 'fight') {
       console.log('fight');
@@ -376,14 +388,7 @@ temp_speed;
 
       this.xp += this._battleService.currentEnemy.xp;
       const win = `'You have defeated '${this._battleService.currentEnemy.name}'`;
-      if (this.xp > 70) {
-        this.xp = 0;
-        this.Player.lvl += 1;
-        this.Player.health += 10;
-        this._characterService.levelUP(); // eventually as I make harder enemies.
-        const xp = `You have also increased a level`;
-        this._characterService.global_update_message = win.concat(xp);
-      }
+
       if (this._battleService.currentEnemy.gold !== 0) {
         const gold = ` and aquired ${this._battleService.currentEnemy.gold} gold.`;
         this._characterService.global_update_message = win.concat(gold);
@@ -400,8 +405,21 @@ temp_speed;
       this._characterService.Player.strength = this.temp_strength;
       this._characterService.Player.karma = this.temp_karma;
       this._characterService.Player.speed = this.temp_speed;
-      const restore = `Stats from before the battle have been restored.`;
+      if (this.xp > 70) {
+        this.xp = 0;
+        this._characterService.Player.lvl += 1;
+        this._characterService.Player.health += 10;
+        this._characterService.MaxHealth += 30;
+        this._characterService.Player.speed += 10;
+        this._characterService.Player.karma += 5;
+         const str = `Stats before the battle's Taunts were restored and you have also increased a level!`;
+         this._characterService.global_update_message = win.concat(str);
+      } else {
+        const restore = ` Stats from before the battle taunts have been restored. You are ${70 - this.xp} points away from the next level`;
+
       this._characterService.global_update_message = win.concat(restore);
+      }
+
       this.post_battle_unequip();
       this.Check_all();
     }  else {
@@ -414,7 +432,6 @@ temp_speed;
       console.log('block');
       this._battleService.enemyAttack(action);
       this.fight('dead');
-
 
      } else if (action === 'Taunt') {
       console.log('taunt');

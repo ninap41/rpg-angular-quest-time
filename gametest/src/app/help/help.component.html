@@ -1,3 +1,174 @@
-<p>
-  help works!
-</p>
+<div class="container">
+
+        <!-- https://stackoverflow.com/questions/44883501/play-sound-in-angular-4 -->
+    <div class="info col-sm-12 card">
+        <h1>
+            <i style="color:rgb(219, 152, 152)">&#10524; </i>
+          Navigation
+          <i style="color:rgb(219, 152, 152)">&#10523; </i></h1>
+
+    <div class="row">
+              <div class="media media1">
+                  <img src="/assets/icons/entry-door.png" class="thumbnails mr-3"  alt="Generic placeholder image">
+                  <div class="media-body">
+                    <h5 class="mt-0">  Rooms  </h5>
+                    <!-- Direction tooltip -->   
+                    <ng-template type="button" class="btn btn-outline-secondary" #directions>
+                      <span>ex: <button class="btn btn-info">Direction</button></span>
+                    </ng-template>
+Rooms change with every <span [ngbTooltip]="directions"><b>'direction'</b></span> chosen. You click on directions to traverse your envirnment. This will progress the story. If you return to a room, will new items or stats, no one room will be the same (ex: having a key to a door or discovering knowledge from another character).           </div>
+                </div><div class="media media2">
+                    <img src="/assets/icons/surprised.png" class="thumbnails mr-3" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <h5 class="mt-0">
+                          Events</h5>
+
+Events get triggered by entering certain rooms. Some rooms and the frequencies of these events are related to your  <b>'Karma'</b>. Usually events and how you handle them reap benefits for your inventory or your stats, while others can bring trouble. Some events progress the story, affect karma, or even trigger fights. Contain <span [ngbTooltip]="inspects"><b>'Inspects'</b></span> as well.              </div>
+                  </div><div class="media media3">
+                      <img src="/assets/icons/uncertainty.png" class="thumbnails mr-3"  alt="Generic placeholder image">
+                      <div class="media-body">
+                          <ng-template type="button" class="btn btn-outline-secondary" #inspects>
+                              <span>ex: <button class="btn btn-warning">Inspects</button></span>
+                            </ng-template>
+                        <h5 class="mt-0">  Inspects   </h5>
+                        Some rooms and events trigger and unlock  <span [ngbTooltip]="inspects"><b>'Inspects'</b>. These are for triggering events and picking up items. Inspects can sometimes have adverse affects but also reap rewards depending on what you have in your bag or what your stats are. </span>
+                    </div>
+                    </div>
+              
+            
+                        </div><!--6 -->
+                      </div><!--row -->
+
+
+
+
+        <div class="info col-sm-12 card">
+        <h1>
+            <i style="color:rgb(219, 152, 152)">&#10524; </i>
+Races          
+<i style="color:rgb(219, 152, 152)">&#10523; </i>
+        </h1>
+
+    <div class="row">
+            <ng-template type="button" class="btn btn-outline-secondary" #wizards> Wizards hail from the The Misty Mountains. They have low strength and HP Choosing this beginning grants you use of spells (not yet created for battle system). Wizards have a high reputation and access to two staffs at the start of the game. Careful which you choose. They infuence your karma.</ng-template>
+            <ng-template type="button" class="btn btn-outline-secondary" #dwarfs> Dwarfs hail from The Barren Mines. They are granted with high strength but low reputation.</ng-template>
+            <ng-template type="button" class="btn btn-outline-secondary" #elfs> Elf hail from The Misty Forest. They have high reputation.</ng-template>
+            <ng-template type="button" class="btn btn-outline-secondary" #orcs> Orcs hail from mordoria.</ng-template>
+            <ng-template type="button" class="btn btn-outline-secondary" #humans> Your Human hails from Denethor a human Kingdom. Your stats are average and reputation nuetral.</ng-template>
+
+          <img src="/assets/icons/wizard.png" [ngbTooltip]="wizards" alt="Wizard" class="thumbnails mr-3">
+          <img src="/assets/icons/elf.png" [ngbTooltip]="elfs"  alt="Elf" class="thumbnails mr-3">
+          <img src="/assets/icons/dwarf.png"  [ngbTooltip]="dwarfs" alt="Dwarf"class="thumbnails mr-3">
+          <img src="/assets/icons/cowled.png" [ngbTooltip]="orcs" alt="Orc" class="thumbnails mr-3">
+          <img src="/assets/icons/horseman.png" [ngbTooltip]="humans" alt="humans" class="thumbnails mr-3">
+
+
+
+              
+            
+                        </div><!--6 -->
+                      </div><!--row -->
+
+ <div class="row">
+   
+
+          <div class="info col-sm-12 card">
+                <h1>
+                    <i style="color:rgb(219, 152, 152)">&#10524; </i>
+                Bag 
+                <i style="color:rgb(219, 152, 152)">&#10523; </i>
+                </h1> 
+<div class="container">
+        <div class="media media1">
+                <img src="/assets/icons/bag.png" class="thumbnails mr-3">
+                <div class="media-body">
+                  <h5 class="mt-0">  Bag </h5>
+                  <!-- Direction tooltip -->   
+                  <ng-template type="button" class="btn btn-outline-secondary" #usable> Usable is an item that heals usually or is consumed. It is also an item that has a quantity limitation. ex: Matches with qty 3 </ng-template>
+                  <ng-template type="button" class="btn btn-outline-secondary" #questitems> Quest items help further the story and give you access to certain room inspects and directions that would have otherwise not been there. ex: Stables Key </ng-template>
+                  <ng-template type="button" class="btn btn-outline-secondary" #weapons> Weapons allow you to engage in battle and have different stats. Before a battle begins, you must have a weapon equipped. Before running away from battle, you must have a weapon equipped to ensure your safety if the run attempt is unsuccessful.</ng-template>
+                Your bag contains <span [ngbTooltip]="questitems"><b>'quest items'</b></span>, <span [ngbTooltip]="weapons"><b>'weapons'</b></span>, and <span [ngbTooltip]="usable"><b>'usables'</b></span>. Access to your bag varies depending on what environment you are in. During battle you may only access usables and all weapons must be equipped before hand. 
+                 </div>
+        </div><br>
+        <div class="jumbotron">
+                <div class="row">
+            <div class="col-sm-6">
+                image 1
+                <BR>
+                    description
+                
+            </div>
+            <div class="col-sm-6">
+                    image 1
+                    <BR>
+                        description
+                    
+                </div>
+                </div> <!-- end of row-->
+        </div>
+
+</div>
+
+            </div><!--6 -->
+</div> <!--row-->
+
+
+<div class="row">
+<div class="info card">
+             <h1>
+                <i style="color:rgb(219, 152, 152)">&#10524; </i>
+                    Combat
+                <i style="color:rgb(219, 152, 152)">&#10523; </i>
+            </h1> 
+  <div class="row">
+  <div class="battling-info col-sm-4">
+              <ul>
+          <h2><b>Battle</b></h2>
+          <li>
+              A <b>'battle'</b> is a type of event where you must fight a foe. This foe can sometimes carry rewards like objects, gold, or experience for you to level up. Be careful though; Do not dare go up against a foe with a higher level or strength than you,                       
+      
+          </li>
+          <h2><b>Taunts</b></h2>
+      
+          <li>
+            <span><b>Taunts</b> are meant to intimidate 
+                your enemy and gain certain in battle stat perks during battle
+                They are based around strength, speed, and karma. Sometimes 
+                a Taunt can backfire and have an Adverse Affect on your stats. 
+                Be careful who you Taunt!</span>
+            </li>
+        
+          </ul>
+        </div> <!--4 -->
+
+        <div class="battling-info col-sm-4">
+                <ul>
+            <h2><b>Strikes</b></h2>
+            <li>
+                A <b>'strike'</b> is when you inflict offensive damage on your opponent. Whether or not the attack is successful depends on whether your opponent blocked and your speed.                   
+        
+            </li>
+            <h2><b>Blocks</b></h2>
+        
+            <li>
+              <span><b>Blocks</b> are meant to shield you from damage. Whether are not they are successful depends on your speed versus your opponents</span>
+              </li>
+          
+            </ul>
+          </div> <!--4 -->
+          <div class="battling-info  col-sm-4">
+                <ul>
+            <h2><b>Enemies</b></h2>
+            <li>
+                All enemies have unique attributes such as lvl, gold, speed, objects, taunts and dialogue. In order to defeat an enemy you must bring their HP down to 0. Enemies can have varied strength levels and damage levels from their equipped weapon. It is up to you to gauge whether or not fighting is worth it at that moment or if you needs to explore more and level up. Enemies can also hold or guard treasure.
+            </li>
+          
+            </ul>
+          </div> <!--4 -->
+          </div><!--row end-->
+            </div><!--6 -->
+
+ 
+
+</div> <!--row-->
+</div>

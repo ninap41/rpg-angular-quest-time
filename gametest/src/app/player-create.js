@@ -141,7 +141,7 @@ class Player {
             this.reputation = 1;
             this.bag =  []
             this.backstory = "You are a lonely traveler who was taken in by Humans and raised out of the Black Lands. You bear the marks on your chest of Mordoria, but dress to fit in amoung the race of men."
-            this.weapon = 'Mallet';
+            this.weapon = null;
             this.worldPoint = [];
             this.hometown = "Mordoria";
             }

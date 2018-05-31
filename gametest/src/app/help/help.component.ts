@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterService } from '../character.service';
+import { BattleService } from '../battle.service';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-help',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpComponent implements OnInit {
 
-  constructor() { }
+  Player;
+  gameStart = true;
+    constructor(
+      private _characterService: CharacterService,
+      private _battleService: BattleService,
+      private _itemService: ItemService
+    ) {
 
-  ngOnInit() {
-  }
+    }
+    ngOnInit() {
+      this.Player = this._characterService.Player;
+      this._characterService.gameStart = true;
+
+    }
 
 }

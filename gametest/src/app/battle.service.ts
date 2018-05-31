@@ -6,6 +6,7 @@ import { HttpClient} from '@angular/common/http'; // Client Module
 import {Observable} from 'rxjs/Observable';
 import { CharacterService } from './character.service';
 
+import { AudioService } from './audio.service';
 
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
 import {  WorldPlayer, HumanWorldStart } from './world1';
@@ -30,12 +31,16 @@ battle_update_message = '';
  showUsables = false;
 max_Taunt = 0;
 BattleItem;
+weapon_equip;
 
   constructor(
     private _router: Router,
     protected http: Http,
     private _characterService: CharacterService,
+    private _audioService: AudioService,
+
   ) {
+
 
   }
 
@@ -49,6 +54,7 @@ BattleItem;
         this.Player.weapon = weapon;
         this.Player.bag[idx].equipped = true;
         console.log('eh weapon should equip');
+        this._audioService.weaponEquip_sound(value);
         this.weaponGuard = false;
       } else if (value === 'equip') {
         this.weaponGuard = false;
@@ -95,10 +101,13 @@ BattleItem;
             this.weaponGuard = true;
           }
         }
+        this._audioService.weaponEquip_sound(value);
+
         this.weaponGuard = true;
         console.log('should unequip');
       }
     }
+    // this._audioService.weaponEquip_sound(value);
 
   }
 
@@ -107,6 +116,8 @@ BattleItem;
 
 
   fightStart(currentEnemy, action, flee_token) {
+    this._audioService.fight_sound();
+
     console.log(action);
     this.currentEnemy = currentEnemy;
     console.log('enemy!' + currentEnemy);
@@ -154,10 +165,13 @@ BattleItem;
 
               }
               if (enemy_action === 'Retaliated') {
+                this._audioService.fight_sound();
                 console.log(enemy_action);
                 enemy_attack = enemy_attack / 2 ;
                 this._characterService.Player.health -= enemy_attack;
-                this.battle_update_message = ` ${this.currentEnemy.name} retaliated against ${this._characterService.Player.name}'s attack.
+                this.currentEnemy.health -= char_attack;
+                this.battle_update_message = ` ${this.currentEnemy.name} took ${char_attack}
+                points damage, but retaliated against ${this._characterService.Player.name}'s attack.
                 They "${enemy_action}" back, inflicting ${ enemy_attack} point(s)  damage on ${this._characterService.Player.name}`;
               }
               if (enemy_action === 'Attacked') {
@@ -201,15 +215,17 @@ BattleItem;
       char_taunt = Math.floor(Math.random() * char_taunt);
       let enemy_taunt = this.currentEnemy.damage + this.currentEnemy.flee_chance;
       enemy_taunt = Math.floor(Math.random() * enemy_taunt);
-      const effect = char_taunt -= enemy_taunt;
+      let effect = 0;
       this.max_Taunt += 1;
       if (char_taunt >= enemy_taunt) {
+        effect =  char_taunt;
         this._characterService.Player.karma += effect / 2 ;
         this._characterService.Player.speed += effect / 2;
         this._characterService.Player.strength += effect / 2 ;
         this.battle_update_message = `${this._characterService.Player.name} taunted ${this.currentEnemy.name} successfully.
         Their Karma, Strength, Speed increased by ${effect / 2} point(s).`;
       }  else {
+        effect = enemy_taunt;
         this._characterService.Player.karma -= effect / 2;
         this._characterService.Player.speed -= effect / 2 ;
         this._characterService.Player.strength -= effect / 2 ;
@@ -228,15 +244,26 @@ BattleItem;
       const enemy_action = enemy_actions[Math.floor(Math.random() * enemy_actions.length)];
     const item = this._characterService.Player.bag[idx];
     let str;
+
     if (item.influence_health) {
-      if (item.influence_health[0] === 'positive') {
+       if (this._characterService.Player.health + item.influence_health[1] >= this._characterService.MaxHealth) {
+        str += `Your health is already Max. No increase in health.`;
+       } else {
         this._characterService.Player.health += item.influence_health[1];
         str = `You consumed '${item.name}', restoring ${item.influence_health[1]} point(s)
-        of health! `;
+        of health!`;
+       }
+    }
+    if (item.influence_karma) {
+      if (item.influence_karma[0] === 'positive') {
+        this._characterService.Player.karma += item.influence_karma[1];
+        str += `You consumed '${item.name}', gaining ${item.influence_karma[1]} point(s)
+        of karma! `;
+
       } else {
-        this._characterService.Player.health -= item.influence_health[1];
-        str = `You consumed '${item.name}', losing ${item.influence_health[1]} point(s)
-        of health! `;
+        this._characterService.Player.karma -= item.influence_karma[1];
+        str = `You consumed '${item.name}', losing ${item.influence_karma[1]} point(s)
+        of karma! `;
       }
     }
     if (enemy_action === 'Taunted') {
@@ -249,6 +276,9 @@ BattleItem;
     }
     if (enemy_action === 'Attacked') {
       this._characterService.Player.health -= enemy_attack;
+      if (this._characterService.Player.health <= 0) {
+        return;
+      }
       this.battle_update_message = str.concat('<br>' + `While using '${item.name}', '${this.currentEnemy.name}' attacked you! <br> you took
       ${enemy_attack} point(s) damage!`);
     }

@@ -15,6 +15,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CharacterService } from './character.service';
 import { BattleService } from './battle.service';
 import { ItemService } from './item.service';
+import { AudioService } from './audio.service';
 
 import { InGameComponent } from './in-game/in-game.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -62,7 +63,8 @@ import { HelpComponent } from './help/help.component';
   providers: [
     CharacterService,
     BattleService,
-    ItemService
+    ItemService,
+    AudioService
 
 
   ],

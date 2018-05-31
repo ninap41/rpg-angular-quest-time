@@ -43,7 +43,7 @@
         PLAYERS POINTS.DIRECTIONS.INSPECTS
         PLAYERS POINTS.DIRECTIONS.INSPECTS -->
      
-              <div *ngIf="playersPoint.inspects">
+              <div *ngIf="playersPoint.inspects && playersPoint.inspects.length > 0">
                     <hr>
                     <p><i>What shall you do </i></p>
                     <span *ngFor="let inspect of playersPoint.inspects; let idx = index" style="padding: .5em;">
@@ -74,6 +74,10 @@
 
         <span style="color:green" *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
         <span *ngIf="currentEvent.restart === true"> <a href="http://localhost:4200/">Restart</a></span>
+        <span *ngIf="currentEvent.restart === true"> 
+                <a  [routerLink]="['help']" > <b>Need Help? </b>  </a>
+               
+            </span>
 
         <div *ngIf="currentEvent.inspects">
 

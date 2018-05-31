@@ -2,6 +2,8 @@
 https://material.angular.io/guide/getting-started-->
 
 <div id='body' class="container">
+        <button (click)="stopMusic()"> - Pause Music - </button>  <button (click)="startMusic()">-Start Music-</button>
+        <BR><BR>
     <div style="text-align:center">
             <h1 class="pointTitle">
                 Wizards of the Realm
@@ -10,6 +12,7 @@ https://material.angular.io/guide/getting-started-->
     <div class="container"><BR>
             <!-- <div *ngIf="_characterService.gameStart === true"> -->
             <fieldset>
+                    
                     <i style="color:rgb(219, 152, 152)">&#10524; </i>
                     <i style="color:white">&#9472; </i>
                             <!-- <a style="text-decoration:none;" [routerLink]="['']"  (click)="newGame(Player)"routerLinkActive="active">  NEW GAME  </a> <i style="color:white">&#9472; </i> -->
@@ -24,8 +27,9 @@ https://material.angular.io/guide/getting-started-->
                             <a style="text-decoration:none;" [routerLink]="['bag']"  routerLinkActive="active"> Bag</a> <i style="color:white">&#9472; </i>
                     <i style="color:rgb(219, 152, 152)">&#9472; </i>
                     <i style="color:white">&#9472; </i>
+                    
                     <span *ngIf="_characterService.help === true"> 
-                        <a href=""  routerLinkActive="active">  Help  </a><i style="color:white">&#9472; </i>
+                        <a  [routerLink]="['help']"  routerLinkActive="active">  Help  </a><i style="color:white">&#9472; </i>
                         <i style="color:rgb(219, 152, 152)">&#9472; </i>
                         <i style="color:white">&#9472; </i>
                     </span>

@@ -7,6 +7,7 @@ import { StatsComponent } from './stats/stats.component';
 import { BagComponent } from './bag/bag.component';
 import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
 import { SecondworldComponent } from './in-game/secondworld/secondworld.component';
+import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +21,10 @@ const routes: Routes = [
 
     {path: 'firstworld', component: FirstworldComponent,  children: [
         {path: 'home/first-world/bag', component: BagComponent},
+        {path: 'home/first-world/help', component: HelpComponent},
+
+        {path: 'first-world/help', component: HelpComponent},
+
     ]},
 
     { path: 'home/in-game',   component: InGameComponent, children: [
@@ -27,6 +32,9 @@ const routes: Routes = [
         {path: 'home/in-game/secondworld', component: SecondworldComponent},
     ]
 },
+{ path: 'help',  component: HelpComponent},
+{ path: 'firstworld/help',  component: HelpComponent},
+
 
     { path: 'stats',  component: StatsComponent},
     { path: 'bag', component: BagComponent},
