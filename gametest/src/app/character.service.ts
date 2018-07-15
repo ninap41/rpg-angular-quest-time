@@ -115,9 +115,10 @@ currentEvent = false;
               this.Player.karma += this.Player.bag[0].karma_effect.effect;
             }
           }
-        }
-        // this.Player.bag.push(weapons.basic_weapons[0]);
-        // this.Player.bag.push(weapons.basic_weapons[1]);
+        } else {
+        this.Player.bag.push(weapons.basic_weapons[7]);
+      }
+
 
       console.log(this.Player.bag);
       this.Player.name = player.name;
@@ -131,8 +132,8 @@ currentEvent = false;
       console.log(obj);
         return obj.name === weaponname.weapon;
     });
-
   }
+
   newgame() {
     this.Player = null;
     this.gameStart = false;
@@ -143,16 +144,6 @@ currentEvent = false;
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
   }
-
-//   levelUP(prev_lvl) {
-//     this.Player.lvl += 1;
-//     this.Player.health += 20;
-//     this.MaxHealth += 30;
-//     this.Player.speed += 10;
-//     this.Player.karma += 5;
-//     return;
-//  }
-
 }
 
 

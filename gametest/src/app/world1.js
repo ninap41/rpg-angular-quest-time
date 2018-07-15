@@ -93,7 +93,7 @@ const enemies= {
         'name': 'Agmar the Orc Rider',
         'loss_message': `Agmar's steed squels, raises it's hoof and comes down on you. Mendel whimpering abandoned and alone at your failure to defend him. Agmar pierces your chest with his blade.`,
         'xp': 100,
-        'race' : 'Fallen King',
+        'race' : 'Orc',
         'lvl' : 4,
         'health' : 130,
         'description': `He is cloaked. His armor gnarled. His horse's eyes Red. `,
@@ -404,7 +404,7 @@ const events = {
         'influence_event': null,
         "name":"First Encounter...",
         "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baracder.name}'. He Carries a ${enemies.baracder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baracder.opening_line}". You have two options to Run or Fight.`,
-        "description2" : `The Orc you defeated ${enemies.baracder.name} body is limp. you're happy to gaze upon his corpse. You have avenged your mother well.`,
+        "description_replace" : `The Orc you defeated ${enemies.baracder.name} body is limp. you're happy to gaze upon his corpse. You have avenged your mother well.`,
         'enemy_object': null,
         'inspects' : [
             {
@@ -470,12 +470,12 @@ const events = {
             'influence_event': {
                 'impact_chance': 4,
                 'impact' : ['negative','health', 5],
-                'description' :  `You pant, looking at your shoulder you realize a large splinter bleeds from it.-5HP`,
+                'description' :  `You pant, looking at your shoulder you realize a large splinter bleeds from it.-5HP. Your karma decreases by 1 point as well. DON'T BASH AGAIN.`,
                 'description2' :  `Luckily the slam of your body into the wall  does not hurt you, but you don't make it in! Do not attempt this again.`,
             },
             "name":"Halt There",
             "description" : `Pulling on your shoulder and throwing you to the ground is none other than '${enemies.mordorian_runt.name}'. He holds a ${enemies.mordorian_runt.weapon.name} up to your neck. Thomas throws him off you, who carries no weapon at all. He's shaking at what he's just done. Caleth spits, "${enemies.mordorian_runt.opening_line}". You have two options to Run or Fight.`,
-            "description2" : `You defeated ${enemies.mordorian_runt.name}. It appears you can not bash your way in.`,
+            "description_replace" : `You defeated ${enemies.mordorian_runt.name}. It appears you can not bash your way in.`,
             'enemy_object': null,
             'inspects' : [
                 {
@@ -498,13 +498,13 @@ const events = {
             ],
             "access_directions_state" : false,
             "directions": [
-                { 
-                    'karma_impact': ['negative', 2],
+                // { 
+                //     'karma_impact': ['negative', 2],
     
-                    'name': 'Run Away into High Brush',
-                    'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
-                    'room' : 'high_brush'
-                },
+                //     'name': 'Run Away into High Brush',
+                //     'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
+                //     'room' : 'high_brush'
+                // },
                 {
                     "room":"stables1",
                     "name":"Keep Searching",
@@ -541,7 +541,7 @@ const events = {
             },
             "name":"Gut You Like A Pig",
             "description" : `---''Not so fast CHARNAME of CHARHOMETOWN, The dark wizard knows you well and wants your blood...'' utters '${enemies.yikmar.name}'. He holds a ${enemies.yikmar.weapon.name}.`,
-            "description2" : `You defeated ${enemies.yikmar.name}. You may attract attention from other Orcs now if you do not not leave the scene!`,
+            "description_replace" : `You defeated ${enemies.yikmar.name}. You may attract attention from other Orcs now if you do not not leave the scene!`,
             'enemy_object': null,
             'inspects' : [
                 {
@@ -563,13 +563,13 @@ const events = {
             ],
             "access_directions_state" : false,
             "directions": [
-                { 
-                    'karma_impact': ['negative', 2],
+                // { 
+                //     'karma_impact': ['negative', 2],
     
-                    'name': 'Run Away into High Brush',
-                    'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
-                    'room' : 'high_brush'
-                },
+                //     'name': 'Run Away into High Brush',
+                //     'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
+                //     'room' : 'high_brush'
+                // },
                 {
                     "room":"stables1",
                     "name":"Keep Searching",
@@ -594,14 +594,17 @@ const events = {
     
         },
         "gaffer_confrontation" : {    
+            'stall_state' : true,
             'enemy' : enemies.gaffer,           // FIRSTSPAWN // FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN// FIRSTSPAWN
             'update_message': null,
             'event_state' : true,
 
-            "name":"Newfounded Enemy",
-            "description" : `"I am so sorry," Thomas mutters, unsheathing his weapon, "I am going to have to do this." '${enemies.gaffer.name}'. He holds a ${enemies.gaffer.weapon.name} from him horse pointed at you. He looks away fom Mendel and hisses, "${enemies.the_rider.opening_line}". You have one option: Fight.`,
-            "description2" : `You defeated ${enemies.gaffer.name}. You have finished chapter 1!`,
-            'enemy_object': items.mendels_key,
+            "name":"New Enemy",
+            "description" : `"I am so sorry," Thomas mutters, unsheathing his weapon, 
+            "I am going to have to do this." '${enemies.gaffer.name}'. He holds a ${enemies.gaffer.weapon.name} he picked off an orc's corpse. from him horse pointed at you. Hands shaking he mutters, 
+            "Dear God...${enemies.gaffer.opening_line}". You have one option: Fight.`,
+            "description_replace" : `You defeated ${enemies.gaffer.name}. You stand over your beloved friendsYou have finished chapter 1!`,
+            // 'enemy_object': items.mendels_key,
          
             "access_directions_state" : false,
             'inspects' : [
@@ -617,15 +620,12 @@ const events = {
             
             ],
             "directions": [
-         
-              
                 {
-                    "room":"next_world",
+                    "room":"wizards_hut",
                     "name":"Leave Your Hometown",
-                    "description" : "The next step.",
-                    // "color" : 'brown'
+                    "world1_end" : 'end',
+                    "description" : "The next chapter begins",
                 }, 
-           
             ]
     
         },
@@ -637,7 +637,7 @@ const events = {
  
             "name":"Black Rider",
             "description" : `The rider sniffs the air and looks down upon you. He is '${enemies.the_rider.name}'. He holds a ${enemies.mordorian_runt.weapon.name} from him horse pointed at you. He looks away fom Mendel and hisses, "${enemies.the_rider.opening_line}". You have one option: Fight.`,
-            "description2" : `You defeated ${enemies.the_rider.name}. His fall's from atop his horse, now a corpse beside Mendel. Mendel whimpers 'take what you need' whilst holding out his homes key. You take it. He is shaking, eyes vacant. He lays there, staring at the dead cloaked figure, motionless.`,
+            "description_replace" : `You defeated ${enemies.the_rider.name}. His fall's from atop his horse, now a corpse beside Mendel. Mendel whimpers 'take what you need' whilst holding out his homes key. You take it. He is shaking, eyes vacant. He lays there, staring at the dead cloaked figure, motionless.`,
             'enemy_object': items.mendels_key,
             'inspects' : [
                 {
@@ -653,13 +653,13 @@ const events = {
             ],
             "access_directions_state" : false,
             "directions": [
-                { 
-                    'karma_impact': ['negative', 2],
+                // { 
+                //     'karma_impact': ['negative', 2],
 
-                    'name': 'Run Away into High Brush',
-                    'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
-                    'room' : 'high_brush'
-                },
+                //     'name': 'Run Away into High Brush',
+                //     'description' : 'You willrun into the high grass, some brush may be nice until the morning comes',
+                //     'room' : 'high_brush'
+                // },
                 {
                     "room":"stables1",
                     "name":"Keep Searching",

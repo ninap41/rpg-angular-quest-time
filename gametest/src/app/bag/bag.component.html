@@ -6,8 +6,12 @@
 <BR>
 <div *ngFor="let item of Player.bag; let idx = index">
           <ng-template type="button" class="btn btn-outline-secondary" #tipContent>
+              <span *ngIf="item.img">
+                  <img width="150px" src="{{item.img}}">
+              </span>
                 <span><i>'{{item.description}}'</i> </span>
                 <span *ngIf="item.type === 'weapon'">
+                    
                         <br>
                         <span>Lvl: {{item.lvl}}</span><BR>
                         <span>Damage: {{item.damage}} </span><BR>
@@ -21,6 +25,7 @@
               <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
             </ng-template>
           <li [ngbTooltip]="tipContent">
+            
                 <span [ngClass]="{'green': item.equipped === true}">{{item.name}}</span>
                 <span *ngIf="item.type === 'weapon' && this.Player.weapon === null;" (click)="_battleService.weaponequip(item, idx, 'equip')">
                   <img width="10px" src="/assets/icons/equip-weapon.png">

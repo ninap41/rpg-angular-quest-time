@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http'; // Client Module
 import {Observable} from 'rxjs/Observable';
-
+// import { BattleService } from './battle.service';
 import 'rxjs/add/operator/map';    // RXJS operator Reactive. Same as Observable
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -27,7 +27,10 @@ delayed_sound;
 inventory_sound;
 enemy_sound;
 
-  constructor() {
+  constructor(
+    // private _battleService: BattleService,
+
+  ) {
     this.inventory_sound = new Audio();
     this.enemy_sound = new Audio();
 
@@ -48,10 +51,15 @@ enemy_sound;
     return;
    }
 
-   fight_sound() {
+   fight_sound(currentEnemy) {
+     if (currentEnemy.race === 'Orc') {
+      this.enemy_sound = new Audio();
+      this.enemy_sound.src = `../../../assets/sounds/rpg/enemy/ogre${(Math.floor(Math.random() * 4) + 1)}.wav`;
+     } else if (currentEnemy.race === 'Human') {
+      this.enemy_sound = new Audio();
+      this.enemy_sound.src = `../../../assets/sounds/rpg/enemy/human/human${(Math.floor(Math.random() * 3)) + 1}.mp3`;
+     }
 
-  this.enemy_sound = new Audio();
-  this.enemy_sound.src = `../../../assets/sounds/rpg/enemy/ogre${Math.floor(Math.random() * 4 + 1)}.wav`;
   this.load_n_play( this.enemy_sound, this.enemy_sound.src);
    }
 

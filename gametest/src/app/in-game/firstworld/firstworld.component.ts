@@ -5,6 +5,8 @@ import { AudioService } from '../../audio.service';
 
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HumanWorldStart, events } from '../../world1';
+import { SecondWorldStart } from '../../world2';
+
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from '../../player-create';
 
 
@@ -22,6 +24,8 @@ playersPoint; // current
 gameState;
 firstworld;
 firstworldevents = events;
+secondworld;
+secondworldevents;
 playertest;
 currentEvent;
 errors;
@@ -34,6 +38,7 @@ temp_strength;
 temp_karma;
 temp_speed;
 audio;
+world_num = 1;
 // all of map
 
 
@@ -53,6 +58,7 @@ audio;
     this.Player = this._characterService.retrievePlayer();
     this.playertest = JSON.parse(localStorage.getItem('Player'));
     this.firstworld = HumanWorldStart;
+    this.secondworld = SecondWorldStart;
     this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
     console.log('PLAYER TEST: '  + this.playertest.name );
     console.log('Length: '  + this.Player.worldPoint.length);
@@ -70,6 +76,18 @@ audio;
     this.Check_all();
   }
 
+  nextWorld(direction) {
+    if (direction.world1_end) {
+      this.Player.worldPoint.push(this.secondworld[direction.room]);
+      this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
+      this.firstworld = this.secondworld;
+      this.currentEvent = null;
+      this.WorldName = this.secondworld.name.replace('CHARHOMETOWN', this.Player.hometown);
+
+    }
+
+  }
+
   check_karma() {
     if (this.Player.karma < -9) {
       this.currentEvent = events.end_game;
@@ -80,6 +98,7 @@ audio;
   Check_all() {
     if (this.currentEvent) {
     this.check_event_name_home(this.currentEvent);
+
   }
     this.check_name_and_home(this.playersPoint);
     this.check_inspects_guard(this.playersPoint);
@@ -105,6 +124,9 @@ audio;
       event.description = event.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
     event.description = event.description.replace('CHARNAME', this.Player.name);
     event.description = event.description.replace('CHARRACE', this.Player.race); // put in service
+    event.description2 = event.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+    event.description2 = event.description.replace('CHARNAME', this.Player.name);
+    event.description2 = event.description.replace('CHARRACE', this.Player.race); // put in service
     }
 
   }
@@ -153,8 +175,15 @@ audio;
   }
 
   traverse(direction) {
+if (direction.audio) {
+  console.log(direction.audio);
+} // audio service move
+if ( direction.world1_end) {
+  this.nextWorld(direction);
+  this.Check_all();
+  this.check_karma();
 
-
+} else {
     if (direction.karma_impact) {
       this.karma_update(direction);
     }
@@ -167,6 +196,8 @@ audio;
       const trigger =  Math.floor(Math.random() * this.playersPoint.eventtriggerchance);
       if (trigger === 1) {
         this.currentEvent = this.firstworldevents[this.playersPoint.event];
+        this.Check_all();
+
         console.log('event begun');
       } else {
         console.log ('event avoided');
@@ -178,48 +209,57 @@ audio;
     }  else if (this.playersPoint.eventtriggerchance === null && this.playersPoint.event !== null) {
       this.currentEvent = this.firstworldevents[this.playersPoint.event];
       console.log('event begun');
+      this.Check_all();
+
 
 
     } else {
     this.Check_all();
     this.check_karma();
     }
+   }
   }
 
 
 
   traverseFromEvent(direction) {
-
-    if (direction.karma_impact) {
-      this.karma_update(direction);
-    }
-    console.log('traverseFromEvent()');
-    this.currentEvent = null;
-    this._characterService.global_update_message = null;
-    this.Player.worldPoint.push(this.firstworld[direction.room]);
-    this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
-    if (this.playersPoint.eventtriggerchance) {
-      const trigger =  Math.floor(Math.random() * this.Player.karma);
-      if (trigger < this.playersPoint.eventtriggerchance) {
-        console.log('trigger: ' + trigger);
-        console.log('this.playersPoint.eventtriggerchance: ' + this.playersPoint.eventtriggerchance);
-        this.currentEvent = this.firstworldevents[this.playersPoint.event];
-        this.playersPoint.eventtriggerchance = null;
-
-      } else {
-        console.log ('event avoided');
+    if ( direction.world1_end) {
+      this.nextWorld(direction);
+      this.Check_all();
+      this.check_karma();
+    } else {
+        if (direction.karma_impact) {
+          this.karma_update(direction);
+        }
+        console.log('traverseFromEvent()');
         this.currentEvent = null;
+        this._characterService.global_update_message = null;
+        this.Player.worldPoint.push(this.firstworld[direction.room]);
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
+        if (this.playersPoint.eventtriggerchance) {
+          const trigger =  Math.floor(Math.random() * this.Player.karma);
+          if (trigger < this.playersPoint.eventtriggerchance) {
+            console.log('trigger: ' + trigger);
+            console.log('this.playersPoint.eventtriggerchance: ' + this.playersPoint.eventtriggerchance);
+            this.currentEvent = this.firstworldevents[this.playersPoint.event];
+            this.playersPoint.eventtriggerchance = null;
+            this.Check_all();
+
+
+          } else {
+            console.log ('event avoided');
+            this.currentEvent = null;
+            this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
+            this.check_name_and_home(this.playersPoint);
+            this.check_inspects_guard(this.playersPoint);
+            this.check_karma();
+          }
+        } else {
         this.check_name_and_home(this.playersPoint);
         this.check_inspects_guard(this.playersPoint);
         this.check_karma();
+        }
       }
-    } else {
-    this.check_name_and_home(this.playersPoint);
-    this.check_inspects_guard(this.playersPoint);
-    this.check_karma();
-    }
-
   }
 
   use_needed_item(action, idx) {
@@ -285,6 +325,8 @@ audio;
     this.currentEvent = this.firstworldevents[inspectEvent];
     /// in case of influence event which happens no matter what.
     if (this.currentEvent) {
+              this.Check_all();
+
           if (this.currentEvent.influence_event) {
             const trigger =  Math.floor(Math.random() * this.Player.karma);
             console.log(trigger);
@@ -339,6 +381,9 @@ audio;
           action.event = 'run';
           const flee_token = true;
          const currentEnem = this.currentEvent.enemy;
+         this.temp_strength = this._characterService.Player.strength;
+         this.temp_karma = this._characterService.Player.karma;
+         this.temp_speed = this._characterService.Player.speed;
           this._battleService.fightStart(currentEnem, action, flee_token);
 
         }
@@ -364,43 +409,55 @@ audio;
 
   }
   fight(action) {
-    // temp store Players Originally stats
-   if (this._characterService.Player.health <= 0) {
-    this._battleService.max_Taunt = 0;
-
-    this._characterService.Player.health = 0;
-    this._battleService.currentFight = false;
-    const message = this.currentEvent.enemy.loss_message;
-    this.currentEvent = events.enemy_end;
-    this._characterService.global_update_message = null;
-    this.currentEvent.description = message;
-     }
-    if (this._battleService.currentEnemy.health <= 0) { // base case
-      console.log('win');
+    let object = '';
+    let gold = '';
+    if (this._characterService.Player.health <= 0) {
       this._battleService.max_Taunt = 0;
-      if (this.currentEvent.enemy_object) {
-        this.Player.bag.push(this.currentEvent.enemy_object);
-        this._characterService.global_update_message = `You recieved '${this.currentEvent.enemy_object}' `;
-      }
-      if ( this.currentEvent.description2) {
-        this.currentEvent.description = this.currentEvent.description2;
-      }
+      this._characterService.Player.health = 0;
+      this._battleService.currentFight = false;
+      const message = this.currentEvent.enemy.loss_message;
+      this.currentEvent = events.enemy_end;
+      this._characterService.global_update_message = null;
+      this.currentEvent.description = message;
+
+       }
+      if (this._battleService.currentEnemy.health <= 0) { // base case
+        console.log('win');
+        this.currentEvent.description = null;
+        this.currentEvent.description = this.currentEvent.description_replace;
+
+        console.log(this.currentEvent.description_replace + 'UHSAHGSADHGJSADJHGADSGJHAGHJS');
+        this._battleService.max_Taunt = 0;
+        if (this.currentEvent.enemy_object) {
+          this.Player.bag.push(this.currentEvent.enemy_object);
+          object =  `You recieved '${this.currentEvent.enemy_object}'. `;
+          console.log(object);
+          console.log(this.currentEvent);
+        }
 
       this.xp += this._battleService.currentEnemy.xp;
-      const win = `'You have defeated '${this._battleService.currentEnemy.name}'`;
+      const win = `You have defeated '${this._battleService.currentEnemy.name}.`;
 
-      if (this._battleService.currentEnemy.gold !== 0) {
-        const gold = ` and aquired ${this._battleService.currentEnemy.gold} gold.`;
+      if (this._battleService.currentEnemy.gold > 0) {
+        gold = `You aquired ${this._battleService.currentEnemy.gold} gold.`;
+        console.log(gold);
         this._characterService.global_update_message = win.concat(gold);
         this.Player.gold += this._battleService.currentEnemy.gold;
       }
+
       this._battleService.currentFight = false;
       this.currentEvent.inspects.splice(0, 2);
       this.playersPoint.event = null;
       this.playersPoint.eventtriggerchance = 0;
       this.currentEvent.currentEnemy = null;
+
       this.currentEvent.access_directions_state = true;
+      if (this.currentEvent.stall_state === true) {
+        this.currentEvent.description = this.currentEvent.description_replace;
+
+      } else {
       this.currentEvent = null;
+      }  // this helps at chapter ends and keeps events going
       this._battleService.currentEnemy = null;
       this._characterService.Player.strength = this.temp_strength;
       this._characterService.Player.karma = this.temp_karma;
@@ -412,13 +469,15 @@ audio;
         this._characterService.MaxHealth += 30;
         this._characterService.Player.speed += 10;
         this._characterService.Player.karma += 5;
-         const str = `Stats before the battle's Taunts were restored and you have also increased a level!`;
+         const str = `Stats before the battle's Taunts were restored and you have also increased to level
+          '${this._characterService.Player.lvl}'. ${object} ${gold}`;
          this._characterService.global_update_message = win.concat(str);
       } else {
-        const restore = ` Stats from before the battle taunts have been restored. You are ${70 - this.xp} points away from the next level`;
-
-      this._characterService.global_update_message = win.concat(restore);
+        const restore = ` Stats from before the battle taunts have been restored. You are ${70 - this.xp}
+         points away from the next level. ${object} ${gold}`;
+        this._characterService.global_update_message = win.concat(restore);
       }
+
 
       this.post_battle_unequip();
       this.Check_all();

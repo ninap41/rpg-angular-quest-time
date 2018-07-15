@@ -57,7 +57,7 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
-
+                'img' : '/assets/weapons/fatherssword.jpg',
                 'type' : 'weapon',
                 'name' : `Father's Sword`,
                 'lvl' :1 ,
@@ -104,6 +104,7 @@
                 'durability' : 14,
                 'description' : 'Gazing upon it you feel the memory of your Father creeping back. It fills you with strength',
                 'equipped': false,
+
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
@@ -121,6 +122,22 @@
                 'durability' : 14,
                 'description' : 'Gazing upon it you feel the memory of your Father creeping back. It fills you with strength'
             },
+            {
+                'id' : Math.floor(Math.random() * 10000000000),    // 8th weapon
+                'type' : 'weapon',
+                'name' : `Rusty Blade`,
+                'lvl' :1 ,
+                'damage' : 2,
+                'karma_effect' : {
+                    'type' : 'negative',
+                    'effect' : -2,
+                    'name': 'Rusty Courage',
+                    'description' : '-2 to Karma if this is your first weopon. Merely a pocket knife.',
+                    'equipped': false,
+                },
+                'durability' : 10,
+                'description' : 'Leaves rust stains in your pocket. Absolutely SHIT weapon.'
+            },
          
         ],
      
@@ -131,7 +148,6 @@
     const items = {
         'matches' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
             'type' : 'scenario',
             "value" : 'matches',
             "name" : 'Matches',
@@ -266,6 +282,7 @@
             'limit' : true,
             'qty' : 1,
             "description" : `Brie cheese of your people.`,
+            'img' : 'assets/cheese.jpg'
         },
         'potion_of_luck' : {
             'id' : Math.floor(Math.random() * 10000000000),

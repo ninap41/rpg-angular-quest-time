@@ -15,23 +15,27 @@ import { weapons, items } from './item-create';
 @Injectable()
 export class BattleService {
   WeaponList: any[] = [];
- gameStart = false;
- showNav = false;
- Player = new Player;
- playerfordeets;
- bag;
- error;
- serviceplayersPoint;
- MaxHealth;
- currentFight = false;
-battle_update_message = '';
- currentEnemy;
- weaponGuard = true;
- success_fail_message;
- showUsables = false;
-max_Taunt = 0;
-BattleItem;
-weapon_equip;
+  gameStart = false;
+  showNav = false;
+  Player = new Player;
+  playerfordeets;
+  bag;
+  error;
+  serviceplayersPoint;
+  MaxHealth;
+  currentFight = false;
+  battle_update_message = '';
+  currentEnemy;
+  weaponGuard = true;
+  success_fail_message;
+  showUsables = false;
+  max_Taunt = 0;
+  BattleItem;
+  weapon_equip;
+  char_min_speed;
+  char_min_strength;
+  enemy_min_speed;
+  enemy_min_strength;
 
   constructor(
     private _router: Router,
@@ -39,13 +43,7 @@ weapon_equip;
     private _characterService: CharacterService,
     private _audioService: AudioService,
 
-  ) {
-
-
-  }
-
-
-
+  ) {}
 
   weaponequip(weapon, idx, value) {
    {
@@ -108,18 +106,14 @@ weapon_equip;
       }
     }
     // this._audioService.weaponEquip_sound(value);
-
   }
 
-
-
-
-
   fightStart(currentEnemy, action, flee_token) {
-    this._audioService.fight_sound();
+    this.currentEnemy = currentEnemy;
+    this._audioService.fight_sound(currentEnemy);
 
     console.log(action);
-    this.currentEnemy = currentEnemy;
+
     console.log('enemy!' + currentEnemy);
     this.currentFight  = true;
     if (this._characterService.Player.weapon === null) {
@@ -138,7 +132,6 @@ weapon_equip;
      console.log(this.currentEnemy);
      console.log('fight start');
     }
-
   }
 
   enemyAttack(charAction) {
@@ -165,7 +158,7 @@ weapon_equip;
 
               }
               if (enemy_action === 'Retaliated') {
-                this._audioService.fight_sound();
+                this._audioService.fight_sound(this.currentEnemy);
                 console.log(enemy_action);
                 enemy_attack = enemy_attack / 2 ;
                 this._characterService.Player.health -= enemy_attack;
@@ -209,34 +202,36 @@ weapon_equip;
               console.log(enemy_action);
               this.battle_update_message = `${this.currentEnemy.name} attempted a retaliation, but you both asserted a defensive stance.`;
             }
-    }
-    if (charAction === 'Taunt') {
-      let char_taunt = this._characterService.Player.reputation + this._characterService.Player.strength;
-      char_taunt = Math.floor(Math.random() * char_taunt);
-      let enemy_taunt = this.currentEnemy.damage + this.currentEnemy.flee_chance;
-      enemy_taunt = Math.floor(Math.random() * enemy_taunt);
-      let effect = 0;
-      this.max_Taunt += 1;
-      if (char_taunt >= enemy_taunt) {
-        effect =  char_taunt;
-        this._characterService.Player.karma += effect / 2 ;
-        this._characterService.Player.speed += effect / 2;
-        this._characterService.Player.strength += effect / 2 ;
-        this.battle_update_message = `${this._characterService.Player.name} taunted ${this.currentEnemy.name} successfully.
-        Their Karma, Strength, Speed increased by ${effect / 2} point(s).`;
-      }  else {
-        effect = enemy_taunt;
-        this._characterService.Player.karma -= effect / 2;
-        this._characterService.Player.speed -= effect / 2 ;
-        this._characterService.Player.strength -= effect / 2 ;
-        this.battle_update_message = `${this._characterService.Player.name} taunted ${this.currentEnemy.name} unsuccessfully.
-        Their Karma, Strength and Speed decreased by ${effect / 2} point(s).`;
       }
 
-    }
+      if (charAction === 'Taunt') {
+        let char_taunt = this._characterService.Player.karma + this._characterService.Player.strength;
+        // taunts are reps and strength, changed to karmaand strength;
+        char_taunt = Math.floor(Math.random() * char_taunt);
+        let enemy_taunt = this.currentEnemy.damage + this.currentEnemy.flee_chance;
+        enemy_taunt = Math.floor(Math.random() * enemy_taunt);
+        let effect = 0;
+        this.max_Taunt += 1;
+        if (char_taunt >= enemy_taunt) {
+          effect =  char_taunt;
+          this._characterService.Player.karma += effect / 2 ;
+          this._characterService.Player.speed += effect / 2;
+          this._characterService.Player.strength += effect / 2 ;
+          this.battle_update_message = `${this._characterService.Player.name} taunted ${this.currentEnemy.name} successfully.
+          Their Karma, Strength, Speed increased by ${effect / 2} point(s).`;
+        }  else {
+          effect = enemy_taunt;
+          this._characterService.Player.karma -= effect / 2;
+          this._characterService.Player.speed -= effect / 2 ;
+          this._characterService.Player.strength -= effect / 2 ;
+          this.battle_update_message = `${this._characterService.Player.name} taunted ${this.currentEnemy.name} unsuccessfully.
+          Their Karma, Strength and Speed decreased by ${effect / 2} point(s).`;
+        }
 
+      }
+    }
   }
-  }
+
 
   use_item_mid_battle(idx) {
     const enemy_actions = [  'Taunted', 'Taunted', 'Attacked'];
@@ -286,6 +281,7 @@ weapon_equip;
     console.log(item.name);
   }
 
+
   use_battle_item(idx, item) {
     if (item.quantity > 0) {
       this._characterService.Player[idx].quantity -= 1;
@@ -296,6 +292,7 @@ weapon_equip;
 
   }
 
+
   fightEnd(currentEnemy) {
     this.Player.lvl += 1;
     this.Player.gold += this.currentEnemy.gold;
@@ -304,14 +301,10 @@ weapon_equip;
   }
 
 
-
   FIGHT() {
     if (this.currentEnemy.health <= 0) { // base CASE baby
             this.fightEnd(this.currentEnemy);
-    //         this.battle_update_message = `Fight with has ${this.currentEnemy.name} successful.  ${this.Player.weapon.description}
-    //  Your weapon ${this.Player.weapon.name} should aid you in battle`;
-  }
-
-  }
+    }
+}
 
 }

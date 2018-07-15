@@ -36,10 +36,7 @@ class Player {
             this.speed = 3;
             this.gold = 10;
             this.karma = 3;
-
             this.reputation = 0;
-
-
             this.bag = [];
             this.backstory = "You are You are a lonely traveler from the Kingdom of Denethor. Born and raised in this presiding town. "
             this.weapon = null;  
@@ -50,36 +47,26 @@ class Player {
         }
   
   class Ninja extends Player {
- 
-
-    constructor(name) {
-        super(name);
-        this.race = 'Ninja';
-
-        this.name = name;
-        this.health = 100;
-        this.strength = 3;
-        this.speed = 3;
-        this.race = race
-        this.gold = 10;
-        this.karma = 0;
-        this.reputation = 0;
-
-
-        this.bag = [];
-        this.backstory = "You are a lonely traveler who's a fuggin Ninja"
-        this.weapon = null;  
-        this.worldPoint = [];
-        this.hometown = "The Black Citadel";
+        constructor(name) {
+            super(name);
+            this.race = 'Ninja';
+            this.name = name;
+            this.health = 100;
+            this.strength = 3;
+            this.speed = 3;
+            this.race = race
+            this.gold = 10;
+            this.karma = 0;
+            this.reputation = 0;
+            this.bag = [];
+            this.backstory = "You are a lonely traveler who's a fuggin Ninja"
+            this.weapon = null;  
+            this.worldPoint = [];
+            this.hometown = "The Black Citadel";
+        }
     }
 
-    
-
-    
-
-    }
     class Dwarf extends Player {
-
         constructor(name) {
             super(name);
             this.race = 'Dwarf';
@@ -89,11 +76,7 @@ class Player {
             this.speed = 10;
             this.gold = 10;
             this.karma = 0;
-            
-
             this.reputation = 0;
-
-
             this.bag = ['Mead', 'Sturdy Horned Helmet'];
             this.backstory = "You are a lonely traveler from the mines of Moria"
             this.weapon = null;  
@@ -104,31 +87,26 @@ class Player {
         }
   
     class Wizard extends Player {
-  
-    constructor(name) {
-        super(name);
-        this.race = 'Wizard';
-        this.health = 90;
-        this.strength = 6;
-        this.speed = 10;
-        this.wisdom = 15;
-        this.gold = 10;
-        this.bag =  [];
-
-        this.karma = 0;
-        this.reputation = 5;
-
-        this.backstory = "You are a lonely traveler who got a little senile and lost his way in the mountains."
-        this.weapon = null;
-        this.spellbook = [];
-        this.worldPoint = [];
-        this.hometown = "The Misty Mountains";
-        
-        }
-        
+        constructor(name) {
+            super(name);
+            this.race = 'Wizard';
+            this.health = 90;
+            this.strength = 6;
+            this.speed = 10;
+            this.wisdom = 15;
+            this.gold = 10;
+            this.bag =  [];
+            this.karma = 0;
+            this.reputation = 5;
+            this.backstory = "You are a lonely traveler who got a little senile and lost his way in the mountains."
+            this.weapon = null;
+            this.spellbook = [];
+            this.worldPoint = [];
+            this.hometown = "The Misty Mountains";
+            }
     }
+
     class Orc extends Player {
-  
         constructor(name) {
             super(name);
             this.race = 'Orc';
@@ -145,42 +123,28 @@ class Player {
             this.worldPoint = [];
             this.hometown = "Mordoria";
             }
-         
-            
         }
 
 
   class Elf extends Player {
-
-    constructor(name) {
-        super(name);
-        this.name = name;
-
-        this.health = 110;
-        this.strength = 5;
-        this.speed = 10;
-        this.race = 'Elf';
-        this.karma = 0;
-        this.reputation = 10;
-        this.gold = 15;
-        this.bag = [];
-        this.backstory = `You are a sharp traveler born into elvish wealth. Highly intelligent and posessing keen speed, they have a high reputation and can talk themselves out of almost every situation `;
-        this.weapon = null;
-        this.state = null;
-        this.worldPoint = [];
-        this.hometown = "The Misty Forest";
-
-       
-
+        constructor(name) {
+            super(name);
+            this.name = name;
+            this.health = 110;
+            this.strength = 5;
+            this.speed = 10;
+            this.race = 'Elf';
+            this.karma = 0;
+            this.reputation = 10;
+            this.gold = 15;
+            this.bag = [];
+            this.backstory = `You are a sharp traveler born into elvish wealth. Highly intelligent and posessing keen speed, they have a high reputation and can talk themselves out of almost every situation `;
+            this.weapon = null;
+            this.state = null;
+            this.worldPoint = [];
+            this.hometown = "The Misty Forest";
+        }
     }
-   
-
-    }
-  
-
-
-
-  
    
   export { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc }
 
