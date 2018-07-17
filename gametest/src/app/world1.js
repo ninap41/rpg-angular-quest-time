@@ -44,6 +44,7 @@ const orc_knife = weapons.basic_weapons[0];
 const enemies= {
     'baracder' : {
         'name': 'Baravder The Orc',
+        'img' : '/assets/characters/enemy-baravder.png',
         'loss_message': 'Baravder came down with one final swing. You collapse in your own blood, gasping for words. Baravder crouches down and hisses, "Prepare to join your mother...", before your surroundings fade to black.',
         'xp': 120,
         'race' : 'Orc',
@@ -60,7 +61,7 @@ const enemies= {
     'yikmar' : {
         'name': 'Yikmar',
         'loss_message': 'Yikmar guts you like a pig and spits on your corpse. Damn you suck at this.',
-
+        'img' : '/assets/characters/enemy-yikmar.png',
         'xp': 80,
         'race' : 'Orc',
         'lvl' : 3,
@@ -76,7 +77,7 @@ const enemies= {
     'mordorian_runt' : {
         'name': 'Caleth The Mordorian Runt',
         'loss_message': 'Caleth delivers one last sneaky swipe, splitting your abdomen with his knife. You double over and collapse. Gaffer shaking fearful beside you. Caleth spits, "This is the end of you, haha...".',
-
+        'img' : '/assets/characters/enemy-caleth.png',
         'xp': 80,
         'race' : 'Orc',
         'lvl' : 3,
@@ -92,6 +93,7 @@ const enemies= {
     'the_rider' : {
         'name': 'Agmar the Orc Rider',
         'loss_message': `Agmar's steed squels, raises it's hoof and comes down on you. Mendel whimpering abandoned and alone at your failure to defend him. Agmar pierces your chest with his blade.`,
+        'img' : '/assets/characters/enemy-the-rider.png',
         'xp': 100,
         'race' : 'Orc',
         'lvl' : 4,
@@ -106,6 +108,7 @@ const enemies= {
     },
     'gaffer' : {
         'name': 'Gaffer The Back-stabbing Coward',
+        'img' : '/assets/characters/oldgaffer.png',
         'loss_message': `Gaffer gasps as you fall over him, his blade pierces your chest. You slowly sink down as horror fills his eyes. You whisper to yourself... '' You.... You... Bitchhhhhh....''. Who loses to Gaffer? `,
         'xp': 150,
         'race' : 'Human',

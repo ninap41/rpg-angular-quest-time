@@ -3,7 +3,7 @@
         "basic_weapons" : [
               {
                 'id' : Math.floor(Math.random() * 10000000000),
-
+                'img' : '/assets/weapons/orc-shiving-knife.png',
                 'type' : 'weapon',
                 'name' : 'Orc Shiving Knife',
                 'value' : 'Orc Shiving Knife',
@@ -25,6 +25,7 @@
                 'id' : Math.floor(Math.random() * 10000000000),
                 'type' : 'weapon',
                 'name' : 'Staff of Light',
+                'img' : '/assets/weapons/stafflight.jpg',
                 'lvl' :1 ,
                 'damage' : 4,
                 'karma_effect' : {
@@ -40,7 +41,7 @@
 
             {
                 'id' : Math.floor(Math.random() * 10000000000),
-
+                'img' : '/assets/weapons/staffdark.jpg',
                 'type' : 'weapon',
                 'name' : 'Staff of Dark',
                 'lvl' :1 ,
@@ -74,6 +75,7 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
+                
                 'karma_effect' : {
                     'type' : 'negative',
                     'effect' : 1,
@@ -90,6 +92,7 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
+                'img' : '/assets/weapons/fathers-bow.jpg',
 
                 'type' : 'weapon',
                 'name' : `Father's Bow`,
@@ -108,6 +111,7 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
+                'img' : '/assets/weapons/fathers-axe.png',
                 'type' : 'weapon',
                 'name' : `Father's Axe`,
                 'lvl' :1 ,
@@ -125,6 +129,7 @@
             {
                 'id' : Math.floor(Math.random() * 10000000000),    // 8th weapon
                 'type' : 'weapon',
+                'img' : '/assets/weapons/rusty-knife.png',
                 'name' : `Rusty Blade`,
                 'lvl' :1 ,
                 'damage' : 2,

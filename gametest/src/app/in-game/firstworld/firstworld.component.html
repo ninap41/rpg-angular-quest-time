@@ -116,6 +116,7 @@
       <div *ngIf="_battleService.currentFight"  class="card card-battle event col-sm">
             <div *ngIf="_battleService.currentFight === true">
                     <h3> {{_battleService.currentEnemy.name}}</h3>
+                    <img id="enemy-img" src="{{_battleService.currentEnemy.img}}">
                     <div class="battle_updates">
                     {{ _battleService.battle_update_message}}
                     </div>
