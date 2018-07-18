@@ -50,7 +50,6 @@
                     
                             <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> {{inspect.name}}</button> 
                             <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects> {{inspect.description}} </ng-template>
-                   
                     </span>
                 </div>
       </div> <!-- World DESCRIPTION END  -->
@@ -72,12 +71,15 @@
                                         <span>Weapon: <b>{{currentEvent.enemy.weapon.name}}</b></span><BR>
                                         </ng-template>
 
-        <span style="color:green" *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
-        <span *ngIf="currentEvent.restart === true"> <a href="http://localhost:4200/">Restart</a></span>
+        <span style="color:green" *ngIf='currentEvent.updateMessage'>
+            {{currentEvent.updateMessage}}
+        </span>
         <span *ngIf="currentEvent.restart === true"> 
-                <a  [routerLink]="['help']" > <b>Need Help? </b>  </a>
-               
-            </span>
+            <a href="http://localhost:4200/">Restart</a>
+        </span>
+        <span *ngIf="currentEvent.restart === true"> 
+            <a  [routerLink]="['help']" > <b>Need Help? </b>  </a>
+        </span>
 
         <div *ngIf="currentEvent.inspects">
 
@@ -150,15 +152,7 @@
 
 
 
-
-
-
-
-
-
-
-
-      <BR>
+    
 
     <div class="col-sm">
             <div class="card card-stats">

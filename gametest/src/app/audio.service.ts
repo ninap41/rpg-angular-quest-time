@@ -46,9 +46,16 @@ enemy_sound;
      }  else {
       this.inventory_sound.src = '../../../assets/sounds/rpg/inventory/cloth-heavy.wav';
       this.load_n_play( this.inventory_sound, this.inventory_sound.src);
-
      }
     return;
+   }
+
+
+   addBag(soundtype) {
+     console.log(soundtype);
+    this.inventory_sound.src = `../../../assets/sounds/rpg/inventory/${soundtype}.wav`;
+    this.inventory_sound.load();
+    this.inventory_sound.play();
    }
 
    fight_sound(currentEnemy) {
@@ -59,7 +66,6 @@ enemy_sound;
       this.enemy_sound = new Audio();
       this.enemy_sound.src = `../../../assets/sounds/rpg/enemy/human/human${(Math.floor(Math.random() * 3)) + 1}.mp3`;
      }
-
   this.load_n_play( this.enemy_sound, this.enemy_sound.src);
    }
 

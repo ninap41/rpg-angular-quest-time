@@ -29,6 +29,7 @@ var qty = 0;
 
 let matches = {
     'id' : Math.floor(Math.random() * 10000000000),
+    'soundtype': 'light_thin_wood_sound',
     "value" : 'matches',
     "name" : 'Matches',
     'type' : 'scenario',
@@ -107,7 +108,7 @@ const enemies= {
         'flee_chance': 10,
     },
     'gaffer' : {
-        'name': 'Gaffer The Back-stabbing Coward',
+        'name': 'Gaffer The Back-Stabbing Coward',
         'img' : '/assets/characters/oldgaffer.png',
         'loss_message': `Gaffer gasps as you fall over him, his blade pierces your chest. You slowly sink down as horror fills his eyes. You whisper to yourself... '' You.... You... Bitchhhhhh....''. Who loses to Gaffer? `,
         'xp': 150,
@@ -606,7 +607,7 @@ const events = {
             "description" : `"I am so sorry," Thomas mutters, unsheathing his weapon, 
             "I am going to have to do this." '${enemies.gaffer.name}'. He holds a ${enemies.gaffer.weapon.name} he picked off an orc's corpse. from him horse pointed at you. Hands shaking he mutters, 
             "Dear God...${enemies.gaffer.opening_line}". You have one option: Fight.`,
-            "description_replace" : `You defeated ${enemies.gaffer.name}. You stand over your beloved friendsYou have finished chapter 1!`,
+            "description_replace" : `You defeated ${enemies.gaffer.name}. You stand over your beloved friend. He now cries. He bleeds out slowly. Your ultimate revenge. Congrats! You have finished chapter 1!`,
             // 'enemy_object': items.mendels_key,
          
             "access_directions_state" : false,
@@ -1418,7 +1419,7 @@ let HumanWorldStart =
         "inspects" : [
             {
                 'guard' : false,
-                'name' : 'Mead',
+                'name' : 'Fresh Mead',
                 'object' : items.liquid_courage,
                 'event' :'take',
                 'description' : `Enemies are all around you is this really the time to drink???`

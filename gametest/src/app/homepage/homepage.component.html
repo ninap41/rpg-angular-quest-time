@@ -8,6 +8,7 @@
                 <!-- {{ Player.bag | json}} -->
                 <div class="container">
                         <span *ngIf="Player.name != ''">  
+                            <img id="avatar" src="{{Player.avatar}}"><br>
                             <i>Name:</i> {{Player.name}}
                         </span><BR>
                             <i>Backstory:</i> <span class="blue">"{{Player.backstory}}"</span><BR>
@@ -24,10 +25,10 @@
 
                         <span *ngIf="Player.race === 'wizard'">
                                 <span *ngIf="Player.spellbook.length > 0">
-                                        <i>Spells: </i>{{Player.spellbook}}
+                                    <i>Spells: </i>{{Player.spellbook}}
                                 </span>   <BR>
                                 <span style="color:red;" *ngIf="Player.spellbook.length === 0;">
-                                        <i>Spells:</i> You do not know any spells yet.
+                                    <i>Spells:</i> You do not know any spells yet.
                                 </span> <BR>
                         </span>
                         

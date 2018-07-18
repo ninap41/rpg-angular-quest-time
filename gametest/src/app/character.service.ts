@@ -4,6 +4,7 @@ import { Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http'; // Client Module
 import {Observable} from 'rxjs/Observable';
+import { AudioService } from './audio.service';
 
 import 'rxjs/add/operator/map';    // RXJS operator Reactive. Same as Observable
 import 'rxjs/add/operator/toPromise';
@@ -15,7 +16,6 @@ import 'rxjs/add/observable/throw';
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
 import {  WorldPlayer, HumanWorldStart } from './world1';
 import { weapons, items } from './item-create';
-
 import { npcs } from './npc-create';
 
 
@@ -33,10 +33,11 @@ export class CharacterService {
  MaxHealth;
  help = false;
 
- global_update_message;
+global_update_message;
 currentEvent = false;
 
   constructor(
+    private _audioService: AudioService,
     private _router: Router,
     protected http: Http
   ) { }
@@ -66,10 +67,13 @@ currentEvent = false;
   }
 
   updatePlayerBag(item) {
+    console.log(item);
     if (item.id) {
       item.id = Math.floor(Math.random() * 10000000000);
     }
     this.Player.bag.push(item);
+    this._audioService.addBag(item.soundtype);
+
     console.log('new Bag:' +  this.Player.bag);
     console.log('new item:' +  item);
 

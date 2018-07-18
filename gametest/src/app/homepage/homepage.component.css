@@ -1,6 +1,6 @@
 
 i {
-    color: grey;
+    color: gray;
     text-align: left;
 }
 select {
@@ -8,4 +8,12 @@ select {
 }
 button {
     padding: 0px 30px;
+}
+p {
+    color: white;
+}
+#avatar {
+    width: 200px;
+    max-width: 200px;
+    padding-bottom: 2em;
 }

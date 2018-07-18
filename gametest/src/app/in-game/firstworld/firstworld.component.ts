@@ -160,7 +160,6 @@ world_num = 1;
   }
   activate_help(action) {
     this.check_karma();
-
     if (action.object.name === 'Help Book') {
       this._characterService.help = true;
     }
@@ -317,7 +316,7 @@ if ( direction.world1_end) {
     }
     if (!action.needs && action.event === 'take') {
       this.activate_help(action);
-      this.Player.bag.push(action.object);
+      this._characterService.updatePlayerBag(action.object);
       this.playersPoint.inspects.splice(idx, 1);
       this._characterService.global_update_message = `You took ${action.object.name}.`;
     }
@@ -430,7 +429,7 @@ if ( direction.world1_end) {
         this._battleService.max_Taunt = 0;
         if (this.currentEvent.enemy_object) {
           this.Player.bag.push(this.currentEvent.enemy_object);
-          object =  `You recieved '${this.currentEvent.enemy_object}'. `;
+          object =  `You recieved '${this.currentEvent.enemy_object.name}'. `;
           console.log(object);
           console.log(this.currentEvent);
         }

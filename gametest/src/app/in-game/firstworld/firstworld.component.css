@@ -11,6 +11,7 @@
      background-image:
      rgba(255, 255, 255, 0.148),
     url('/assets/world-background/town.jpg');
+    white-space: pre-wrap;
 
     padding:0 4em;
 }
