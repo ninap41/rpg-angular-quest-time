@@ -28,7 +28,7 @@ inventory_sound;
 enemy_sound;
 
   constructor(
-    // private _battleService: BattleService,
+    // public _battleService: BattleService,
 
   ) {
     this.inventory_sound = new Audio();

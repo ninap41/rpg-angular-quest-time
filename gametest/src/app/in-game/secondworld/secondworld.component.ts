@@ -9,8 +9,8 @@ import { RouterModule, Routes, Router } from '@angular/router';
 export class SecondworldComponent implements OnInit {
 Player;
   constructor(
-    private _characterService: CharacterService,
-    private _router: Router
+    public _characterService: CharacterService,
+    public _router: Router
   ) {
 
     this.Player = this._characterService.retrievePlayer();

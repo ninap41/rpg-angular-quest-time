@@ -31,12 +31,12 @@ export class AppComponent implements OnInit {
   message;
   audio;
   constructor (
-    private _router: Router,
-    private _route: ActivatedRoute,
-    private _characterService: CharacterService,
-    private _audioService: AudioService,
+    public _router: Router,
+    public _route: ActivatedRoute,
+    public _characterService: CharacterService,
+    public _audioService: AudioService,
 
-    private _http: Http
+    public _http: Http
   ) {
 
   }

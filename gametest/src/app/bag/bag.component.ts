@@ -12,9 +12,9 @@ export class BagComponent implements OnInit {
 Player;
 title = 'Bag';
   constructor(
-    private _characterService: CharacterService,
-    private _battleService: BattleService,
-    private _itemService: ItemService
+    public _characterService: CharacterService,
+    public _battleService: BattleService,
+    public _itemService: ItemService
   ) { }
 
   ngOnInit() {

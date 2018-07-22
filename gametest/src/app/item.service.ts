@@ -14,7 +14,7 @@ import { CharacterService } from './character.service';
 export class ItemService {
 
   constructor(
-    private _router: Router,
+    public _router: Router,
     protected http: Http
   ) { }
 

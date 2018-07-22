@@ -32,13 +32,13 @@ export class CharacterService {
  serviceplayersPoint;
  MaxHealth;
  help = false;
-
+ firstworldcomplete;
 global_update_message;
 currentEvent = false;
 
   constructor(
-    private _audioService: AudioService,
-    private _router: Router,
+    public _audioService: AudioService,
+    public _router: Router,
     protected http: Http
   ) { }
 

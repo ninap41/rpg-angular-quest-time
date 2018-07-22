@@ -775,19 +775,19 @@ let HumanWorldStart =
             },
           
         ], // take out
-        'inspects': [
+        // 'inspects': [
              
-            {
-                'guard' : false,
-                'update_message': null,
-                "name":"Trigger Fight",
-                "event":"firstspawn",
-                "description": "The intervals of breathing, chest rising and falling, seem slow...",
+        //     {
+        //         'guard' : false,
+        //         'update_message': null,
+        //         "name":"Trigger Fight",
+        //         "event":"firstspawn",
+        //         "description": "The intervals of breathing, chest rising and falling, seem slow...",
 
-            },
+        //     },
            
 
-        ],
+        // ],
     },
  
  

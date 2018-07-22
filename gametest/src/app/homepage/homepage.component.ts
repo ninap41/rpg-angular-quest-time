@@ -12,7 +12,7 @@ export class HomepageComponent implements OnInit {
   gameStart;
 
 
-  constructor(private _characterService: CharacterService) {
+  constructor(public _characterService: CharacterService) {
     this.Player = this._characterService.retrievePlayer(); }
 
   ngOnInit() {

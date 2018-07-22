@@ -43,11 +43,11 @@ world_num = 1;
 
 
   constructor(
-    private _characterService: CharacterService,
-    private _battleService: BattleService,
-    private _audioService: AudioService,
+    public _characterService: CharacterService,
+    public _battleService: BattleService,
+    public _audioService: AudioService,
 
-    private _router: Router) {
+    public _router: Router) {
       this.Player = this._characterService.retrievePlayer();
      }
 
@@ -415,7 +415,7 @@ if ( direction.world1_end) {
       this._characterService.Player.health = 0;
       this._battleService.currentFight = false;
       const message = this.currentEvent.enemy.loss_message;
-      this.currentEvent = events.enemy_end;
+      this.currentEvent = events.enemy_end;       // this should end the game
       this._characterService.global_update_message = null;
       this.currentEvent.description = message;
 

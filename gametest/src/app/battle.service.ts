@@ -39,10 +39,10 @@ export class BattleService {
 
 
   constructor(
-    private _router: Router,
+    public _router: Router,
     protected http: Http,
-    private _characterService: CharacterService,
-    private _audioService: AudioService,
+    public _characterService: CharacterService,
+    public _audioService: AudioService,
 
   ) {}
 
