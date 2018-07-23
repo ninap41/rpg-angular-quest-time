@@ -31,7 +31,7 @@ i {
 .btn-hand-drawn {
     border-style: none;
     border: none;
-    background: url('/assets/button.png');
+    background: url('https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/button.png');
     background-size: 100% 50px;
     height: 50px;
     max-width: 100%;
@@ -42,7 +42,7 @@ i {
 .btn-inspect {
     border-style: none;
     border: none;
-    background: url('/assets/button-inspect.png');
+    background: url('https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/button-inspect.png');
     background-size: 100% 50px;
     height: 50px;
     max-width: 100%;
@@ -52,7 +52,7 @@ i {
 .btn-traverse {
     border-style: none;
     border: none;
-    background: url('/assets/button-inspect.png');
+    background: url('https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/button-inspect.png');
     background-size: 100% 50px;
     height: 50px;
     max-width: 100%;

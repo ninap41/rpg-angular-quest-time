@@ -40,11 +40,11 @@ enemy_sound;
    weaponEquip_sound(state) {
      if (state === 'equip') {
     // this.inventory_sound = new Audio();
-    this.inventory_sound.src = '../../../assets/sounds/rpg/inventory/armor-light.wav';
+    this.inventory_sound.src = 'https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/sounds/rpg/inventory/armor-light.wav';
     this.inventory_sound.load();
     this.inventory_sound.play();
      }  else {
-      this.inventory_sound.src = '../../../assets/sounds/rpg/inventory/cloth-heavy.wav';
+      this.inventory_sound.src = 'https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/sounds/rpg/inventory/cloth-heavy.wav';
       this.load_n_play( this.inventory_sound, this.inventory_sound.src);
 
      }
@@ -54,10 +54,10 @@ enemy_sound;
    fight_sound(currentEnemy) {
      if (currentEnemy.race === 'Orc') {
       this.enemy_sound = new Audio();
-      this.enemy_sound.src = `../../../assets/sounds/rpg/enemy/ogre${(Math.floor(Math.random() * 4) + 1)}.wav`;
+      this.enemy_sound.src = `https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/sounds/rpg/enemy/ogre${(Math.floor(Math.random() * 4) + 1)}.wav`;
      } else if (currentEnemy.race === 'Human') {
       this.enemy_sound = new Audio();
-      this.enemy_sound.src = `../../../assets/sounds/rpg/enemy/human/human${(Math.floor(Math.random() * 3)) + 1}.mp3`;
+      this.enemy_sound.src = `https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/sounds/rpg/enemy/human/human${(Math.floor(Math.random() * 3)) + 1}.mp3`;
      }
 
   this.load_n_play( this.enemy_sound, this.enemy_sound.src);

@@ -745,7 +745,7 @@ let HumanWorldStart =
 { 
     "name": 'CHARHOMETOWN',
     'world_description' : 'You are in your hometown of CHARHOMETOWN.',
-    "imageUrl":"../../assets/world-background/town.jpg",
+    "imageUrl":"https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/world-background/town.jpg",
 
     "home":{
         'update_message': null,

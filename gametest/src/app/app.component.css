@@ -19,7 +19,7 @@ a  {
     border: 5px groove;
   
 
-    background-image:  url("/assets/landscapes/moria.jpg");
+    background-image:  url("https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/landscapes/moria.jpg");
     background-position:0% 0%;
     filter: alpha(Opacity=90);
 opacity: 0.9;

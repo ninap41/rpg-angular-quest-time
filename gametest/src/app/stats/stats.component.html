@@ -17,7 +17,7 @@
             <span class="red" *ngIf="Player.weapon === null">no weapon equipped.</span>
             <span class="green" *ngIf="Player.weapon">
                 {{Player.weapon.name}} 
-                <span *ngIf="Player.weapon && _battleService.currentFight === false" (click)="_battleService.weaponequip(Player.weapon, idx, 'unequip')"><img width="20px" src="/assets/icons/equip-weapon.png"></span>
+                <span *ngIf="Player.weapon && _battleService.currentFight === false" (click)="_battleService.weaponequip(Player.weapon, idx, 'unequip')"><img width="20px" src="https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/icons/equip-weapon.png"></span>
             </span>
             <span *ngIf="_battleService.currentFight === true">X</span>
   

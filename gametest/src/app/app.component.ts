@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this._audioService.current_music = new Audio();
     this._audioService.current_music.load();
-    this._audioService.current_music.src = '../../../assets/backingone.mp3';
+    this._audioService.current_music.src = 'https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/backingone.mp3';
     this.Player = this._characterService.retrievePlayer();
     this.error = this._characterService.error;
     // this.gameState = this._characterService.startGame();

@@ -3,14 +3,14 @@
 .card{
     padding: 1em;
     /* background-image:
-    url('/assets/world-background/town.jpg'); */
+    url('https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/world-background/town.jpg'); */
 
     
 }
 .container {
      background-image:
      rgba(255, 255, 255, 0.148),
-    url('/assets/world-background/town.jpg');
+    url('https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/world-background/town.jpg');
 
     padding:0 4em;
 }

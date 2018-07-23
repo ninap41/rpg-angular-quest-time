@@ -3,7 +3,7 @@ const events = {
 const SecondWorldStart = {
     "name": "Outside Of CHARHOMETOWN",
     'world_description' : 'You are in outside your hometown of CHARHOMETOWN.',
-    "imageUrl":"../../assets/world-background/town.jpg",
+    "imageUrl":"https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/world-background/town.jpg",
     "wizards_hut" : {
         "eventtriggerchance" : null,
         'update_message': null,

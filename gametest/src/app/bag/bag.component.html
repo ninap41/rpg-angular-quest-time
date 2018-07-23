@@ -28,10 +28,10 @@
             
                 <span [ngClass]="{'green': item.equipped === true}">{{item.name}}</span>
                 <span *ngIf="item.type === 'weapon' && this.Player.weapon === null;" (click)="_battleService.weaponequip(item, idx, 'equip')">
-                  <img width="10px" src="/assets/icons/equip-weapon.png">
+                  <img width="10px" src="https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/icons/equip-weapon.png">
                 </span>
                 <span *ngIf="item.type === 'usable' && _battleService.currentFight === false" (click)="use_item(item, idx);">
-                    <img width="10px" src="/assets/icons/health-normal.png">
+                    <img width="10px" src="https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/icons/health-normal.png">
                   </span>
           </li>
 </div>

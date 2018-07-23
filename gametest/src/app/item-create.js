@@ -57,7 +57,7 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
-                'img' : '/assets/weapons/fatherssword.jpg',
+                'img' : 'https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/weapons/fatherssword.jpg',
                 'type' : 'weapon',
                 'name' : `Father's Sword`,
                 'lvl' :1 ,
