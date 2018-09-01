@@ -1,11 +1,20 @@
+@import "../../../variables.scss";
 
 
 .card{
     padding: 1em;
-    /* background-image:
-    url('/assets/world-background/town.jpg'); */
+    margin-left: 4em;
+    /* display: flex; */
+    background-color:$backcolor;
+    color: $fontcolor;
 
     
+}
+
+
+.inspect_direct_list {
+    padding:.5em;
+    display: block;
 }
 .container {
      background-image:
@@ -13,13 +22,13 @@
     url('/assets/world-background/town.jpg');
     white-space: pre-wrap;
 
-    padding:0 4em;
 }
 
 .btn-info {
     vertical-align: top;
     margin: 0px auto;
-    display:inline-block;
+    // display:inline-block;
+    top: 0;
 
 }
 .pointTitle { 
@@ -40,8 +49,8 @@
      text-emphasis: left;
  }
  .col-sm {
-     padding-left: 10px;
-     padding-right: 10px;
+    padding-right: 55px;
+    padding-left: 0;
  }
  .col-sm:nth-child(1) {
      padding:1em;

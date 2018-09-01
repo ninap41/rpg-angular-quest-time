@@ -1,8 +1,8 @@
-
-    
+<BR>
+<BR>   
     <fieldset>
-    
-    <span *ngIf="gameStart == true">
+    <div class="statsFrame">
+    <span class="card" [@gameStart]="gameStart === true ? gameStart === false : ''" *ngIf="gameStart == true">
     
                 <h2>Stats</h2>
                 <!-- {{ Player.bag | json}} -->
@@ -56,9 +56,12 @@
                 </div>
 
 
-
-                <button class="btn btn-primary" style="text-decoration:none;" [routerLink]="['/firstworld']" >Begin Adventure!</button>
+                <div class="row">
+                    <button class="btn btn-primary center-block" style="text-decoration:none;" [routerLink]="['/firstworld']" >Begin Adventure!</button>
+                </div>
     </span>
+    </div> <!-- stats frame end -->
+
           <span *ngIf="gameStart != true ">
             <i style="font-size: .5em"> ~ hover over selected weapons and wait a minute of two to see a description of each item ~</i>
             <BR><BR>

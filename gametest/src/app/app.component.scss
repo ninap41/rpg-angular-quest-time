@@ -1,0 +1,63 @@
+@import "../variables.scss";
+
+#body {
+    max-width: 55em;
+    text-align: center;
+    background-color: black;
+
+    
+}
+a  {
+    font-family: 'GamalielMedium'; 
+    font-weight: normal; 
+    font-style: normal; 
+    color:$navColor;
+
+}
+.dash {
+    color:$invisible;
+}
+.whiteDash {
+    color:$grey;
+    cursor:pointer;
+}
+.redDash, .redDash a {
+    color:$paleRed;
+    cursor:pointer;
+}
+.buttonNone {
+    border: none;
+    background-color: rgba(46, 46, 46, 0.144);
+    color:$paleRed;
+
+}
+.jumbotron:first-child{
+    margin-top: 50px;
+    padding-top: 0px;
+
+
+
+}
+
+.card{
+    padding: 1em;
+    margin-left: 4em;
+    /* display: flex; */
+    background-color:$backcolor;
+    color: $fontcolor;
+}
+
+.jumbotron {
+
+    border: 5px  groove $paleRed ;
+    min-height:900px;
+    color:white;
+    position: relative;
+    background-blend-mode: exclusion;
+    background-image:  url("/assets/landscapes/moria.jpg");
+    background-position:0% 0%;
+    filter: alpha(Opacity=.2);
+    opacity: 1;
+
+
+}

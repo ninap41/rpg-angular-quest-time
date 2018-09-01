@@ -109,6 +109,7 @@ export class BattleService {
   }
 
   fightStart(currentEnemy, action, flee_token) {
+    this._audioService.fight_music(true);
     this.currentEnemy = currentEnemy;
     this._audioService.fight_sound(currentEnemy);
 
@@ -303,7 +304,7 @@ export class BattleService {
 
   FIGHT() {
     if (this.currentEnemy.health <= 0) { // base CASE baby
-            this.fightEnd(this.currentEnemy);
+      this.fightEnd(this.currentEnemy);
     }
 }
 

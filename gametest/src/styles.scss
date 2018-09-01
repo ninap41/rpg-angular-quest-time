@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "./variables.scss";
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
-    
+    background-color:black;
     font-family: 'Do Hyeon', sans-serif;
     margin: 0px auto;
     padding: 1em;
@@ -15,6 +17,10 @@ i {
 .red {
     color:rgb(251, 106, 106);
 }
+
+.mainTitle {
+    color:rgba(255, 255, 255, 0.637);
+}
 .green {
     color: rgb(0, 154, 54);
 }
@@ -23,10 +29,21 @@ i {
 
 }
 .blue {
-    color: rgb(7, 0, 208);
+    color: rgb(76, 71, 223);
 
 }
 .btn {
     font-size: .5em;
     margin: .5em;
 }
+
+router-outlet ~ * {
+    position: absolute;
+    padding-top:.3em;
+    left:0;
+    right: 0;
+    top:0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+  }

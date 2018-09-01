@@ -13,7 +13,7 @@ import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from '../../player-crea
 @Component({
   selector: 'app-firstworld',
   templateUrl: './firstworld.component.html',
-  styleUrls: ['./firstworld.component.css']
+  styleUrls: ['./firstworld.component.scss']
 })
 export class FirstworldComponent implements OnInit {
 Player = new Player;
@@ -22,7 +22,7 @@ lastspot;
 startingPoint; // initial
 playersPoint; // current
 gameState;
-firstworld;
+currentworld;
 firstworldevents = events;
 secondworld;
 secondworldevents;
@@ -57,15 +57,19 @@ world_num = 1;
     this._characterService.gameStart = true;
     this.Player = this._characterService.retrievePlayer();
     this.playertest = JSON.parse(localStorage.getItem('Player'));
-    this.firstworld = HumanWorldStart;
+    this.currentworld = HumanWorldStart;
     this.secondworld = SecondWorldStart;
     this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
     console.log('PLAYER TEST: '  + this.playertest.name );
     console.log('Length: '  + this.Player.worldPoint.length);
     console.log('content: '  + this.Player.worldPoint);
     if (this.Player.worldPoint.length === 0) {
-      this.Player.worldPoint.push(this.firstworld.home);
-      this.playersPoint = this.firstworld.home;
+      // this.Player.worldPoint.push(this.secondworld.wizards_hut);
+      // this.playersPoint = this.secondworld.wizards_hut;
+      // this.WorldName = SecondWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+
+      this.Player.worldPoint.push(this.currentworld.home); // beginning of game
+      this.playersPoint = this.currentworld.home; // beginning of game
       this.Check_all();
     } else {
       this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
@@ -80,10 +84,10 @@ world_num = 1;
     if (direction.world1_end) {
       this.Player.worldPoint.push(this.secondworld[direction.room]);
       this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
-      this.firstworld = this.secondworld;
+      this.currentworld = this.secondworld;
       this.currentEvent = null;
-      this.WorldName = this.secondworld.name.replace('CHARHOMETOWN', this.Player.hometown);
-
+      this.WorldName = this.currentworld.name.replace('CHARHOMETOWN', this.Player.hometown);
+      this.Check_all();
     }
 
   }
@@ -98,7 +102,6 @@ world_num = 1;
   Check_all() {
     if (this.currentEvent) {
     this.check_event_name_home(this.currentEvent);
-
   }
     this.check_name_and_home(this.playersPoint);
     this.check_inspects_guard(this.playersPoint);
@@ -189,7 +192,7 @@ if ( direction.world1_end) {
     console.log('traverse()');
     this._characterService.global_update_message = null;
     this.currentEvent = null;
-    this.Player.worldPoint.push(this.firstworld[direction.room]);
+    this.Player.worldPoint.push(this.currentworld[direction.room]);
     this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
     if (this.playersPoint.eventtriggerchance) {
       const trigger =  Math.floor(Math.random() * this.playersPoint.eventtriggerchance);
@@ -201,7 +204,7 @@ if ( direction.world1_end) {
       } else {
         console.log ('event avoided');
         this.currentEvent = null;
-        this.Player.worldPoint.push(this.firstworld[direction.room]);
+        this.Player.worldPoint.push(this.currentworld[direction.room]);
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
         this.Check_all();
       }
@@ -209,9 +212,6 @@ if ( direction.world1_end) {
       this.currentEvent = this.firstworldevents[this.playersPoint.event];
       console.log('event begun');
       this.Check_all();
-
-
-
     } else {
     this.Check_all();
     this.check_karma();
@@ -233,7 +233,7 @@ if ( direction.world1_end) {
         console.log('traverseFromEvent()');
         this.currentEvent = null;
         this._characterService.global_update_message = null;
-        this.Player.worldPoint.push(this.firstworld[direction.room]);
+        this.Player.worldPoint.push(this.currentworld[direction.room]);
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
         if (this.playersPoint.eventtriggerchance) {
           const trigger =  Math.floor(Math.random() * this.Player.karma);
@@ -277,6 +277,9 @@ if ( direction.world1_end) {
         } else {
           console.log('permanent item');
         }
+        if (this.Player.bag[i].use_sound) {
+          this._audioService.random_sound(this.Player.bag[i].use_sound);
+        }
       }
     }
   }
@@ -298,7 +301,7 @@ if ( direction.world1_end) {
       } else {
         console.log ('event avoided');
         this.currentEvent = null;
-        this.Player.worldPoint.push(this.firstworld[action.room]);
+        this.Player.worldPoint.push(this.currentworld[action.room]);
         this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
         this.Check_all();
         this.check_karma();
@@ -415,16 +418,16 @@ if ( direction.world1_end) {
       this._characterService.Player.health = 0;
       this._battleService.currentFight = false;
       const message = this.currentEvent.enemy.loss_message;
-      this.currentEvent = events.enemy_end;
+      this.currentEvent = events.enemy_end;       // this should end the game
       this._characterService.global_update_message = null;
       this.currentEvent.description = message;
-
+      this._audioService.fight_music(false);
        }
       if (this._battleService.currentEnemy.health <= 0) { // base case
         console.log('win');
         this.currentEvent.description = null;
         this.currentEvent.description = this.currentEvent.description_replace;
-
+        this._audioService.fight_music(false);
         console.log(this.currentEvent.description_replace + 'UHSAHGSADHGJSADJHGADSGJHAGHJS');
         this._battleService.max_Taunt = 0;
         if (this.currentEvent.enemy_object) {
@@ -455,12 +458,12 @@ if ( direction.world1_end) {
         this.currentEvent.description = this.currentEvent.description_replace;
 
       } else {
-      this.currentEvent = null;
+        this.currentEvent = null;
       }  // this helps at chapter ends and keeps events going
-      this._battleService.currentEnemy = null;
-      this._characterService.Player.strength = this.temp_strength;
-      this._characterService.Player.karma = this.temp_karma;
-      this._characterService.Player.speed = this.temp_speed;
+       this._battleService.currentEnemy = null;
+       this._characterService.Player.strength = this.temp_strength;
+       this._characterService.Player.karma = this.temp_karma;
+       this._characterService.Player.speed = this.temp_speed;
       if (this.xp > 70) {
         this.xp = 0;
         this._characterService.Player.lvl += 1;
@@ -473,7 +476,7 @@ if ( direction.world1_end) {
          this._characterService.global_update_message = win.concat(str);
       } else {
         const restore = ` Stats from before the battle taunts have been restored. You are ${70 - this.xp}
-         points away from the next level. ${object} ${gold}`;
+        points away from the next level. ${object} ${gold}`;
         this._characterService.global_update_message = win.concat(restore);
       }
 
@@ -508,6 +511,7 @@ if ( direction.world1_end) {
   updateCharacterStats() {
 
   }
+
   goBack() {
     this.Player.worldPoint.pop();
     this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
