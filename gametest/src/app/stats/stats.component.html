@@ -1,7 +1,9 @@
 <span *ngIf="gameStart == true">
     
   
-
+    <div class="col-12">
+        <img id="avatar" src="{{Player.avatar}}">
+    </div>
     <i>Name: </i> {{Player.name}}<BR>
         <i>Health: </i> <span class="green">{{Player.health}}</span>HP<BR>
        <i>Race: </i> {{Player.race}}<BR>

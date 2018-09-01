@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { trigger, animate, style, group, query, transition, state, stagger, keyframes } from '@angular/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module'; // Routing
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Materials
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // Materials
-import { MatButtonModule, MatCheckboxModule } from '@angular/material'; // Materials
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule} from '@angular/http';
@@ -22,7 +20,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { StatsComponent } from './stats/stats.component';
 import { BagComponent } from './bag/bag.component';
 import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
-import { SecondworldComponent } from './in-game/secondworld/secondworld.component';
 import { BattleComponent } from './battle/battle.component';
 import { ShopComponent } from './shop/shop.component';
 import { FullBagComponent } from './full-bag/full-bag.component';
@@ -36,7 +33,6 @@ import { HelpComponent } from './help/help.component';
     StatsComponent,
     BagComponent,
     FirstworldComponent,
-    SecondworldComponent,
     BattleComponent,
     ShopComponent,
     FullBagComponent,
@@ -45,20 +41,18 @@ import { HelpComponent } from './help/help.component';
   imports: [
     HttpModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    NoopAnimationsModule,
+
     HttpClientModule,
     BrowserModule,
+
+    NgbModule,
     AppRoutingModule,
     FormsModule,
-    BrowserModule,
     NgbModule.forRoot()
 
   ],
   exports: [
-    MatButtonModule,
-    MatCheckboxModule,
+
   ],
   providers: [
     CharacterService,

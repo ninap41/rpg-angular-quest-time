@@ -3,7 +3,8 @@
         "basic_weapons" : [
               {
                 'id' : Math.floor(Math.random() * 10000000000),
-
+                'img' : '/assets/weapons/orc-shiving-knife.png',
+                'soundtype': 'light_equip',
                 'type' : 'weapon',
                 'name' : 'Orc Shiving Knife',
                 'value' : 'Orc Shiving Knife',
@@ -24,7 +25,9 @@
 
                 'id' : Math.floor(Math.random() * 10000000000),
                 'type' : 'weapon',
+                'soundtype': 'light_equip',
                 'name' : 'Staff of Light',
+                'img' : '/assets/weapons/stafflight.jpg',
                 'lvl' :1 ,
                 'damage' : 4,
                 'karma_effect' : {
@@ -40,7 +43,8 @@
 
             {
                 'id' : Math.floor(Math.random() * 10000000000),
-
+                'img' : '/assets/weapons/staffdark.jpg',
+                'soundtype': 'light_equip',
                 'type' : 'weapon',
                 'name' : 'Staff of Dark',
                 'lvl' :1 ,
@@ -57,7 +61,8 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
-                'img' : 'https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/weapons/fatherssword.jpg',
+                'img' : '/assets/weapons/fatherssword.jpg',
+                'soundtype': 'light_equip',
                 'type' : 'weapon',
                 'name' : `Father's Sword`,
                 'lvl' :1 ,
@@ -81,6 +86,7 @@
                     'description' : '-5 karma... Blood of a 24 Orcs have been laid upon this blade.',
                 },
                 'type' : 'weapon',
+                'soundtype': 'light_equip',
                 'name' : `Mordorian Sword`,
                 'lvl' :1 ,
                 'damage' : 8,
@@ -90,8 +96,9 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
-
+                'img' : '/assets/weapons/fathers-bow.jpg',
                 'type' : 'weapon',
+                'soundtype': 'light_equip',
                 'name' : `Father's Bow`,
                 'lvl' :1 ,
                 'damage' : 4,
@@ -108,7 +115,9 @@
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
+                'img' : '/assets/weapons/fathers-axe.png',
                 'type' : 'weapon',
+                'soundtype': 'light_equip',
                 'name' : `Father's Axe`,
                 'lvl' :1 ,
                 'damage' : 4,
@@ -125,6 +134,8 @@
             {
                 'id' : Math.floor(Math.random() * 10000000000),    // 8th weapon
                 'type' : 'weapon',
+                'soundtype': 'light_equip',
+                'img' : '/assets/weapons/rusty-knife.png',
                 'name' : `Rusty Blade`,
                 'lvl' :1 ,
                 'damage' : 2,
@@ -148,6 +159,9 @@
     const items = {
         'matches' : {
             'id' : Math.floor(Math.random() * 10000000000),
+            'img': '/assets/transparent_items/T_Lantern.png',
+            'soundtype': 'light_thin_wood_sound',
+            'use_sound' : '/assets/sounds/match.mp3',
             'type' : 'scenario',
             "value" : 'matches',
             "name" : 'Matches',
@@ -159,8 +173,10 @@
         },
         'stable_key' : {
             'id' : Math.floor(Math.random() * 10000000000),
+            'soundtype': 'coin_3',
             'type' : 'scenario',
             "value" : 'stable_key',
+            'use_sound' : '/assets/sounds/dooropen.mp3',
             "name" : 'Stable Key',
             'type' : 'scenario',
             'limit' : true,
@@ -172,8 +188,10 @@
             {
                 'id' : Math.floor(Math.random() * 10000000000),
                 'value' : 'Orc Shiving Knife',
+                'soundtype': 'weaponsmall',
                 'type' : 'weapon',
                 'name' : 'Orc Shiving Knife',
+                'use_sound' : '/assets/sounds/dooropen.mp3',
                 'lvl' :1 ,
                 'damage' : 3,
                 'karma_effect' : {
@@ -189,9 +207,10 @@
         
         'helpbook' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
+            'soundtype': 'cloth-heavy',
             'type' : 'help',
             "value" : 'helpbook',
+            'use_sound' : '/assets/sounds/pageturn.mp3',
             "name" : 'Help Book',
             'influence_karma' : ['positive', 5],
             'limit' : false,
@@ -202,9 +221,11 @@
         },
         'gaffers_letter' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
+            'img': '/assets/transparent_items/T_Letter.png',
+            'soundtype': 'pageturn',
             'type' : 'scenario',
             "value" : 'gaffers_letter',
+            'use_sound' : '/assets/sounds/pageturn.wav',
             "name" : `Gaffer's Letter`,
             'influence_karma' : ['positive', 5],
             'limit' : false,
@@ -227,9 +248,11 @@
         },
         'mendels_key' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
+            'img': '/assets/transparent_items/T_Key1_Gold.png',
+            'soundtype': 'coin_3',
             'type' : 'scenario',
             "value" : 'mendels_key',
+            'use_sound' : '/assets/sounds/dooropen.mp3',
             "name" : `Brandybuck Key`,
             'influence_karma' : ['positive', 2],
             'limit' : false,
@@ -240,9 +263,11 @@
         },
         'stables_key' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
+            'soundtype': 'coin_3',
+            'img': '/assets/transparent_items/T_Key1_Silver.png',
             'type' : 'scenario',
             "value" : 'stables_key',
+            'use_sound' : '/assets/sounds/dooropen.mp3',
             "name" : `Stables_Key`,
             'influence_karma' : ['positive', 2],
             'limit' : false,
@@ -253,10 +278,12 @@
         },
         'liquid_courage' : {
             'id' : Math.floor(Math.random() * 10000000000),
-
+            'img': '/assets/transparent_items/T_Mead.jpg',
+            'soundtype': 'liquor_bottle',
             'type' : 'usable',
+            'use_sound' : '/assets/sounds/drink.mp3',
             "value" : 'liquid_courage',
-            "name" : 'Liquid Courage',
+            "name" : 'Freshly Brewed Ale',
             'influence_health' : ['positive', 10],
             'influence_karma' : ['positive', 4],
             'limit' : true,
@@ -265,6 +292,9 @@
         },
         'bread' : {
             'id' : Math.floor(Math.random() * 10000000000),
+            'img': '/assets/transparent_items/T_Bread.png',
+            'soundtype': 'cloth',
+            'use_sound' : '/assets/sounds/eat.mp3',
             'type' : 'usable',
             "value" : 'bread',
             "name" : 'Bread',
@@ -275,27 +305,35 @@
         },
         'cheese' : {
             'id' : Math.floor(Math.random() * 10000000000),
+            'img': '/assets/transparent_items/T_Cheese.jpg',
+            'soundtype': 'cloth',
             'type' : 'usable',
+            'use_sound' : '/assets/sounds/eat.mp3',
             "value" : 'cheese',
             "name" : 'Cheese',
             'influence_health' : ['positive', 50],
             'limit' : true,
             'qty' : 1,
             "description" : `Brie cheese of your people.`,
-            'img' : 'assets/cheese.jpg'
         },
         'potion_of_luck' : {
             'id' : Math.floor(Math.random() * 10000000000),
+            'img': '/assets/transparent_items/T_Potion_Yellow.png',
+            'soundtype': 'potion_1',
             'type' : 'usable',
             "value" : 'potion_of_luck',
+            'use_sound' : '/assets/sounds/drink.mp3',
             "name" : 'Potion of Luck',
             'influence_karma' : ['positive', 5],
             'limit' : true,
             'qty' : 3,
-            "description" : `A potion that increases Karma by 10. (Bad events trigger less when karma is high)`,
+            "description" : `A potion that increases Karma by 5. (Bad events trigger less when karma is high)`,
         },
         'potion_of_healing' : {
             'id' : Math.floor(Math.random() * 10000000000),
+            'img': '/assets/transparent_items/T_Potion_Red.png',
+            'soundtype': 'potion_3',
+            'use_sound' : '/assets/sounds/drink.mp3',
             'type' : 'usable',
             "value" : 'potion_of_healing',
             "name" : 'Potion of Healing',
@@ -306,6 +344,8 @@
         },
         'book_of_fire_spell' : {
             'id' : Math.floor(Math.random() * 10000000000),
+            'img': '/assets/transparent_items/T_Book.png',
+            'soundtype': 'cloth-heavy',
             'type' : 'spell',
             "value" : 'book_of_fire_spell',
             "name" : 'Book of basic Fire Spell',
