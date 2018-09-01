@@ -49,6 +49,8 @@ world_num = 1;
 
     private _router: Router) {
       this.Player = this._characterService.retrievePlayer();
+      this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+
      }
 
   ngOnInit() {
@@ -74,6 +76,8 @@ world_num = 1;
     } else {
       this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
       this.Check_all();
+      this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+
     }
     console.log( 'this.playersPoint: ' + this.playersPoint +
     'this.playersPoint: ' +  this.Player.worldPoint);

@@ -7,15 +7,13 @@
 
     <div align="center" class="row width">
 
-            <span *ngIf="playersPoint.update_message"> {{playersPoint.update_message}} </span>
-
+        <span *ngIf="playersPoint.update_message"> {{playersPoint.update_message}} </span>
         <div *ngIf="!currentEvent  && _battleService.currentFight === false" class="col-sm card card-adventure"> <!-- World DESCRIPTION  -->
         <!-- <p style="color:green">Player.worldPoint LIST:{{ this.Player.worldPoint | json:format }}</p> -->
         <p> "{{ playersPoint.description | json}}"</p>
-        {{Player.description | json}}
         <span class="orange" *ngIf="_characterService.global_update_message">
                 {{_characterService. global_update_message}}
-            </span>
+        </span>
 
         (Hover over options for more detail)
 
@@ -28,10 +26,10 @@
     
               <div *ngIf="playersPoint.directions">
                     <hr>
-                    <p><i>Directions: </i></p>
+                    <p class="direct"><i>Directions: </i><i class="ra ra-trail ra-lg"></i></p>
                     <span *ngFor="let direction of playersPoint.directions;" classs="inspect_direct_list">
                         <button [ngbTooltip]="tipContentDirection" [style.background-color]="direction.color"  (click)="traverse(direction);"  class="btn btn-info"> 
-                            {{direction.name}} 
+                            <i class="ra ra-trail ra-2x"></i>{{direction.name}} 
                         </button> 
                         <ng-template type="button" class="btn btn-outline-secondary" #tipContentDirection>{{direction.description}}</ng-template>
                     </span>
@@ -45,10 +43,9 @@
      
               <div *ngIf="playersPoint.inspects && playersPoint.inspects.length > 0">
                     <hr>
-                    <p><i>inspects:  </i></p>
+                    <p class="inspect"><i>Inspects:  </i> <i class="ra ra-hand ra-lg"></i></p>
                     <span *ngFor="let inspect of playersPoint.inspects; let idx = index"  classs="inspect_direct_list">
-                    
-                            <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> {{inspect.name}}</button> 
+                            <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> <i class="ra ra-hand ra-2x"></i>{{inspect.name}}</button> 
                             <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects> {{inspect.description}} </ng-template>
                     </span>
                 </div>
@@ -94,7 +91,7 @@
             <span *ngFor="let inspect of currentEvent.inspects; let idx = index" style="padding: .5em;">
                
                     <ng-template #tipContentInspect>Please Equip Weapon. An enemy is before you and you should have a weapon equipped at all times.</ng-template>
-                    <span [ngbTooltip]="tipContentInspect" *ngIf="inspect.needsweapon === true && _battleService.weaponGuard === true && idx === 0">?</span>
+                    <span [ngbTooltip]="tipContentInspect" *ngIf="inspect.needsweapon === true && _battleService.weaponGuard === true && idx === 0"> <i class="ra  ra-uncertainty ra-lg"></i></span>
                     <button title="Please Equip Weapon" [disabled]="inspect.needsweapon === true && _battleService.weaponGuard === true" [ngbTooltip]="tipContentEventInspects" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button>  
                 </span>
         </div>

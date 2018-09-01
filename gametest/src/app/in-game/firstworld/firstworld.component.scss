@@ -1,7 +1,9 @@
 @import "../../../variables.scss";
 
+@import "../../../../node_modules/rpg-awesome/css/rpg-awesome.min.css";
 
 .card{
+    border: 5px groove $grey;
     padding: 1em;
     margin-left: 4em;
     /* display: flex; */
@@ -10,11 +12,23 @@
 
     
 }
+.btn {
+    // display: block;
 
+}
+.direct i{
+    color: $directColor;
+}
+.inspect i{
+    color:$inspectColor;
+}
 
 .inspect_direct_list {
     padding:.5em;
     display: block;
+}
+.inspect_direct_list button {
+    margin-top: .5em;
 }
 .container {
      background-image:
@@ -60,8 +74,8 @@
 .battle_updates {
     padding: 2em;
     min-height: 10em;
-    border: 1px solid black;
-    color: black;
+    border: 1px solid $paleRed;
+    color: $paleRed;
 
 }
 .usables {
@@ -73,4 +87,5 @@
 
 #enemy-img {
     width: 100%;
+    border: 2px solid $paleRed;
 }

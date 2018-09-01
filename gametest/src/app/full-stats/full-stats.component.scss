@@ -1,0 +1,11 @@
+@import "../../variables.scss";
+
+.card{
+    border: 5px groove $grey;
+    padding: 1em;
+    margin-left: 4em;
+    /* display: flex; */
+    background-color:$backcolor;
+    color: $fontcolor;
+ 
+}

@@ -24,6 +24,7 @@ import { BattleComponent } from './battle/battle.component';
 import { ShopComponent } from './shop/shop.component';
 import { FullBagComponent } from './full-bag/full-bag.component';
 import { HelpComponent } from './help/help.component';
+import { FullStatsComponent } from './full-stats/full-stats.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HelpComponent } from './help/help.component';
     BattleComponent,
     ShopComponent,
     FullBagComponent,
-    HelpComponent
+    HelpComponent,
+    FullStatsComponent
   ],
   imports: [
     HttpModule,
