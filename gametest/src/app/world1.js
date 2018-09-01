@@ -29,6 +29,8 @@ var qty = 0;
 
 let matches = {
     'id' : Math.floor(Math.random() * 10000000000),
+    'soundtype': 'light_thin_wood_sound',
+    'use_sound' : '/assets/sounds/match.mp3',
     "value" : 'matches',
     "name" : 'Matches',
     'type' : 'scenario',
@@ -44,6 +46,7 @@ const orc_knife = weapons.basic_weapons[0];
 const enemies= {
     'baracder' : {
         'name': 'Baravder The Orc',
+        'img' : '/assets/characters/enemy-baravder.png',
         'loss_message': 'Baravder came down with one final swing. You collapse in your own blood, gasping for words. Baravder crouches down and hisses, "Prepare to join your mother...", before your surroundings fade to black.',
         'xp': 120,
         'race' : 'Orc',
@@ -60,7 +63,7 @@ const enemies= {
     'yikmar' : {
         'name': 'Yikmar',
         'loss_message': 'Yikmar guts you like a pig and spits on your corpse. Damn you suck at this.',
-
+        'img' : '/assets/characters/enemy-yikmar.png',
         'xp': 80,
         'race' : 'Orc',
         'lvl' : 3,
@@ -76,7 +79,7 @@ const enemies= {
     'mordorian_runt' : {
         'name': 'Caleth The Mordorian Runt',
         'loss_message': 'Caleth delivers one last sneaky swipe, splitting your abdomen with his knife. You double over and collapse. Gaffer shaking fearful beside you. Caleth spits, "This is the end of you, haha...".',
-
+        'img' : '/assets/characters/enemy-caleth.png',
         'xp': 80,
         'race' : 'Orc',
         'lvl' : 3,
@@ -92,6 +95,7 @@ const enemies= {
     'the_rider' : {
         'name': 'Agmar the Orc Rider',
         'loss_message': `Agmar's steed squels, raises it's hoof and comes down on you. Mendel whimpering abandoned and alone at your failure to defend him. Agmar pierces your chest with his blade.`,
+        'img' : '/assets/characters/enemy-the-rider.png',
         'xp': 100,
         'race' : 'Orc',
         'lvl' : 4,
@@ -105,7 +109,8 @@ const enemies= {
         'flee_chance': 10,
     },
     'gaffer' : {
-        'name': 'Gaffer The Back-stabbing Coward',
+        'name': 'Gaffer The Back-Stabbing Coward',
+        'img' : '/assets/characters/oldgaffer.png',
         'loss_message': `Gaffer gasps as you fall over him, his blade pierces your chest. You slowly sink down as horror fills his eyes. You whisper to yourself... '' You.... You... Bitchhhhhh....''. Who loses to Gaffer? `,
         'xp': 150,
         'race' : 'Human',
@@ -603,7 +608,7 @@ const events = {
             "description" : `"I am so sorry," Thomas mutters, unsheathing his weapon, 
             "I am going to have to do this." '${enemies.gaffer.name}'. He holds a ${enemies.gaffer.weapon.name} he picked off an orc's corpse. from him horse pointed at you. Hands shaking he mutters, 
             "Dear God...${enemies.gaffer.opening_line}". You have one option: Fight.`,
-            "description_replace" : `You defeated ${enemies.gaffer.name}. You stand over your beloved friendsYou have finished chapter 1!`,
+            "description_replace" : `You defeated ${enemies.gaffer.name}. You stand over your beloved friend. He now cries. He bleeds out slowly. Your ultimate revenge. Congrats! You have finished chapter 1!`,
             // 'enemy_object': items.mendels_key,
          
             "access_directions_state" : false,
@@ -687,6 +692,7 @@ const events = {
             "description":`Your karma fell too low. So low your luck ran out and a Orc came down with his battle axe on your back as you were running away.`,
             'name': "Dead.",
         'event_state' : true,
+        'use_sound' : '/assets/sounds/loss_laugh.mp3',
             'restart' : true,
         'influence_event' : null,
         "access_directions_state" : true,
@@ -697,6 +703,7 @@ const events = {
             "description":`Your enemy defeated you. What a shame.`,
             'name': "enemy_end",
         'event_state' : true,
+        'use_sound' : '/assets/sounds/loss_laugh.mp3',
             'restart' : true,
         'influence_event' : null,
         "access_directions_state" : true,
@@ -709,6 +716,7 @@ const events = {
         'event_state' : true,
             'restart' : true,
         'influence_event' : null,
+        'use_sound' : '/assets/sounds/loss_laugh.mp3',
         "access_directions_state" : true,
         'enemy_object': null,
         'inspects' :  null,
@@ -717,6 +725,8 @@ const events = {
             "description":`You gingerly creak the door open. You slowly stick out a trepid foot, until you see a blade come down before you. Pointing at your neck, an Orcs gleams it's teeth as he triumphantly calls to his rally, '' I found the CHARRACE ! ''. He slashes at your throat, watching you bleed out as the others gather around.`,
             'name': "Orc Peek-A-Boo ",
         'event_state' : true,
+        'use_sound' : '/assets/sounds/loss_laugh.mp3',
+
             'restart' : true,
         'influence_event' : null,
         "access_directions_state" : true,
@@ -727,6 +737,7 @@ const events = {
             "description":`Gaffer and you exclaim with joy as you enter the shed and approach your horse. You hear a muttering, "I'm sorry--" and a knife move passed your chin. Gaffer slits your throat, "I'm sorry! The dark wizard said 50 innocents..." You missed something. Try Again.`,
             'name': "Betrayal",
         'event_state' : true,
+        'use_sound' : '/assets/sounds/loss_laugh.mp3',
             'restart' : true,
         'influence_event' : null,
         "access_directions_state" : true,
@@ -1415,7 +1426,7 @@ let HumanWorldStart =
         "inspects" : [
             {
                 'guard' : false,
-                'name' : 'Mead',
+                'name' : 'Fresh Mead',
                 'object' : items.liquid_courage,
                 'event' :'take',
                 'description' : `Enemies are all around you is this really the time to drink???`

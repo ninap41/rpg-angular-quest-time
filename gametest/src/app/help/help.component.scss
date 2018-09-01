@@ -1,0 +1,25 @@
+@import "../../variables.scss";
+
+.card {
+    padding: 2em;
+    background-color: rgba(128, 128, 128, 0.141)
+
+}
+.media {
+    padding: 1em;
+}
+.media img {
+    height: 100%;
+}
+.thumbnails {
+    height: 8em;
+    width: 8em;
+
+}
+.battling-info {
+    padding: 1em 0;
+}
+ul >  li {
+    padding: 1em 0;
+
+}

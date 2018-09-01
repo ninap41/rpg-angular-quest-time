@@ -37,6 +37,7 @@ export class BattleService {
   enemy_min_speed;
   enemy_min_strength;
 
+
   constructor(
     private _router: Router,
     protected http: Http,
@@ -100,7 +101,6 @@ export class BattleService {
           }
         }
         this._audioService.weaponEquip_sound(value);
-
         this.weaponGuard = true;
         console.log('should unequip');
       }
@@ -109,6 +109,7 @@ export class BattleService {
   }
 
   fightStart(currentEnemy, action, flee_token) {
+    this._audioService.fight_music(true);
     this.currentEnemy = currentEnemy;
     this._audioService.fight_sound(currentEnemy);
 
@@ -127,7 +128,7 @@ export class BattleService {
       this.battle_update_message = `Uh Oh, you must fight ${currentEnemy.name}. You unsuccesfully fled the battle.`;
     } else {
       this.battle_update_message = `Fight with
-      has ${this.currentEnemy.name} begun. Your weapon,
+      ${this.currentEnemy.name} has begun. Your weapon,
      '${this.Player.weapon.name}' is held firm in your hand, good to go.`;
      console.log(this.currentEnemy);
      console.log('fight start');
@@ -303,7 +304,7 @@ export class BattleService {
 
   FIGHT() {
     if (this.currentEnemy.health <= 0) { // base CASE baby
-            this.fightEnd(this.currentEnemy);
+      this.fightEnd(this.currentEnemy);
     }
 }
 

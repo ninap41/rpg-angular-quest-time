@@ -1,5 +1,5 @@
 
-
+<BR><BR>
         <h1 class="pointTitle" *ngIf="playersPoint.name">
         {{WorldName}} : {{playersPoint.name}}</h1><BR>
     
@@ -19,7 +19,7 @@
 
         (Hover over options for more detail)
 
-
+       <div class="direct_inspect_frame">
         <!-- PLAYERS POINTS.DIRECTIONS
         PLAYERS POINTS.DIRECTIONS               traverse(direction) playerspoint.direction OBJ
         PLAYERS POINTS.DIRECTIONS
@@ -28,8 +28,8 @@
     
               <div *ngIf="playersPoint.directions">
                     <hr>
-                    <p><i>Where shall you go? </i></p>
-                    <span *ngFor="let direction of playersPoint.directions;"style="padding: .5em;">
+                    <p><i>Directions: </i></p>
+                    <span *ngFor="let direction of playersPoint.directions;" classs="inspect_direct_list">
                         <button [ngbTooltip]="tipContentDirection" [style.background-color]="direction.color"  (click)="traverse(direction);"  class="btn btn-info"> 
                             {{direction.name}} 
                         </button> 
@@ -45,14 +45,14 @@
      
               <div *ngIf="playersPoint.inspects && playersPoint.inspects.length > 0">
                     <hr>
-                    <p><i>What shall you do </i></p>
-                    <span *ngFor="let inspect of playersPoint.inspects; let idx = index" style="padding: .5em;">
+                    <p><i>inspects:  </i></p>
+                    <span *ngFor="let inspect of playersPoint.inspects; let idx = index"  classs="inspect_direct_list">
                     
                             <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> {{inspect.name}}</button> 
                             <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects> {{inspect.description}} </ng-template>
-                   
                     </span>
                 </div>
+            </div> <!-- DIRECT Inspect Frame END  -->
       </div> <!-- World DESCRIPTION END  -->
       <!-- EVENT DESCRIPTION  -->
 
@@ -72,12 +72,15 @@
                                         <span>Weapon: <b>{{currentEvent.enemy.weapon.name}}</b></span><BR>
                                         </ng-template>
 
-        <span style="color:green" *ngIf='currentEvent.updateMessage'>{{currentEvent.updateMessage}}</span>
-        <span *ngIf="currentEvent.restart === true"> <a href="http://localhost:4200/">Restart</a></span>
+        <span style="color:green" *ngIf='currentEvent.updateMessage'>
+            {{currentEvent.updateMessage}}
+        </span>
         <span *ngIf="currentEvent.restart === true"> 
-                <a  [routerLink]="['help']" > <b>Need Help? </b>  </a>
-               
-            </span>
+            <a href="http://localhost:4200/">Restart</a>
+        </span>
+        <span *ngIf="currentEvent.restart === true"> 
+            <a  [routerLink]="['help']" > <b>Need Help? </b>  </a>
+        </span>
 
         <div *ngIf="currentEvent.inspects">
 
@@ -116,6 +119,7 @@
       <div *ngIf="_battleService.currentFight"  class="card card-battle event col-sm">
             <div *ngIf="_battleService.currentFight === true">
                     <h3> {{_battleService.currentEnemy.name}}</h3>
+                    <img id="enemy-img" src="{{_battleService.currentEnemy.img}}">
                     <div class="battle_updates">
                     {{ _battleService.battle_update_message}}
                     </div>
@@ -149,15 +153,7 @@
 
 
 
-
-
-
-
-
-
-
-
-      <BR>
+    
 
     <div class="col-sm">
             <div class="card card-stats">

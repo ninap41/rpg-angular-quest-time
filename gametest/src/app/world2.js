@@ -1,11 +1,20 @@
 const events = {
+
+    "wizards_hut_inside_force_brute" : {
+
+    },
+    "wizards_hut_inside_force_magic" : {
+
+    }
+
+
+
 }
 const SecondWorldStart = {
     "name": "Outside Of CHARHOMETOWN",
     'world_description' : 'You are in outside your hometown of CHARHOMETOWN.',
     "imageUrl":"../../assets/world-background/town.jpg",
     "wizards_hut" : {
-        "eventtriggerchance" : null,
         'update_message': null,
         "name": "Wizard's Hut",
         'influence_event': null,
@@ -16,22 +25,39 @@ const SecondWorldStart = {
                 "room": "wizards_hut_inside",
                 "description" : 'You the incantations being performed inside.'
             },
-            // {
-            //     "name":"Slam Fist On Door",
-            //     "room":"storage_room",
-            //     "description" : 'there could be supplies inside... It might be useful to inspect.'
-            // },
-         
+            {
+                "name":"Leave",
+                "room": "leaving_wizards_hut",
+                "description" : 'No time to waste! You must warn this wizard before it iss too late'
+            },
           
-        ], // take out
+        ], 
+        "inspects": [
+            {
+                "guard" : false,
+                "name":"Slam Fist On Door",
+                "event": "wizards_hut_inside_force_brute",
+                "description" : 'You shall let yourself in',
+                "eradicate" : 'Aminrah',
+                   
+            },
+            {
+                "guard" : true,
+                "name":"Perform Lockpicking Spell",
+                "event": "wizards_hut_inside_force_magic",
+                "description" : 'You shall let yourself in. If the wizard has a problem then you will deal with him',
+                "needs" : 'Aminrah',
+            },
+          
+        ],
 
     },
+
     "wizards_hut_inside" : {
-        "eventtriggerchance" : null,
         'update_message': null,
         "name": "Wizard's Hut",
         'influence_event': null,
-        "description":`The door creaks open slowly and NINA HASNT PROGRAMMED THIS FAR IN THE GAME YET `,
+        "description":"You knock gingerly. The Incantations stop. You hear a shuffling from inside and a voice below, 'In all of CHARHOMETOWN Peril, Who disturbs me this night? It best not be for nil!'. You reply, 'It is I, CHARNAME of CHARHOMETOWN . The western gates of CHARHOMETOWN burn by the hands of pillaging Orcs. Alliances sent by the likes of ...a wizard.' ",
         "directions": [
             // {
             //     "name":"Mother's Room",

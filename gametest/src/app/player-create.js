@@ -3,10 +3,11 @@
 
 
 class Player {
-  
+
     constructor(name) {
         this.name = 'Nina';
         this.lvl = 1;
+        this.avatar = '/assets/characters/human.png',
         this.health = 100;
         this.strength = 10;
         this.speed = 5;
@@ -30,6 +31,7 @@ class Player {
         constructor(name) {
             super(name);
             this.race = 'Human';
+            this.avatar = '/assets/characters/human.png',
             this.name = name;
             this.health = 100;
             this.strength = 8;
@@ -50,6 +52,7 @@ class Player {
         constructor(name) {
             super(name);
             this.race = 'Ninja';
+            this.avatar = '/assets/characters/human.png',
             this.name = name;
             this.health = 100;
             this.strength = 3;
@@ -70,6 +73,7 @@ class Player {
         constructor(name) {
             super(name);
             this.race = 'Dwarf';
+            this.avatar = '/assets/characters/male-dwarf.png',
             this.name = name;
             this.health = 140;
             this.strength = 14;
@@ -90,6 +94,7 @@ class Player {
         constructor(name) {
             super(name);
             this.race = 'Wizard';
+            this.avatar = '/assets/characters/wizard.png',
             this.health = 90;
             this.strength = 6;
             this.speed = 10;
@@ -111,6 +116,7 @@ class Player {
             super(name);
             this.race = 'Orc';
             this.health = 90;
+            this.avatar = '/assets/characters/orc.png',
             this.strength = 14;
             this.speed = 10;
             this.wisdom = 6;
@@ -130,6 +136,7 @@ class Player {
         constructor(name) {
             super(name);
             this.name = name;
+            this.avatar = '/assets/characters/elf.png',
             this.health = 110;
             this.strength = 5;
             this.speed = 10;

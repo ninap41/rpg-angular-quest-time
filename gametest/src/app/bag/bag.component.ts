@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { BattleService } from '../battle.service';
 import { ItemService } from '../item.service';
+import { AudioService } from '../audio.service';
+
 
 @Component({
   selector: 'app-bag',
   templateUrl: './bag.component.html',
-  styleUrls: ['./bag.component.css']
+  styleUrls: ['./bag.component.scss']
 })
 export class BagComponent implements OnInit {
 Player;
@@ -14,6 +16,7 @@ title = 'Bag';
   constructor(
     private _characterService: CharacterService,
     private _battleService: BattleService,
+    private _audioService: AudioService,
     private _itemService: ItemService
   ) { }
 
@@ -25,11 +28,16 @@ title = 'Bag';
 use_item(item, idx) {
 
     let str = '';
+    if (item.use_sound) {
+      this._audioService.random_sound(item.use_sound);
+    }
     if (item.influence_health) {
       if (item.influence_health[0] === 'positive') {
        if (this._characterService.Player.health + item.influence_health[1] > this._characterService.MaxHealth) {
+         const health_difference = this._characterService.MaxHealth - this._characterService.Player.health;
         this._characterService.Player.health = this._characterService.MaxHealth;
-        str = `Your health is already Max. No increase in health.`;
+        str = `Your health increased by ${health_difference} point(s).
+        Your health is Maxed at ${this._characterService.MaxHealth}. Consumables will have no effect.`;
        } else {
         this._characterService.Player.health += item.influence_health[1];
         str += `You consumed '${item.name}', restoring ${item.influence_health[1]} point(s)

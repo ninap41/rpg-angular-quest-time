@@ -6,55 +6,46 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { StatsComponent } from './stats/stats.component';
 import { BagComponent } from './bag/bag.component';
 import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
-import { SecondworldComponent } from './in-game/secondworld/secondworld.component';
 import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomepageComponent},
-    { path: 'in-game',   component: InGameComponent,
+    { path: '', component: HomepageComponent, pathMatch: 'full' },
+    { path: 'home', component: HomepageComponent, data: { state: 'home' } },
+    { path: 'in-game',   component: InGameComponent, data: { state: 'in-game' } ,
     children: [
-
-        {path: 'in-game/firstworld', component: FirstworldComponent},
-        {path: 'in-game/secondworld', component: SecondworldComponent},
+        {path: 'in-game/firstworld', component: FirstworldComponent, },
     ]},
 
-    {path: 'firstworld', component: FirstworldComponent,  children: [
-        {path: 'home/first-world/bag', component: BagComponent},
-        {path: 'home/first-world/help', component: HelpComponent},
-
-        {path: 'first-world/help', component: HelpComponent},
-
+    {path: 'firstworld', component: FirstworldComponent, data: { state: 'firstworld' },
+    children: [
+        { path: 'home/first-world/bag', component: BagComponent },
+        { path: 'home/first-world/help', component: HelpComponent },
+        { path: 'first-world/help', component: HelpComponent},
     ]},
-
-    { path: 'home/in-game',   component: InGameComponent, children: [
-        {path: 'home/in-game/firstworld', component: FirstworldComponent},
-        {path: 'home/in-game/secondworld', component: SecondworldComponent},
+        { path: 'home/in-game',   component: InGameComponent, data: { state: 'home/in-game' },
+        children: [
+        { path: 'home/in-game/firstworld', component: FirstworldComponent },
     ]
 },
-{ path: 'help',  component: HelpComponent},
-{ path: 'firstworld/help',  component: HelpComponent},
-
-
-    { path: 'stats',  component: StatsComponent},
-    { path: 'bag', component: BagComponent},
-
-
-
+        { path: 'help',  component: HelpComponent, data: { state: 'help' }},
+        { path: 'firstworld/help',  component: HelpComponent, data: { state: 'firstworld/help' }},
+        { path: 'stats',  component: StatsComponent, data: { state: 'stats' }},
+        { path: 'bag', component: BagComponent, data: { state: 'bag' }},
+        { path: '**', component: HelpComponent, data: { state: 'help' } }
 
 ];
+
 const routes2: Routes = [
     { path: '', redirectTo: '/in-game', pathMatch: 'full' },
-    { path: 'home', component: InGameComponent},
-    { path: 'in-game',   component: InGameComponent},
-    { path: 'home/in-game',   component: InGameComponent},
-    { path: 'stats',  component: StatsComponent},
-    { path: 'bag', component: BagComponent},
-
+    { path: 'home', component: InGameComponent, data: { state: 'home' }},
+    { path: 'in-game',   component: InGameComponent, data: { state: 'in-game' }},
+    { path: 'home/in-game',   component: InGameComponent, data: { state: 'home/in-game' }},
+    { path: 'stats',  component: StatsComponent, data: { state: 'stats' }},
+    { path: 'bag', component: BagComponent, data: { state: 'bag' }},
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)
+    imports: [RouterModule.forRoot(routes, {useHash: true})
     ],
     exports: [RouterModule]
   })
