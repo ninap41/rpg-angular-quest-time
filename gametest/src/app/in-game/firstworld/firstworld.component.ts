@@ -61,7 +61,7 @@ world_num = 1;
     this.playertest = JSON.parse(localStorage.getItem('Player'));
     this.currentworld = HumanWorldStart;
     this.secondworld = SecondWorldStart;
-    this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN'  this.Player.hometown);
+    this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
     console.log('PLAYER TEST: '  + this.playertest.name );
     console.log('Length: '  + this.Player.worldPoint.length);
     console.log('content: '  + this.Player.worldPoint);
