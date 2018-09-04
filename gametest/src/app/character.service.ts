@@ -14,9 +14,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
-import {  WorldPlayer, HumanWorldStart } from './world1';
-import { weapons, items } from './item-create';
-import { npcs } from './npc-create';
+import {  WorldPlayer, HumanWorldStart } from './world/world1';
+import { weapons, items } from './world/item-create';
+import { npcs } from './world/npc-create';
 
 
 @Injectable()

@@ -41,6 +41,7 @@ https://material.angular.io/guide/getting-started-->
             
         
         <main class="jumbotron" [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+                <div class="background-image"></div>
                 <router-outlet #o="outlet"></router-outlet>
         </main>
 

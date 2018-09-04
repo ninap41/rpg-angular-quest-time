@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { BattleService } from '../battle.service';
-import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-full-stats',
@@ -14,7 +13,6 @@ export class FullStatsComponent implements OnInit {
     constructor(
       private _characterService: CharacterService,
       private _battleService: BattleService,
-      private _itemService: ItemService
     ) {
   
     }

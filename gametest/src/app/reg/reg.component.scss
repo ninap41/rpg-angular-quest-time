@@ -1,11 +1,7 @@
-
 @import "../../variables.scss";
 @import "../../../node_modules/rpg-awesome/css/rpg-awesome.min.css";
 
-ul > li {
-    width: 30em;
+.card {
+    padding:1em;
+    background-color:$invisible
 }
-.hover {
-    cursor: pointer;
-}
-

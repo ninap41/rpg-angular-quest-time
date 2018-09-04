@@ -4,8 +4,8 @@ import { BattleService } from '../../battle.service';
 import { AudioService } from '../../audio.service';
 
 import { RouterModule, Routes, Router } from '@angular/router';
-import { HumanWorldStart, events } from '../../world1';
-import { SecondWorldStart } from '../../world2';
+import { HumanWorldStart, events } from '../../world/world1';
+import { SecondWorldStart } from '../../world/world2';
 
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from '../../player-create';
 
@@ -61,7 +61,7 @@ world_num = 1;
     this.playertest = JSON.parse(localStorage.getItem('Player'));
     this.currentworld = HumanWorldStart;
     this.secondworld = SecondWorldStart;
-    this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+    this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN'  this.Player.hometown);
     console.log('PLAYER TEST: '  + this.playertest.name );
     console.log('Length: '  + this.Player.worldPoint.length);
     console.log('content: '  + this.Player.worldPoint);
@@ -82,6 +82,7 @@ world_num = 1;
     console.log( 'this.playersPoint: ' + this.playersPoint +
     'this.playersPoint: ' +  this.Player.worldPoint);
     this.Check_all();
+
   }
 
   nextWorld(direction) {
@@ -109,6 +110,8 @@ world_num = 1;
   }
     this.check_name_and_home(this.playersPoint);
     this.check_inspects_guard(this.playersPoint);
+    this._battleService.updateHealthColor();
+
   }
 
   karma_update(point) {
@@ -117,11 +120,12 @@ world_num = 1;
     } else {
       this.Player.karma += point.karma_impact[1];
     }
+    this._battleService.updateHealthColor();
   }
   check_event_name_home(event) {
     if (event) {
       if (event.enemy) {
-        event.enemy.description = event.enemy.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+        event.enemy.description = event.enemy.description.replace('CHARHOMETOWN' , this.Player.hometown); // put in service
         event.enemy.description = event.enemy.description.replace('CHARNAME', this.Player.name);
         event.enemy.description = event.enemy.description.replace('CHARRACE', this.Player.race); // put in service
         event.enemy.opening_line = event.enemy.opening_line.replace('CHARHOMETOWN', this.Player.hometown); // put in service
@@ -137,6 +141,7 @@ world_num = 1;
     }
 
   }
+
   check_inspects_guard(point) {
     if (point.inspects) {
       for (const inspect of point.inspects) {
@@ -174,13 +179,15 @@ world_num = 1;
 
   check_name_and_home(point) {
     if (point.description) {
-      this.playersPoint.description = this.playersPoint.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+      this.playersPoint.description = this.playersPoint.description.replace('CHARHOMETOWN', this.Player.hometown);
       this.playersPoint.description = this.playersPoint.description.replace('CHARNAME', this.Player.name);
       this.playersPoint.description = this.playersPoint.description.replace('CHARRACE', this.Player.race); // put in service
       }
   }
 
   traverse(direction) {
+  this._battleService.updateHealthColor();
+
 if (direction.audio) {
   console.log(direction.audio);
 } // audio service move
@@ -289,6 +296,7 @@ if ( direction.world1_end) {
   }
 
   inspectWorld(action, idx) {
+    this._battleService.updateHealthColor();
     if (action.karma_impact) {
       this.karma_update(action);
     }
@@ -331,7 +339,7 @@ if ( direction.world1_end) {
     this.currentEvent = this.firstworldevents[inspectEvent];
     /// in case of influence event which happens no matter what.
     if (this.currentEvent) {
-              this.Check_all();
+            this.Check_all();
 
           if (this.currentEvent.influence_event) {
             const trigger =  Math.floor(Math.random() * this.Player.karma);
@@ -359,6 +367,7 @@ if ( direction.world1_end) {
 
 
   inspectEvent(action, idx) {
+    this._battleService.updateHealthColor();
 
     if (action.karma_impact) {
       this.karma_update(action);
@@ -497,19 +506,21 @@ if ( direction.world1_end) {
       console.log('block');
       this._battleService.enemyAttack(action);
       this.fight('dead');
-
      } else if (action === 'Taunt') {
       console.log('taunt');
       this._battleService.enemyAttack(action);
       this.fight('dead');
-
-
      } else if (typeof action === 'number' ) {
       console.log(action);
       this._battleService.use_item_mid_battle(action);
+
      }
+     console.log(this._battleService.currentEnemy.healthColor);
     }
     this.check_karma();
+
+    this._battleService.updateHealthColor();
+
   }
 
   updateCharacterStats() {
@@ -529,4 +540,5 @@ if ( direction.world1_end) {
       }
     }
   }
+
 }

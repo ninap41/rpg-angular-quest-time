@@ -17,7 +17,7 @@
         <span> Karma Effect: {{item.karma_effect.name}}  </span><BR>
         <i>'{{item.karma_effect.description}}'</i><BR>
         <span *ngIf="item.equipped === true"> Equipped</span>
-        <span [ngClass]="{'green': item.equipped ===true, 'orange': item.equipped === false }">{{item.name}}</span>
+        <span [ngClass]="{'green': item.equipped ===true, 'orange': item.equipped === false }">{{item.name}}<i class="ra ra-{{item.icon}} ra-lg"></i></span>
       </span>
       <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
     </ng-template>
@@ -26,11 +26,14 @@
         {{item.name}}
       </span>
       <span *ngIf="item.type === 'weapon' && this.Player.weapon === null;" (click)="_battleService.weaponequip(item, idx, 'equip')">
-        <img width="10px" src="/assets/icons/equip-weapon.png">
+       <span class="blue hover" >Equip <i class="ra ra-underhand ra-lg"></i></span> 
       </span>
-      <span *ngIf="item.type === 'usable' && _battleService.currentFight === false" (click)="use_item(item, idx);">
-        <img width="10px" src="/assets/icons/health-normal.png">
+      <span *ngIf="item.type === 'usable' && _battleService.currentFight === false; else otherItems" (click)="use_item(item, idx);">
+          <i class="ra ra-{{item.icon}} ra-lg"></i>
       </span>
+      <ng-template #otherItems>
+          <i class="ra ra-{{item.icon}} ra-lg"></i>
+      </ng-template >
     </li>
 </div>
 

@@ -13,9 +13,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
-import {  WorldPlayer, HumanWorldStart } from './world1';
-import { weapons, items } from './item-create';
-import { npcs } from './npc-create';
+import {  WorldPlayer, HumanWorldStart } from './world/world1';
+import { weapons, items } from './world/item-create';
+import { npcs } from './world/npc-create';
 
 @Injectable()
 export class AudioService {
@@ -47,7 +47,7 @@ fight_theme_audio = new Audio();
     this.inventory_sound.load();
     this.inventory_sound.play();
      }  else {
-      this.inventory_sound.src = 'https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/sounds/rpg/inventory/cloth-heavy.wav';
+      this.inventory_sound.src = '/assets/sounds/rpg/inventory/cloth-heavy.wav';
       this.load_n_play( this.inventory_sound, this.inventory_sound.src);
      }
     return;
@@ -64,10 +64,10 @@ fight_theme_audio = new Audio();
    fight_sound(currentEnemy) {
      if (currentEnemy.race === 'Orc') {
       this.enemy_sound = new Audio();
-      this.enemy_sound.src = `https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/sounds/rpg/enemy/ogre${(Math.floor(Math.random() * 4) + 1)}.wav`;
+      this.enemy_sound.src = `/assets/sounds/rpg/enemy/ogre${(Math.floor(Math.random() * 4) + 1)}.wav`;
      } else if (currentEnemy.race === 'Human') {
       this.enemy_sound = new Audio();
-      this.enemy_sound.src = `https://ninap41.github.io/RPG-Wizards-of-The-Realm/src/assets/sounds/rpg/enemy/human/human${(Math.floor(Math.random() * 3)) + 1}.mp3`;
+      this.enemy_sound.src = `/assets/sounds/rpg/enemy/human/human${(Math.floor(Math.random() * 3)) + 1}.mp3`;
      }
   this.load_n_play( this.enemy_sound, this.enemy_sound.src);
    }

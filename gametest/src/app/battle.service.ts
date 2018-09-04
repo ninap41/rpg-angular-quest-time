@@ -9,8 +9,8 @@ import { CharacterService } from './character.service';
 import { AudioService } from './audio.service';
 
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
-import {  WorldPlayer, HumanWorldStart } from './world1';
-import { weapons, items } from './item-create';
+import {  WorldPlayer, HumanWorldStart } from './world/world1';
+import { weapons, items } from './world/item-create';
 
 @Injectable()
 export class BattleService {
@@ -306,6 +306,33 @@ export class BattleService {
     if (this.currentEnemy.health <= 0) { // base CASE baby
       this.fightEnd(this.currentEnemy);
     }
+}
+
+
+updateHealthColor() {
+  if (this.currentEnemy) {
+    if (this.currentEnemy.health > 75 ) {
+      this.currentEnemy.healthColor = 'green';
+    } else if (this.currentEnemy.health >= 50 && this.currentEnemy.health < 76) {
+      this.currentEnemy.healthColor = 'yellow';
+    } else if (this.currentEnemy.health >= 25 && this.currentEnemy.health < 50) {
+      this.currentEnemy.healthColor = 'orange';
+    } else if (this.currentEnemy.health >= 0 && this.currentEnemy.health < 25) {
+      this.currentEnemy.healthColor = 'red';
+    }
+    console.log('ASDJFGKFJKGDSKGHCADSGHCASHCG' + this.currentEnemy.healthColor);
+  }if (this._characterService.Player) {
+    if (this._characterService.Player.health > 75 ) {
+      this._characterService.Player.healthColor = 'green';
+    } else if (this._characterService.Player.health >= 50 && this._characterService.Player.health < 76) {
+      this._characterService.Player.healthColor = 'yellow';
+    } else if (this._characterService.Player.health >= 25 && this._characterService.Player.health < 50) {
+      this._characterService.Player.healthColor = 'orange';
+    } else if (this._characterService.Player.health >= 0 && this._characterService.Player.health < 25) {
+      this._characterService.Player.healthColor = 'red';
+    }
+  }
+  return;
 }
 
 }

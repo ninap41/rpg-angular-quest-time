@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from '../player-create';
 import { Animations, gameStart } from '../animate';
-import { HumanWorldStart, events } from '../world1';
+import { HumanWorldStart, events } from '../world/world1';
 
 @Component({
   selector: 'app-homepage',
@@ -32,6 +32,7 @@ export class HomepageComponent implements OnInit {
     this.gameStart = true;
     this._characterService.showNav = true;
     this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+
 
   }
 

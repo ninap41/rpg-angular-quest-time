@@ -1,0 +1,17 @@
+@import "../../variables.scss";
+@import "../../../node_modules/rpg-awesome/css/rpg-awesome.min.css";
+
+
+#avatar {
+    width: 200px;
+    max-width: 200px;
+    padding-bottom: 2em;
+}
+
+.ra {
+    color:$grey
+}
+
+.yellow {
+    color: yellow;
+}

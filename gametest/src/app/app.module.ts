@@ -12,7 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Routes, RouterModule } from '@angular/router';
 import { CharacterService } from './character.service';
 import { BattleService } from './battle.service';
-import { ItemService } from './item.service';
 import { AudioService } from './audio.service';
 
 import { InGameComponent } from './in-game/in-game.component';
@@ -25,6 +24,9 @@ import { ShopComponent } from './shop/shop.component';
 import { FullBagComponent } from './full-bag/full-bag.component';
 import { HelpComponent } from './help/help.component';
 import { FullStatsComponent } from './full-stats/full-stats.component';
+import { RegComponent } from './reg/reg.component';
+import { IntropageComponent } from './intropage/intropage.component';
+import { LogComponent } from './log/log.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,10 @@ import { FullStatsComponent } from './full-stats/full-stats.component';
     ShopComponent,
     FullBagComponent,
     HelpComponent,
-    FullStatsComponent
+    FullStatsComponent,
+    RegComponent,
+    IntropageComponent,
+    LogComponent
   ],
   imports: [
     HttpModule,
@@ -59,7 +64,6 @@ import { FullStatsComponent } from './full-stats/full-stats.component';
   providers: [
     CharacterService,
     BattleService,
-    ItemService,
     AudioService
 
 
