@@ -19,6 +19,7 @@
                 'durability' : 8,
                 'description' : 'Still stained with your mothers blood, this is a cruel weapon.',
                 'equipped': false,
+                'icon': 'dripping-knife'
             },
 
             {
@@ -39,6 +40,7 @@
                 'durability' : 6,
                 'description' : 'A shimmering at the head of the staff draws in your attention. You feel calm and powerful.',
                 'equipped': false,
+                'icon' : 'crystal-wand'
             },
 
             {
@@ -58,6 +60,7 @@
                 'durability' : 6,
                 'description' : 'The edges are rough. They cut into your fingers. This is an abrasive, yet powerful weapon. It fights light.',
                 'equipped': false,
+                'icon' : 'crystal-wand'
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
@@ -76,6 +79,7 @@
                 'durability' : 14,
                 'description' : 'Gazing upon it you feel the memory of your Father creeping back. It fills you with strength',
                 'equipped': false,
+                'icon' : 'sword'
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
@@ -93,6 +97,8 @@
                 'durability' : 14,
                 'description' : 'A sword forged with Obsidian shards. ',
                 'equipped': false,
+                'icon' : 'dripping-sword'
+
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),
@@ -111,6 +117,7 @@
                 'durability' : 14,
                 'description' : 'Gazing upon it you feel the memory of your Father creeping back. It fills you with strength',
                 'equipped': false,
+                'icon': 'crossbow'
 
             },
             {
@@ -126,10 +133,12 @@
                     'effect' : 6,
                     'name': 'Dwarven Courage',
                     'description' : '+6 karma for your fathers power still residing in the weapon',
-                    'equipped': false,
                 },
                 'durability' : 14,
-                'description' : 'Gazing upon it you feel the memory of your Father creeping back. It fills you with strength'
+                'description' : 'Gazing upon it you feel the memory of your Father creeping back. It fills you with strength',
+                'equipped': false,
+                'icon': 'battered-axe'
+
             },
             {
                 'id' : Math.floor(Math.random() * 10000000000),    // 8th weapon
@@ -144,10 +153,11 @@
                     'effect' : -2,
                     'name': 'Rusty Courage',
                     'description' : '-2 to Karma if this is your first weopon. Merely a pocket knife.',
-                    'equipped': false,
                 },
                 'durability' : 10,
-                'description' : 'Leaves rust stains in your pocket. Absolutely SHIT weapon.'
+                'description' : 'Leaves rust stains in your pocket. Absolutely SHIT weapon.',
+                'equipped': false,
+                'icon': 'bone-knife'
             },
          
         ],
@@ -169,6 +179,8 @@
             'limit' : true,
             'qty' : 3,
             "description" : `Used to light places.`,
+            'icon': 'match'
+
             
         },
         'stable_key' : {
@@ -182,6 +194,7 @@
             'limit' : true,
             'qty' : 1,
             "description" : `Key to your parents stables. Found in the sneaky halflings grubby palms!`,
+            'icon': 'key-basic'
             
         },
         'Orc Shiving Knife' : 
@@ -203,6 +216,7 @@
                 'durability' : 8,
                 'description' : 'Still stained with your mothers blood, this is a cruel weapon.',
                 'equipped': false,
+                'icon': 'dripping-blade'
             },
         
         'helpbook' : {
@@ -217,6 +231,7 @@
             'qty' : 1,
             'update_message' : 'Reading that felt better. +5 to karma',
             "description" : `A help book for a dingus who has never played an rpg. Check your Nav bar.`,
+            'icon': 'book'
             
         },
         'gaffers_letter' : {
@@ -232,17 +247,23 @@
             'qty' : 1,
             'update_message' : 'Reading that felt better. +5 to karma',
             "description" : ` 
-            Dear Loved One, 
+            Dear Loved One,  
+            <br/>
+            \n
 
                 I apologize for all my shortcomings. The Orcs would not be here if it were not for me. 
             The dark wizard promised my family safety if I but give him my father ancient summoning 
             charm to break down our towns magic defenses. Little did I know he needed the blood of 50
-            innocents for his conjuring. If anyone finds this...
+            innocents for his conjuring. If anyone finds this...\
+            \n
             
-            To CHARNAME, I have loved you with all my heart since we were children. Please forgive me... 
+            To CHARNAME, I have loved you with all my heart since we were children. Please forgive me... \
+            \n
              
-            Love, 
+            Love, \
+            \n
                 Thomas Gaffer.`,
+            'icon': 'unfurled'
 
             
         },
@@ -258,6 +279,7 @@
             'limit' : false,
             'qty' : 1,
             "description" : `Key to the Brandybuck Home's backdoor`,
+            'icon': 'three-keys'
 
             
         },
@@ -273,6 +295,8 @@
             'limit' : false,
             'qty' : 1,
             "description" : `Key to the stables`,
+            'icon': 'key'
+
 
             
         },
@@ -289,6 +313,8 @@
             'limit' : true,
             'qty' : 2,
             "description" : `A little something to boost morale and get you through the day. Increased HP by 10`,
+            'icon': 'beer'
+
         },
         'bread' : {
             'id' : Math.floor(Math.random() * 10000000000),
@@ -302,6 +328,8 @@
             'limit' : true,
             'qty' : 1,
             "description" : `Bread of your people. Reminds you of your home.`,
+            'icon': 'toast'
+
         },
         'cheese' : {
             'id' : Math.floor(Math.random() * 10000000000),
@@ -315,6 +343,7 @@
             'limit' : true,
             'qty' : 1,
             "description" : `Brie cheese of your people.`,
+            'icon': 'cheese'
         },
         'potion_of_luck' : {
             'id' : Math.floor(Math.random() * 10000000000),
@@ -328,6 +357,7 @@
             'limit' : true,
             'qty' : 3,
             "description" : `A potion that increases Karma by 5. (Bad events trigger less when karma is high)`,
+            'icon': 'fizzing-flask'
         },
         'potion_of_healing' : {
             'id' : Math.floor(Math.random() * 10000000000),
@@ -341,6 +371,8 @@
             'limit' : true,
             'qty' : 1,
             "description" : `This potion will heal you by +20 HP`,
+            'icon': 'heart-bottle'
+
         },
         'book_of_fire_spell' : {
             'id' : Math.floor(Math.random() * 10000000000),
@@ -352,7 +384,9 @@
             'influence_damage' : ['health', 4],
             'limit' : true,
             'qty' : 1,
-            "description" : `A spell that can inflicts +4 damage to enemy each use`,
+            "description" : `A spell that can inflict +4 damage to enemy each use`,
+            'icon': 'book'
+
         },
 
                

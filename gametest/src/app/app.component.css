@@ -1,0 +1,28 @@
+#body {
+    max-width: 55em;
+    text-align: center;
+    
+}
+a  {
+    font-family: 'GamalielMedium'; 
+    font-weight: normal; 
+    font-style: normal; 
+
+}
+.jumbotron:first-child{
+    margin-top: 0px;
+    padding-top: 0px;
+
+
+}
+.jumbotron {
+    border: 5px groove;
+  
+
+    background-image:  url("/assets/landscapes/moria.jpg");
+    background-position:0% 0%;
+    filter: alpha(Opacity=90);
+opacity: 0.9;
+
+
+}

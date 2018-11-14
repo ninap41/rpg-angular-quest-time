@@ -7,9 +7,12 @@ import { StatsComponent } from './stats/stats.component';
 import { BagComponent } from './bag/bag.component';
 import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
 import { HelpComponent } from './help/help.component';
+import { FullStatsComponent } from './full-stats/full-stats.component';
+import { RegComponent } from './reg/reg.component';
 
 const routes: Routes = [
     { path: '', component: HomepageComponent, pathMatch: 'full' },
+    // { path: 'r', component: HomepageComponent, pathMatch: 'full',data:  { state: 'reg' }  },
     { path: 'home', component: HomepageComponent, data: { state: 'home' } },
     { path: 'in-game',   component: InGameComponent, data: { state: 'in-game' } ,
     children: [
@@ -30,8 +33,10 @@ const routes: Routes = [
         { path: 'help',  component: HelpComponent, data: { state: 'help' }},
         { path: 'firstworld/help',  component: HelpComponent, data: { state: 'firstworld/help' }},
         { path: 'stats',  component: StatsComponent, data: { state: 'stats' }},
+        { path: 'fullstats',  component: FullStatsComponent, data: { state: 'fullstats' }},
+
         { path: 'bag', component: BagComponent, data: { state: 'bag' }},
-        { path: '**', component: HelpComponent, data: { state: 'help' } }
+        { path: '**', component: HomepageComponent, data: { state: 'home' } }
 
 ];
 

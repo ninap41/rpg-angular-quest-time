@@ -22,7 +22,26 @@ class Player {
         this.worldPoint = [];
         this.spellbook = [];
         this.hometown = null;
-     }
+        this.eventLog = [],
+        this.battleLog = [],
+        this.healthColor = 'green',
+        this.healthimages = [],
+        this.healthTiers =  [
+            { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+            { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+            { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+            { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+        ],
+
+
+        this.states = {
+            healthState : { change: null, val: null, increase: '+' , decrease: '-'},
+            luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
+            strengthState: { change: null, val: null, increase: '+' , decrease: '-'},
+            speed: { change: null, val: null, increase: '+' , decrease: '-'},
+            karma: { change: null, val: null, increase: '+' , decrease: '-'},
+         };
+        }
   
     }
   
@@ -40,10 +59,27 @@ class Player {
             this.karma = 3;
             this.reputation = 0;
             this.bag = [];
-            this.backstory = "You are You are a lonely traveler from the Kingdom of Denethor. Born and raised in this presiding town. "
+            this.backstory = "You are a lonely traveler from the Kingdom of Denethor. Born and raised in this presiding town. "
             this.weapon = null;  
             this.worldPoint = [];
             this.hometown = "Denathor";
+            this.eventLog = [],
+            this.battleLog = [],
+            this.healthColor = 'green',
+            this.healthimages = [],
+            this.healthTiers =  [
+                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            ],
+            this.states = {
+                healthState : { change: null, val: null, increase: '+' , decrease: '-'},
+                luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
+                strengthState: { change: null, val: null, increase: '+' , decrease: '-'},
+                speed: { change: null, val: null, increase: '+' , decrease: '-'},
+                karma: { change: null, val: null, increase: '+' , decrease: '-'},
+             };
             }
     
         }
@@ -66,6 +102,24 @@ class Player {
             this.weapon = null;  
             this.worldPoint = [];
             this.hometown = "The Black Citadel";
+            this.eventLog = [],
+            this.battleLog = [],
+            this.healthColor = 'green',
+            this.healthimages = [],
+            this.healthTiers =  [
+                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            ],
+
+            this.states = {
+                healthState : { change: null, val: null, increase: '+' , decrease: '-'},
+                luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
+                strengthState: { change: null, val: null, increase: '+' , decrease: '-'},
+                speed: { change: null, val: null, increase: '+' , decrease: '-'},
+                karma: { change: null, val: null, increase: '+' , decrease: '-'},
+             };
         }
     }
 
@@ -86,8 +140,25 @@ class Player {
             this.weapon = null;  
             this.worldPoint = [];
             this.hometown = "The Barren Mines";
-            }
+            this.eventLog = [],
+            this.battleLog = [],
+            this.healthColor = 'green',
+            this.healthimages = [],
+            this.healthTiers =  [
+                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            ],
 
+            this.states = {
+                healthState : { change: null, val: null, increase: '+' , decrease: '-'},
+                luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
+                strengthState: { change: null, val: null, increase: '+' , decrease: '-'},
+                speed: { change: null, val: null, increase: '+' , decrease: '-'},
+                karma: { change: null, val: null, increase: '+' , decrease: '-'},
+             };
+            }
         }
   
     class Wizard extends Player {
@@ -108,6 +179,24 @@ class Player {
             this.spellbook = [];
             this.worldPoint = [];
             this.hometown = "The Misty Mountains";
+            this.eventLog = [],
+            this.battleLog = [],
+            this.healthColor = 'green',
+            this.healthimages = [],
+            this.healthTiers =  [
+                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            ],
+
+            this.states = {
+                healthState : { change: null, val: null, increase: '+' , decrease: '-'},
+                luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
+                strengthState: { change: null, val: null, increase: '+' , decrease: '-'},
+                speed: { change: null, val: null, increase: '+' , decrease: '-'},
+                karma: { change: null, val: null, increase: '+' , decrease: '-'},
+             };
             }
     }
 
@@ -128,6 +217,24 @@ class Player {
             this.weapon = null;
             this.worldPoint = [];
             this.hometown = "Mordoria";
+            this.eventLog = [],
+            this.battleLog = [],
+            this.healthColor = 'green',
+            this.healthimages = [],
+            this.healthTiers =  [
+                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            ],
+
+            this.states = {
+                healthState : { change: null, val: null, increase: '+' , decrease: '-'},
+                luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
+                strengthState: { change: null, val: null, increase: '+' , decrease: '-'},
+                speed: { change: null, val: null, increase: '+' , decrease: '-'},
+                karma: { change: null, val: null, increase: '+' , decrease: '-'},
+             };
             }
         }
 
@@ -150,6 +257,24 @@ class Player {
             this.state = null;
             this.worldPoint = [];
             this.hometown = "The Misty Forest";
+            this.eventLog = [],
+            this.battleLog = [],
+            this.healthColor = 'green',
+            this.healthimages = [],
+            this.healthTiers =  [
+                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            ],
+
+            this.states = {
+                healthState : { change: null, val: null, increase: '+' , decrease: '-'},
+                luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
+                strengthState: { change: null, val: null, increase: '+' , decrease: '-'},
+                speed: { change: null, val: null, increase: '+' , decrease: '-'},
+                karma: { change: null, val: null, increase: '+' , decrease: '-'},
+             };
         }
     }
    

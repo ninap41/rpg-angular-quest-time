@@ -1,9 +1,9 @@
 <BR>
 <BR>   
     <fieldset>
-    <div class="statsFrame">
+  
     <span class="card" [@gameStart]="gameStart === true ? gameStart === false : ''" *ngIf="gameStart == true">
-    
+                <div class="statsFrame">
                 <h2>Stats</h2>
                 <!-- {{ Player.bag | json}} -->
                 <div class="container">
@@ -17,7 +17,7 @@
                             <i>LVL: </i>{{Player.lvl}}<BR>
                             <i>Strength: </i>{{Player.strength}}<BR>
                             <i>Speed: </i>{{Player.speed}}<BR>
-                            <i>Weapon: </i> <span style="color:red;" *ngIf="!Player.weapon">No weapon equipped.</span>{{Player.weapon}}<BR>
+                            <i>Weapon: </i> <span style="color:red;" *ngIf="!Player.weapon">no <i class='ra ra-crossed ra-sm'></i> equipped</span>{{Player.weapon}}<BR>
                             <i>Hometown: </i> {{Player.hometown}}<BR>
                             <i>Karma: </i> {{Player.karma}}<BR>
                             <i>Gold: </i>{{Player.gold}}<BR>
@@ -52,6 +52,7 @@
                         
                                     <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
                                     </ng-template>
+                             
                             </span><br><br>
                 </div>
 
@@ -59,62 +60,79 @@
                 <div class="row">
                     <button class="btn btn-primary center-block" style="text-decoration:none;" [routerLink]="['/firstworld']" >Begin Adventure!</button>
                 </div>
+            </div>
     </span>
-    </div> <!-- stats frame end -->
 
           <span *ngIf="gameStart != true ">
             <i style="font-size: .5em"> ~ hover over selected weapons and wait a minute of two to see a description of each item ~</i>
             <BR><BR>
-              <form (submit)="GameStart()" #PlayerForm="ngForm">
-                  Choose Race: 
-                  <select [(ngModel)]="Player.race" name="race">What's your race?
+              <form (submit)="GameStart()" #PlayerForm="ngForm" class="col-sm8 col-md-8" >
+                <div class="form-group row">
+                <label class="col-sm-3 col-md-3 col-form-label"for="race">Choose Race: </label>
+                  <select [(ngModel)]="Player.race" name="race" class="form-control col-sm-6 col-md-6">What's your race?
                     <option value="Human">Human</option>
                     <option value="Elf">Elf</option>
                     <option value="Dwarf">Dwarf</option>
                     <option  ng-model="selected_wizard" value="Wizard">Wizard</option>
                     <option value="Orc">Orc</option>
                   </select> 
-                  <BR>
-                 <span *ngIf="Player.race === 'Wizard'">
-                        <label for="weapon">Choose Staff:</label>
-                        <select  [(ngModel)]="Player.weapon" required name="weapon">
+                </div>
+
+                
+                <div class="form-group weaponSelect">
+                <span class="form-group row" *ngIf="Player.race === 'Wizard'">
+                        <label class="col-sm-3 col-md-3"for="weapon">Choose Staff:</label>
+                        <select  [(ngModel)]="Player.weapon" required name="weapon" class="form-control col-sm-6 col-md-6 ">
                             <option value="Staff of Light">Staff of Light</option>
                             <option value="Staff of Dark">Staff of Dark</option>
                         </select> 
                  </span>
-                 <span  *ngIf="Player.race === 'Human'">
-                        <label for="weapon">Choose Weapon:</label>
+                 </div>
 
-                        <select required [(ngModel)]="Player.weapon" name="weapon">
+                 <div class="form-group weaponSelect">
+                 <span class="form-group row" *ngIf="Player.race === 'Human'">
+                        <label class="col-sm-3 col-md-3" for="weapon">Choose Weapon:</label>
+                        <select required [(ngModel)]="Player.weapon" name="weapon" class="form-control col-sm-6 col-md-6 ">
                             <option title="A gift fron your father who fell in the great war." value="Father's Sword">Father's Sword</option>
                             <option value="Nothing">I carry nothing.</option>
                         </select> 
                  </span>
-                 <span *ngIf="Player.race === 'Orc'">
-                        <label for="weapon">Choose Weapon:</label>
+                </div>
 
-                        <select required [(ngModel)]="Player.weapon" name="weapon">
-                            <option title="Looks very sharp" value="Father's Sword">Father's Sword</option>
-                            <option value="Nothing">I carry nothing.</option>
-                        </select> 
+                 <div class="form-group weaponSelect">
+                 <span  class="form-group row"  *ngIf="Player.race === 'Orc'">
+                    <label class="col-sm-3 col-md-3" for="weapon">Choose Weapon:</label>
+                    <select required [(ngModel)]="Player.weapon" name="weapon" class="form-control col-sm-6 col-md-6 ">
+                        <option title="Looks very sharp" value="Father's Sword">Father's Sword</option>
+                        <option value="Nothing">I carry nothing.</option>
+                    </select> 
                  </span>
-                 <span *ngIf="Player.race === 'Elf'">
-                        <label for="weapon">Choose Weapon:</label>
-                        <select required [(ngModel)]="Player.weapon" name="weapon">
-                            <option title="A gift from your father who fell in the great war of ages between Orcs and Men." value="Father's Bow">Father's Bow</option>
-                            <option value="Nothing">I carry nothing!</option>
-                        </select> 
+                 </div>
+
+                <div class="form-group weaponSelect">
+                 <span  class="form-group row" *ngIf="Player.race === 'Elf'">
+                    <label class="col-sm-3 col-md-3"for="weapon">Choose Weapon:</label>
+                    <select required [(ngModel)]="Player.weapon" name="weapon" class="form-control col-sm-6 col-md-6 ">
+                        <option title="A gift from your father who fell in the great war of ages between Orcs and Men." value="Father's Bow">Father's Bow</option>
+                        <option value="Nothing">I carry nothing!</option>
+                    </select> 
                  </span>
-                 <span *ngIf="Player.race === 'Dwarf'">
-                    <label for="weapon">Choose Weapon:</label>
-                    <select required [(ngModel)]="Player.weapon" name="weapon">
+                </div>
+
+                 <div class="form-group weaponSelect">
+                 <span  class="form-group row" *ngIf="Player.race === 'Dwarf'">
+                    <label class="col-sm-3 col-md-3"for="weapon">Choose Weapon:</label>
+                    <select required [(ngModel)]="Player.weapon" name="weapon" class="form-control col-sm-6 col-md-6 ">
                         <option title="A gift from your father who fell in the great war of ages between Orcs and Men." value="Father's Axe">Father's Axe</option>
                         <option value="Nothing">I carry nothing I'm noble and fierce AF</option>
                     </select> 
                  </span>
-                   <BR>
-              
-                  Name: <input [(ngModel)]="Player.name" name='name' type='text'>
+                 </div>
+                
+                <div class="form-group row">
+                  <label class="col-sm-3 col-md-3 col-form-label"for="name">  Name:  </label>
+                  <input [(ngModel)]="Player.name" name='name' type='text' class="form-control col-sm-6 col-md-6">
+                </div>
                   <BR><BR>
                   <button type="submit" value="Play!">Play!</button>
                 </form>

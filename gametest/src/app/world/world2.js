@@ -13,7 +13,7 @@ const events = {
 const SecondWorldStart = {
     "name": "Outside Of CHARHOMETOWN",
     'world_description' : 'You are in outside your hometown of CHARHOMETOWN.',
-    "imageUrl":"../../assets/world-background/town.jpg",
+    "imageUrl":"/assets/world-background/town.jpg",
     "wizards_hut" : {
         'update_message': null,
         "name": "Wizard's Hut",

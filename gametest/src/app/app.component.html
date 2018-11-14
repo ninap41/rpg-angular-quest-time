@@ -3,8 +3,8 @@ https://material.angular.io/guide/getting-started-->
 
 <div id='body' class="container">
     <div style="text-align:center">
-            <h1 class="mainTitle">
-                Wizards of the Realm
+            <h1 class="mainTitle" style="font-family: 'Cabin Sketch', cursive;">
+                &#10524; Wizards of the Realm &#10523;
             </h1>
     </div>
     <div class="container">
@@ -16,7 +16,7 @@ https://material.angular.io/guide/getting-started-->
                     <i class="dash">&#9472; </i>
                             <a style="text-decoration:none;" class="redDash" [routerLink]="['firstworld']"  routerLinkActive="active"> Map </a>
                     <i class="dash">&#9472; </i>
-                            <a style="text-decoration:none;"  class="redDash" [routerLink]="['stats']"  routerLinkActive="active">  Stats </a>
+                            <a style="text-decoration:none;"  class="redDash" [routerLink]="['fullstats']"  routerLinkActive="active">  Stats </a>
                     <i class="dash">&#9472; </i>
                             <a style="text-decoration:none;"  class="redDash" [routerLink]="['bag']"  routerLinkActive="active"> Bag </a> 
                     <i class="dash">&#9472; </i>
@@ -26,7 +26,7 @@ https://material.angular.io/guide/getting-started-->
                         <i class="dash">&#9472; </i>
                     </span>
                  
-                   <button class="redDash buttonNone"  (click)="newGame()"> Restart </button> 
+                   <a class="redDash buttonNone" href="http://localhost:4200/"> Restart </a> 
                    <i class="dash">&#9472; </i>
                    
                    <i class="whiteDash fa fa-music"> <b>:</b></i> 
@@ -41,6 +41,7 @@ https://material.angular.io/guide/getting-started-->
             
         
         <main class="jumbotron" [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+                <div class="background-image"></div>
                 <router-outlet #o="outlet"></router-outlet>
         </main>
 

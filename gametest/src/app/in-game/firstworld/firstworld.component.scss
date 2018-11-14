@@ -1,20 +1,34 @@
 @import "../../../variables.scss";
 
+@import "../../../../node_modules/rpg-awesome/css/rpg-awesome.min.css";
 
 .card{
+    border: 5px groove $grey;
     padding: 1em;
-    margin-left: 4em;
-    /* display: flex; */
+    // margin-left: 4em;
+    // margin-right: 4em;
     background-color:$backcolor;
     color: $fontcolor;
 
     
 }
+.btn {
+    // display: block;
 
+}
+.direct i{
+    color: $directColor;
+}
+.inspect i{
+    color:$inspectColor;
+}
 
 .inspect_direct_list {
     padding:.5em;
     display: block;
+}
+.inspect_direct_list button {
+    margin-top: .5em;
 }
 .container {
      background-image:
@@ -31,6 +45,32 @@
     top: 0;
 
 }
+
+.red {
+    color:rgb(251, 106, 106);
+}
+.green {
+    color: rgb(0, 154, 54);
+}
+.orange {
+    color: rgb(208, 146, 0);
+
+}
+.purple {
+    color: purple;
+}
+.black {
+    color: black
+}
+.blue {
+    color: rgb(7, 0, 208);
+
+}
+.yellow {
+    color: rgb(208, 173, 0);
+
+}
+
 .pointTitle { 
     font-family: 'GamalielMedium'; 
     font-weight: normal; 
@@ -49,7 +89,7 @@
      text-emphasis: left;
  }
  .col-sm {
-    padding-right: 55px;
+    // padding-right: 55px;
     padding-left: 0;
  }
  .col-sm:nth-child(1) {
@@ -60,8 +100,8 @@
 .battle_updates {
     padding: 2em;
     min-height: 10em;
-    border: 1px solid black;
-    color: black;
+    border: 1px solid $grey;
+    color: $paleRed;
 
 }
 .usables {
@@ -73,4 +113,11 @@
 
 #enemy-img {
     width: 100%;
+ 
+    // border: 2px solid $paleRed;
 }
+// #enemy-img2 {
+//     position: absolute;
+//     width: 100%;
+//     border: 2px solid $paleRed;
+// }

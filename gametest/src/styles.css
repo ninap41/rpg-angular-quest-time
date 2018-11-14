@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    
+    font-family: 'Do Hyeon', sans-serif;
+    margin: 0px auto;
+    padding: 1em;
+
+
+}
+i {
+    color: grey;
+}
+.red {
+    color:rgb(251, 106, 106);
+}
+.green {
+    color: rgb(0, 154, 54);
+}
+.orange {
+    color: rgb(208, 146, 0);
+
+}
+.purple {
+    color: purple;
+}
+.black {
+    color: black
+}
+.blue {
+    color: rgb(7, 0, 208);
+
+}
+.yellow {
+    color: rgb(208, 173, 0);
+
+}
+
+.btn-hand-drawn {
+    border-style: none;
+    border: none;
+    background: url('/assets/button.png');
+    background-size: 100% 50px;
+    height: 50px;
+    max-width: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.btn-inspect {
+    border-style: none;
+    border: none;
+    background: url('/assets/button-inspect.png');
+    background-size: 100% 50px;
+    height: 50px;
+    max-width: 100%;
+    background-repeat: no-repeat;
+}
+
+.btn-traverse {
+    border-style: none;
+    border: none;
+    background: url('/assets/button-inspect.png');
+    background-size: 100% 50px;
+    height: 50px;
+    max-width: 100%;
+    background-repeat: no-repeat;
+}

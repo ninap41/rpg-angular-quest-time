@@ -4,19 +4,23 @@ import { BattleService } from '../../battle.service';
 import { AudioService } from '../../audio.service';
 
 import { RouterModule, Routes, Router } from '@angular/router';
-import { HumanWorldStart, events } from '../../world1';
-import { SecondWorldStart } from '../../world2';
+import { HumanWorldStart, events } from '../../world/world1';
+import { SecondWorldStart } from '../../world/world2';
 
 import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from '../../player-create';
-
+import { Animations, routerTransition2, routerTransition, fadeAnimation,  healthTransition} from '../../animate';
 
 @Component({
   selector: 'app-firstworld',
   templateUrl: './firstworld.component.html',
-  styleUrls: ['./firstworld.component.scss']
+  styleUrls: ['./firstworld.component.scss'],
+  animations: [
+    healthTransition
+  ],
 })
 export class FirstworldComponent implements OnInit {
 Player = new Player;
+change = null;
 
 lastspot;
 startingPoint; // initial
@@ -49,10 +53,11 @@ world_num = 1;
 
     private _router: Router) {
       this.Player = this._characterService.retrievePlayer();
+      this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+
      }
 
   ngOnInit() {
-
     this.weaponGuard = this._battleService.weaponGuard;
     this._characterService.gameStart = true;
     this.Player = this._characterService.retrievePlayer();
@@ -74,10 +79,13 @@ world_num = 1;
     } else {
       this.playersPoint = this.Player.worldPoint[this.Player.worldPoint.length - 1];
       this.Check_all();
+      this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+
     }
     console.log( 'this.playersPoint: ' + this.playersPoint +
     'this.playersPoint: ' +  this.Player.worldPoint);
     this.Check_all();
+
   }
 
   nextWorld(direction) {
@@ -105,6 +113,8 @@ world_num = 1;
   }
     this.check_name_and_home(this.playersPoint);
     this.check_inspects_guard(this.playersPoint);
+    this._battleService.updateHealthColor();
+
   }
 
   karma_update(point) {
@@ -113,11 +123,12 @@ world_num = 1;
     } else {
       this.Player.karma += point.karma_impact[1];
     }
+    this._battleService.updateHealthColor();
   }
   check_event_name_home(event) {
     if (event) {
       if (event.enemy) {
-        event.enemy.description = event.enemy.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+        event.enemy.description = event.enemy.description.replace('CHARHOMETOWN' , this.Player.hometown); // put in service
         event.enemy.description = event.enemy.description.replace('CHARNAME', this.Player.name);
         event.enemy.description = event.enemy.description.replace('CHARRACE', this.Player.race); // put in service
         event.enemy.opening_line = event.enemy.opening_line.replace('CHARHOMETOWN', this.Player.hometown); // put in service
@@ -133,6 +144,7 @@ world_num = 1;
     }
 
   }
+
   check_inspects_guard(point) {
     if (point.inspects) {
       for (const inspect of point.inspects) {
@@ -170,13 +182,15 @@ world_num = 1;
 
   check_name_and_home(point) {
     if (point.description) {
-      this.playersPoint.description = this.playersPoint.description.replace('CHARHOMETOWN', this.Player.hometown); // put in service
+      this.playersPoint.description = this.playersPoint.description.replace('CHARHOMETOWN', this.Player.hometown);
       this.playersPoint.description = this.playersPoint.description.replace('CHARNAME', this.Player.name);
       this.playersPoint.description = this.playersPoint.description.replace('CHARRACE', this.Player.race); // put in service
       }
   }
 
   traverse(direction) {
+  this._battleService.updateHealthColor();
+
 if (direction.audio) {
   console.log(direction.audio);
 } // audio service move
@@ -285,6 +299,7 @@ if ( direction.world1_end) {
   }
 
   inspectWorld(action, idx) {
+    this._battleService.updateHealthColor();
     if (action.karma_impact) {
       this.karma_update(action);
     }
@@ -327,7 +342,7 @@ if ( direction.world1_end) {
     this.currentEvent = this.firstworldevents[inspectEvent];
     /// in case of influence event which happens no matter what.
     if (this.currentEvent) {
-              this.Check_all();
+            this.Check_all();
 
           if (this.currentEvent.influence_event) {
             const trigger =  Math.floor(Math.random() * this.Player.karma);
@@ -355,6 +370,7 @@ if ( direction.world1_end) {
 
 
   inspectEvent(action, idx) {
+    this._battleService.updateHealthColor();
 
     if (action.karma_impact) {
       this.karma_update(action);
@@ -364,7 +380,7 @@ if ( direction.world1_end) {
     if (action.event === 'take') {
       console.log('ah');
       this._characterService.updatePlayerBag(action.object);
-      this.currentEvent.updateMessage = `'You found ${action.object.name}. ${action.object.description}'`;
+      this.currentEvent.updateMessage = `'You found ${action.object.name}.  \n ${action.object.description} \n'`;
       this.currentEvent.inspects.splice(idx, 1);
       if (this.currentEvent.inspects < 1) {
         this.currentEvent.access_directions_state = true;
@@ -377,7 +393,7 @@ if ( direction.world1_end) {
         if (luck >= currentEnemy.flee_chance) {
           console.log(luck);
           this.Check_all();
-          this._characterService.global_update_message = `You fled ${currentEnemy.name}. Your 'Karma' may have saved you.`;
+          this._characterService.global_update_message = `You fled ${currentEnemy.name}.  \nYour 'Karma' may have saved you.`;
           this.currentEvent = null;
         } else {
           action.event = 'run';
@@ -426,7 +442,9 @@ if ( direction.world1_end) {
       if (this._battleService.currentEnemy.health <= 0) { // base case
         console.log('win');
         this.currentEvent.description = null;
-        this.currentEvent.description = this.currentEvent.description_replace;
+        if (this.currentEvent.description_replace) {
+          this.currentEvent.description = this.currentEvent.description_replace;
+        }
         this._audioService.fight_music(false);
         console.log(this.currentEvent.description_replace + 'UHSAHGSADHGJSADJHGADSGJHAGHJS');
         this._battleService.max_Taunt = 0;
@@ -438,10 +456,10 @@ if ( direction.world1_end) {
         }
 
       this.xp += this._battleService.currentEnemy.xp;
-      const win = `You have defeated '${this._battleService.currentEnemy.name}.`;
+      const win = `You have defeated '${this._battleService.currentEnemy.name}. \n`;
 
       if (this._battleService.currentEnemy.gold > 0) {
-        gold = `You aquired ${this._battleService.currentEnemy.gold} gold.`;
+        gold = `You aquired ${this._battleService.currentEnemy.gold} gold. \n`;
         console.log(gold);
         this._characterService.global_update_message = win.concat(gold);
         this.Player.gold += this._battleService.currentEnemy.gold;
@@ -452,7 +470,6 @@ if ( direction.world1_end) {
       this.playersPoint.event = null;
       this.playersPoint.eventtriggerchance = 0;
       this.currentEvent.currentEnemy = null;
-
       this.currentEvent.access_directions_state = true;
       if (this.currentEvent.stall_state === true) {
         this.currentEvent.description = this.currentEvent.description_replace;
@@ -471,13 +488,13 @@ if ( direction.world1_end) {
         this._characterService.MaxHealth += 30;
         this._characterService.Player.speed += 10;
         this._characterService.Player.karma += 5;
-         const str = `Stats before the battle's Taunts were restored and you have also increased to level
-          '${this._characterService.Player.lvl}'. ${object} ${gold}`;
-         this._characterService.global_update_message = win.concat(str);
+         const str = ` \nStats before the battle's Taunts were restored and you have also increased to level
+          '${this._characterService.Player.lvl}'. \n ${object} ${gold}`;
+         this._characterService.global_update_message = win.concat( '\n' + str);
       } else {
         const restore = ` Stats from before the battle taunts have been restored. You are ${70 - this.xp}
         points away from the next level. ${object} ${gold}`;
-        this._characterService.global_update_message = win.concat(restore);
+        this._characterService.global_update_message = win.concat('\n' + restore);
       }
 
 
@@ -493,19 +510,21 @@ if ( direction.world1_end) {
       console.log('block');
       this._battleService.enemyAttack(action);
       this.fight('dead');
-
      } else if (action === 'Taunt') {
       console.log('taunt');
       this._battleService.enemyAttack(action);
       this.fight('dead');
-
-
      } else if (typeof action === 'number' ) {
       console.log(action);
       this._battleService.use_item_mid_battle(action);
+
      }
+     console.log(this._battleService.currentEnemy.healthColor);
     }
     this.check_karma();
+
+    this._battleService.updateHealthColor();
+
   }
 
   updateCharacterStats() {
@@ -525,4 +544,8 @@ if ( direction.world1_end) {
       }
     }
   }
+  getImageState(image) {
+    return image;
+
+}
 }

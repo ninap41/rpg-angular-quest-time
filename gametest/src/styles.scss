@@ -39,7 +39,7 @@ i {
 
 router-outlet ~ * {
     position: absolute;
-    padding-top:.3em;
+    padding: .5em 3em;
     left:0;
     right: 0;
     top:0;

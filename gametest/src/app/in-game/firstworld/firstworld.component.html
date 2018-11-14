@@ -7,15 +7,13 @@
 
     <div align="center" class="row width">
 
-            <span *ngIf="playersPoint.update_message"> {{playersPoint.update_message}} </span>
-
+        <span *ngIf="playersPoint.update_message"> {{playersPoint.update_message}} </span>
         <div *ngIf="!currentEvent  && _battleService.currentFight === false" class="col-sm card card-adventure"> <!-- World DESCRIPTION  -->
         <!-- <p style="color:green">Player.worldPoint LIST:{{ this.Player.worldPoint | json:format }}</p> -->
         <p> "{{ playersPoint.description | json}}"</p>
-        {{Player.description | json}}
         <span class="orange" *ngIf="_characterService.global_update_message">
                 {{_characterService. global_update_message}}
-            </span>
+        </span>
 
         (Hover over options for more detail)
 
@@ -28,10 +26,10 @@
     
               <div *ngIf="playersPoint.directions">
                     <hr>
-                    <p><i>Directions: </i></p>
+                    <p class="direct"><i>Directions: </i><i class="ra ra-wooden-sign ra-lg"></i></p>
                     <span *ngFor="let direction of playersPoint.directions;" classs="inspect_direct_list">
                         <button [ngbTooltip]="tipContentDirection" [style.background-color]="direction.color"  (click)="traverse(direction);"  class="btn btn-info"> 
-                            {{direction.name}} 
+                            <i class="ra ra-trail ra-2x"></i>{{direction.name}} 
                         </button> 
                         <ng-template type="button" class="btn btn-outline-secondary" #tipContentDirection>{{direction.description}}</ng-template>
                     </span>
@@ -45,10 +43,22 @@
      
               <div *ngIf="playersPoint.inspects && playersPoint.inspects.length > 0">
                     <hr>
-                    <p><i>inspects:  </i></p>
+                    <p class="inspect"><i>Inspects:  </i> <i class="ra ra-hand ra-lg"></i></p>
                     <span *ngFor="let inspect of playersPoint.inspects; let idx = index"  classs="inspect_direct_list">
-                    
-                            <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> {{inspect.name}}</button> 
+                            <button *ngIf="inspect.guard !== true" [ngbTooltip]="tipContentInspects" (click)="inspectWorld(inspect, idx);"  class="btn btn-warning"> 
+                                <i class="ra ra-hand ra-2x"></i>
+                                {{inspect.name}} 
+
+                                <span *ngIf="inspect.needsIconClue"> <!--Player hints-->
+                                    <span placement="bottom" [ngbTooltip]="hint">(?)</span>
+                                    <ng-template #hint>
+                                        <i class="black ra ra-{{inspect.needsIconClue}} ra-lg"></i>
+                                        <span *ngIf="inspect.needsIconClue2">or</span>
+                                        <i class="black ra ra-{{inspect.needsIconClue2}} ra-lg"></i>
+                                        will determine your fate.
+                                    </ng-template> 
+                                </span>
+                            </button> 
                             <ng-template type="button" class="btn btn-outline-secondary" #tipContentInspects> {{inspect.description}} </ng-template>
                     </span>
                 </div>
@@ -60,13 +70,21 @@
 
 
       <div *ngIf="currentEvent && _battleService.currentFight === false" class="card card-adventure event col-sm"> 
-
+          
         <h4>Event: {{currentEvent.name}}</h4>
+        <div *ngIf="currentEvent && currentEvent.enemy && currentEvent.enemy.health <=0">
+                <img id="enemy-img" [src]="currentEvent.enemy.deadimg">
+        </div>
         <p>{{currentEvent.description}}</p>
+        <span *ngIf="currentEvent.descriptionList">
+            <ol *ngFor="let item of currentEvent.descriptionList">
+                <li>* {{item}}</li>
+            </ol>
+        </span>
         <p class="blue" *ngIf="_characterService.global_update_message"> {{_characterService.global_update_message}}</p>
         <span [ngbTooltip]="enemySpecs" *ngIf="currentEvent.enemy">Enemy: <b class="red">{{currentEvent.enemy.name}}</b></span>
          <!-- ENEMY SPECS -->   <ng-template type="button" class="btn btn-outline-secondary" #enemySpecs>
-                                        <span> Health: <b>{{currentEvent.enemy.health}} HP</b></span><BR>
+                                        <span> Health: <b [ngStyle]="{'color':currentEvent.enemy.healthColor }">{{currentEvent.enemy.health}} HP</b></span><BR>
                                         <span>Lvl: <b>{{currentEvent.enemy.lvl}} </b></span><BR>
                                         <span>Speed: <b>{{currentEvent.enemy.speed}}</b></span><BR>
                                         <span>Weapon: <b>{{currentEvent.enemy.weapon.name}}</b></span><BR>
@@ -94,7 +112,7 @@
             <span *ngFor="let inspect of currentEvent.inspects; let idx = index" style="padding: .5em;">
                
                     <ng-template #tipContentInspect>Please Equip Weapon. An enemy is before you and you should have a weapon equipped at all times.</ng-template>
-                    <span [ngbTooltip]="tipContentInspect" *ngIf="inspect.needsweapon === true && _battleService.weaponGuard === true && idx === 0">?</span>
+                    <span [ngbTooltip]="tipContentInspect" *ngIf="inspect.needsweapon === true && _battleService.weaponGuard === true && idx === 0"> <i class="ra  ra-uncertainty ra-lg"></i></span>
                     <button title="Please Equip Weapon" [disabled]="inspect.needsweapon === true && _battleService.weaponGuard === true" [ngbTooltip]="tipContentEventInspects" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button>  
                 </span>
         </div>
@@ -119,13 +137,27 @@
       <div *ngIf="_battleService.currentFight"  class="card card-battle event col-sm">
             <div *ngIf="_battleService.currentFight === true">
                     <h3> {{_battleService.currentEnemy.name}}</h3>
-                    <img id="enemy-img" src="{{_battleService.currentEnemy.img}}">
+                 
+                    <span *ngFor="let healthTier of _battleService.currentEnemy.healthTiers">
+                    <span *ngIf="_battleService.currentEnemy.health >= healthTier.minHealth &&  _battleService.currentEnemy.health <= healthTier.maxHealth">
+                        <span [@healthTransition]="healthTier.image">
+                            <img   id="enemy-img" [src]="healthTier.image">
+                        </span>
+                    </span>
+                        <div *ngIf="_battleService.currentEnemy">
+                            <span *ngIf="_battleService.currentEnemy.health <= 0">
+                                <img id="enemy-img" [src]="_battleService.currentEnemy.deadimg">
+                            </span>
+                        </div>
+                    </span>
+
                     <div class="battle_updates">
                     {{ _battleService.battle_update_message}}
                     </div>
                     <BR>
                         <ul>
-                            <li>Health: <span class="green">{{_battleService.currentEnemy.health}}</span></li>
+                            <li>Health: 
+                                <span [ngClass]="[ _battleService.currentEnemy.healthColor]">{{_battleService.currentEnemy.health}}</span></li>
                             <li>Lvl:<span class="green">{{_battleService.currentEnemy.lvl}}</span> </li>
                             <li>Weapon: {{_battleService.currentEnemy.weapon.name}}</li>
                             <li>Description: {{_battleService.currentEnemy.description}}</li>
@@ -149,6 +181,7 @@
                             </uL>
                         </div>
             </div>
+           
       </div>
 
 

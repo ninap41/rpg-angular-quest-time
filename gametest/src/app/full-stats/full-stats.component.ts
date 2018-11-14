@@ -3,24 +3,24 @@ import { CharacterService } from '../character.service';
 import { BattleService } from '../battle.service';
 
 @Component({
-  selector: 'app-help',
-  templateUrl: './help.component.html',
-  styleUrls: ['./help.component.scss']
+  selector: 'app-full-stats',
+  templateUrl: './full-stats.component.html',
+  styleUrls: ['./full-stats.component.scss']
 })
-export class HelpComponent implements OnInit {
-
+export class FullStatsComponent implements OnInit {
   Player;
   gameStart = true;
     constructor(
       private _characterService: CharacterService,
       private _battleService: BattleService,
     ) {
-
+  
     }
+  
     ngOnInit() {
       this.Player = this._characterService.Player;
       this._characterService.gameStart = true;
 
     }
 
-}
+  }

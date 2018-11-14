@@ -32,6 +32,15 @@ export const Animations = {
       transition('* => *', animate('500ms ease-out')),
       transition('move => *', animate('500ms ease-out')),
   ]),
+  healthState:  trigger('healthState', [
+    state('inactive',
+    style({transform: 'translateX(-100%) tranlsateY(50px'})
+  ),
+    state('active',
+    style({transform: 'scale(1.5)'
+    })),
+    transition('* => *', animate('500ms ease-out')),
+]),
   photosAnimation: trigger('photosAnimation', [
     transition('* => *', [
       query('img', style({ transform: 'translateX(-100%)'})),
@@ -42,6 +51,8 @@ export const Animations = {
     ])
   ])
 };
+
+
 
 export const routerTransition = trigger('routerTransition', [
   transition('* <=> *', [
@@ -62,7 +73,28 @@ export const routerTransition = trigger('routerTransition', [
 ]);
 
 
-export const routerTransition2 = trigger('routerTransition2', [
+
+export const healthTransition = trigger('healthTransition', [
+  transition('* => *', [
+    query(
+      ':enter',
+      [style({ opacity: 0 })],
+      { optional: true }
+    ),
+    query(
+      ':leave',
+      [style({ opacity: 1 }), animate('1s', style({ opacity: 0 }))],
+      { optional: true }
+    ),
+    query(
+      ':enter',
+      [style({ opacity: 0 }), animate('1s', style({ opacity: 1 }))],
+      { optional: true }
+    )
+  ])
+]);
+
+  export const routerTransition2 = trigger('routerTransition2', [
     transition('* <=> *', [
       /* order */
       /* 1 */ query(':enter, :leave', style({ position: 'fixed', opacity: 0, offset: 0 })
@@ -78,6 +110,7 @@ export const routerTransition2 = trigger('routerTransition2', [
       ])
     ])
   ]);
+
 
   export const gameStart = trigger('gameStart', [
     transition('* => *', [

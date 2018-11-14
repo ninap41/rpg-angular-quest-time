@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { BattleService } from '../battle.service';
-import { ItemService } from '../item.service';
 import { AudioService } from '../audio.service';
 
 
@@ -17,7 +16,6 @@ title = 'Bag';
     private _characterService: CharacterService,
     private _battleService: BattleService,
     private _audioService: AudioService,
-    private _itemService: ItemService
   ) { }
 
   ngOnInit() {

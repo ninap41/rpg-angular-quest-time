@@ -3,21 +3,40 @@
 @import "../../variables.scss";
 
 .statsFrame {
-    background-image: url('/assets/paper.png')
+    
+    background-image: url('/assets/paper-dark.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+   
+    
+    margin: auto;
+    padding: 2em;
+    padding-top: 4em;
+    background-blend-mode: color-burn;
+    margin:0px -70px -100px -70px;
+
+
+
 }
 
 .card{
-    max-width: 20em;
+    position:absolute;
+
+    left:0;
+    right:0;
+    max-width: 25em;
     margin:auto;
     padding: 1em .3em;
     /* display: flex; */
-    background-image: url('/assets/paper.png');
+
+    border:none;
     background-color: $invisible;
     color:$fontcolor;
 }
 
 i {
-    color: gray;
+    color: $grey;
     text-align: left;
 }
 select {
@@ -35,4 +54,13 @@ p {
     width: 200px;
     max-width: 200px;
     padding-bottom: 2em;
+}
+
+.weaponSelect {
+    margin-bottom: 0px;
+    padding-top: 5px;
+}
+
+form {
+    margin: auto ;
 }

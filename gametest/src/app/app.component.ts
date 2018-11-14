@@ -69,8 +69,9 @@ export class AppComponent implements OnInit {
     this._audioService.current_music.pause();
   }
   newGame() {
-    this._characterService.Player = new Player;
-    this._router.navigate(['home']);
+    this._router.navigate(['/**']).then(() => {
+      this._characterService.Player = new Human;
+    });
 
   }
 

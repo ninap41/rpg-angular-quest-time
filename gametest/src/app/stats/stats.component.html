@@ -1,31 +1,28 @@
 <span *ngIf="gameStart == true">
-    
-  
     <div class="col-12">
         <img id="avatar" src="{{Player.avatar}}">
     </div>
-    <i>Name: </i> {{Player.name}}<BR>
-        <i>Health: </i> <span class="green">{{Player.health}}</span>HP<BR>
+    <i><i class="ra ra-player ra-lg"></i> </i> {{Player.name}}<BR>
+        <i><i class="ra ra-health ra-lg"></i> : </i> <span [ngClass]="[ _characterService.Player.healthColor]">{{Player.health}}</span>HP<BR>
        <i>Race: </i> {{Player.race}}<BR>
-        <i>LVL: </i> <span class="green">{{Player.lvl}}</span><BR>
-        <i>Karma:  </i> <span class="green">{{Player.karma}}</span><BR>
-        <i>Strength: </i><span class="green">{{Player.strength}}</span> <BR>
-        <i>Speed:  </i> <span class="green">{{Player.speed}}</span><BR>
+        <i>Level: </i> <span class="green">{{Player.lvl}}</span><BR>
+        <i><i alt="karma" class="ra ra-crystal-ball  ra-lg"></i>  <i alt="karma" class="ra ra-horseshoe ra-lg"></i>  : </i> <span class="green">{{Player.karma}}</span><BR>
+        <i><i class="ra ra-muscle-up ra-lg"></i> : </i><span class="green">{{Player.strength}}</span> <BR>
+        <i><i class="ra ra-player-dodge ra-lg"></i> : </i> <span class="green">{{Player.speed}}</span><BR>
             <span *ngIf="Player.race === 'wizard'">
-            <span *ngIf="Player.spellbook"> <i>Spellbook:  </i> </span> 
+            <span *ngIf="Player.spellbook"><i class="ra ra-book ra-lg"></i> :  </span> 
             <span *ngIf="Player.spellbook && Player.spellbook.length ===0" class="red">no spells.<BR></span>
             </span>
-        <i>Weapon: </i> <BR>
+        <i><i class="ra ra-sword ra-lg"></i> : </i> <BR>
             <span class="red" *ngIf="Player.weapon === null">no weapon equipped.</span>
             <span class="green" *ngIf="Player.weapon">
                 {{Player.weapon.name}} 
-                <span *ngIf="Player.weapon && _battleService.currentFight === false" (click)="_battleService.weaponequip(Player.weapon, idx, 'unequip')"><img width="20px" src="/assets/icons/equip-weapon.png"></span>
+                <span *ngIf="Player.weapon && _battleService.currentFight === false" (click)="_battleService.weaponequip(Player.weapon, idx, 'unequip')"><i class="hover blue"> Unequip</i><i class="ra ra-overhead ra-lg"></i></span>
             </span>
-            <span *ngIf="_battleService.currentFight === true">X</span>
+            <span *ngIf="_battleService.currentFight === true"><i class="ra ra-interdiction ra-2x"></i></span>
   
             
             <BR>
-        <i>Gold: </i> <span class="orange">{{Player.gold}}</span>pcs<BR>
+        <i><i class="ra ra-gold-bar ra-lg"></i> </i> <span class="orange">{{Player.gold}}</span>pcs<BR>
         <i>Hometown: </i> <span class="blue">{{Player.hometown}}</span><BR>  <span class="red" *ngIf="Player.hometown === null">no hometown.</span>
-
 </span>
