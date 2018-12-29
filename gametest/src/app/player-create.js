@@ -262,10 +262,10 @@ class Player {
             this.healthColor = 'green',
             this.healthimages = [],
             this.healthTiers =  [
-                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
-                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
-                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
-                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/elf/elf.png'},
+                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/elf/elf-orange.png'},
+                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/elf/elf-yellow.png' },
+                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/elf/elf-red.png' },
             ],
 
             this.states = {
