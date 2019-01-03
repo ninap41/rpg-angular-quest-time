@@ -12,6 +12,8 @@ import { AudioService } from '../audio.service';
 export class BagComponent implements OnInit {
 Player;
 title = 'Bag';
+fightBool = 'You cannot access this bag while a fight is in progress. Refer to battle bag';
+
   constructor(
     private _characterService: CharacterService,
     private _battleService: BattleService,
@@ -20,7 +22,7 @@ title = 'Bag';
 
   ngOnInit() {
     this.Player = this._characterService.Player;
-  this._characterService.gameStart = true;
+    this._characterService.gameStart = true;
 }
 
 use_item(item, idx) {

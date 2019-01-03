@@ -232,6 +232,15 @@ export class BattleService {
       }
     }
   }
+  use_battle_item(idx, item) {
+    console.log('made it here');
+    if (item.quantity >= 0) {
+      this._characterService.Player[idx].quantity -= 1;
+    } else {
+      this._characterService.Player.bag.splice(idx, 1);
+    }
+
+  }
 
 
   use_item_mid_battle(idx) {
@@ -240,6 +249,7 @@ export class BattleService {
       const enemy_action = enemy_actions[Math.floor(Math.random() * enemy_actions.length)];
     const item = this._characterService.Player.bag[idx];
     let str;
+    this.use_battle_item(idx, item);
 
     if (item.influence_health) {
        if (this._characterService.Player.health + item.influence_health[1] >= this._characterService.MaxHealth) {
@@ -281,20 +291,10 @@ export class BattleService {
       this.battle_update_message = str.concat('<br>' + `While using '${item.name}', '${this.currentEnemy.name}' attacked you! <br> you took
       ${enemy_attack} point(s) damage!`);
     }
-    this.use_battle_item(idx, item);
     console.log(item.name);
   }
 
 
-  use_battle_item(idx, item) {
-    if (item.quantity > 0) {
-      this._characterService.Player[idx].quantity -= 1;
-
-    } else {
-      this._characterService.Player.bag.splice(idx, 1);
-    }
-
-  }
 
 
   fightEnd(currentEnemy) {

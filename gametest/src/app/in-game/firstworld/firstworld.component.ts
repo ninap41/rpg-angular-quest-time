@@ -160,7 +160,7 @@ world_num = 1;
           }  else {
           }
         }
-        for (const item of this.Player.bag) {
+        for (var item of this.Player.bag) {
           if (item.value) {
             if (item.value === inspect.needs && item.value) {
               inspect.guard = false;
@@ -517,9 +517,7 @@ if ( direction.world1_end) {
      } else if (typeof action === 'number' ) {
       console.log(action);
       this._battleService.use_item_mid_battle(action);
-
      }
-     console.log(this._battleService.currentEnemy.healthColor);
     }
     this.check_karma();
 

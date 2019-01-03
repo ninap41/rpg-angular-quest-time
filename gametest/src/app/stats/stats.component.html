@@ -1,7 +1,13 @@
 <span *ngIf="gameStart == true">
-    <div class="col-12">
-        <img id="avatar" src="{{Player.avatar}}">
-    </div>
+
+   <div class="col-12">
+        <span *ngFor="let healthTier of _characterService.Player.healthTiers">
+            <span *ngIf="_characterService.Player.health > healthTier.minHealth &&  _characterService.Player.health <= healthTier.maxHealth">
+                    <img  id="avatar" [src]="healthTier.image">
+            </span>    
+        </span>
+    </div> 
+
     <i><i class="ra ra-player ra-lg"></i> </i> {{Player.name}}<BR>
         <i><i class="ra ra-health ra-lg"></i> : </i> <span [ngClass]="[ _characterService.Player.healthColor]">{{Player.health}}</span>HP<BR>
        <i>Race: </i> {{Player.race}}<BR>

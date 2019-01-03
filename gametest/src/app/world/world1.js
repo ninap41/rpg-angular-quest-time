@@ -322,7 +322,7 @@ const events = {
         'influence_event': null,
         "name":"First Encounter...",
         "description" : `Enemy Appears, a massive drooling Orc named '${enemies.baravder.name}'. He Carries a ${enemies.baravder.weapon.name} he swings by his belt. He stares you down and says "${enemies.baravder.opening_line}". You have two options to Run or Fight.`,
-        "description_replace" : `The Orc you defeated ${enemies.baravder.name} body is limp. you're happy to gaze upon his corpse. You have avenged your mother well.`,
+        "description_replace" : `You walk past the now defeated ${enemies.baravder.name}. His body is limp. Happy to gaze upon his corpse, you sneer. You have avenged your mother well.`,
         'enemy_object': null,
         'inspects' : [
             {
