@@ -647,7 +647,7 @@ const events = {
         'inspects' :  null,
         },
         "gaffer_dead": {
-            "description":`Gaffer and you exclaim with joy as you enter the shed and approach your horse. You hear a muttering, "I'm sorry--" and a knife move passed your chin. Gaffer slits your throat, "I'm sorry! The dark wizard said 50 innocents..." You missed something. Try Again.`,
+            "description":`Gaffer and you exclaim with joy as you enter the shed and approach your horse. You hear a muttering, "I'm sorry--" and a knife move passed your chin. Gaffer slits your throat, "I'm sorry! The dark wizard said he needed the blood 50 innocent souls... He said he'd spare me if I but gave him yours" You missed something. Try Again.`,
             'name': "Betrayal",
         'event_state' : true,
         'use_sound' : '/assets/sounds/loss_laugh.mp3',
@@ -676,7 +676,7 @@ let HumanWorldStart =
         "name": "Home Main Room",
         'influence_event': null,
 
-        "description":`You are CHARNAME 'CHARRACE of CHARHOMETOWN'. You've awoken from a nap. Loud sounds ensue outside your home, an unfamiliar experience for you. It is dark, but through the slits of your wooden home you can see a wavering glow. You hear some cries of a woman outside. Banter and chaos. The crackling of fire. There are two rooms before you, the east and the west. There is also the exit outside. You experience like you have never felt before`,
+        "description":"You are CHARNAME 'CHARRACE of CHARHOMETOWN'. You've awoken from a nap. Loud sounds ensue outside your home, unfamliar. It is dark, but through the slits of your wooden home you can see a wavering glow. You hear some cries of a woman outside. Banter and chaos. The crackling of fire. There are two rooms before you, the east and the west. There is also the exit outside. Your whole body shakes with fear",
         "directions": [
             {
                 "name":"Mother's Room",
@@ -748,7 +748,7 @@ let HumanWorldStart =
         'influence_event': null,
 
         "name": "Back of The House",
-        "description":`You stretch your CHARRACE legs over the edge of the window. The crackling of fire sounds all around you. You see Gaffer Thomas running toward the stables and a barrel beside you.`,
+        "description":`You stretch your CHARRACE legs over the edge of the window. The crackling of fire sounds all around you. You see Gaffer Thomas running toward the stables and a barrel of mead beside you.`,
         "directions": [
             {
                 "name":"To the Stables",
@@ -788,7 +788,7 @@ let HumanWorldStart =
         "name": "Through The Town!",
         'influence_event': null,
 
-        "description": "You hear your friend Thomas Gaffer calling your name, ''CHARNAME! What are you doing? ''.  He is at the front of your house, by your door.",
+        "description": "You hear your friend Thomas Gaffer calling your name, 'CHARNAME! What are you doing!? '  There is an ORC right at your front door!",
         "directions": [
             {
                 "name":"Keep going, you see the armory ahead.",

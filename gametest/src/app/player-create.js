@@ -252,7 +252,7 @@ class Player {
             this.reputation = 10;
             this.gold = 15;
             this.bag = [];
-            this.backstory = `You are a sharp traveler born into elvish wealth. Highly intelligent and posessing keen speed, they have a high reputation and can talk themselves out of almost every situation `;
+            this.backstory = `You are a sharp traveler born into elvish wealth. Highly intelligent and posessing keen speed, elves have a high reputation and can talk themselves out of almost every situation `;
             this.weapon = null;
             this.state = null;
             this.worldPoint = [];

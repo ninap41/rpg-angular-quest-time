@@ -113,7 +113,7 @@
                
                     <ng-template #tipContentInspect>Please Equip Weapon. An enemy is before you and you should have a weapon equipped at all times.</ng-template>
                     <span [ngbTooltip]="tipContentInspect" *ngIf="inspect.needsweapon === true && _battleService.weaponGuard === true && idx === 0"> <i class="ra  ra-uncertainty ra-lg"></i></span>
-                    <button title="Please Equip Weapon" [disabled]="inspect.needsweapon === true && _battleService.weaponGuard === true" [ngbTooltip]="tipContentEventInspects" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button>  
+                    <button [disabled]="inspect.needsweapon === true && _battleService.weaponGuard === true" [ngbTooltip]="tipContentEventInspects" (click)="inspectEvent(inspect, idx);"  class="btn btn-warning"> {{inspect.name}} </button>  
                 </span>
         </div>
                 <div *ngIf="currentEvent.access_directions_state === true">
