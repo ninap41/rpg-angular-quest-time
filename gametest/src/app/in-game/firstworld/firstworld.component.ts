@@ -160,7 +160,7 @@ world_num = 1;
           }  else {
           }
         }
-        for (var item of this.Player.bag) {
+        for (const item of this.Player.bag) {
           if (item.value) {
             if (item.value === inspect.needs && item.value) {
               inspect.guard = false;

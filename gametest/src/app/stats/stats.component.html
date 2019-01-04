@@ -1,8 +1,8 @@
 <span *ngIf="gameStart == true">
 
    <div class="col-12">
-        <span *ngFor="let healthTier of _characterService.Player.healthTiers">
-            <span *ngIf="_characterService.Player.health > healthTier.minHealth &&  _characterService.Player.health <= healthTier.maxHealth">
+        <span *ngFor="let healthTier of this.Player.healthTiers">
+            <span *ngIf="this.Player.health >= healthTier.minHealth &&  this.Player.health <= healthTier.maxHealth">
                     <img  id="avatar" [src]="healthTier.image">
             </span>    
         </span>

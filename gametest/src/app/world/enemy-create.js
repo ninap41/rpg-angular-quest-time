@@ -36,7 +36,7 @@ const enemies= {
     'yikmar' : {
         'name': 'Yikmar',
         'loss_message': 'Yikmar guts you like a pig and spits on your corpse. Damn you suck at this.',
-        'img' : '/assets/characters/enemy-yikmar.png',
+        'img' : '/assets/characters/yikmar-green.png',
         'xp': 80,
         'race' : 'Orc',
         'lvl' : 3,
@@ -50,12 +50,12 @@ const enemies= {
         'flee_chance': 8,
         'healthColor' : 'green',
         'healthTier' : [
-            { minHealth: 41, maxHealth: 50, color: 'green' },
-            { minHealth: 31, maxHealth: 40, color: 'orange' },
-            { minHealth: 21, maxHealth: 30, color: 'yellow' },
-            { minHealth: 1, maxHealth: 20, color: 'red' }
+            { minHealth: 41, maxHealth: 50, color: 'green', image: '/assets/characters/yikmar/yikmar-green.png'  },
+            { minHealth: 31, maxHealth: 40, color: 'orange', image: '/assets/characters/yikmar/yikmar-orange.png'  },
+            { minHealth: 21, maxHealth: 30, color: 'yellow', image: '/assets/characters/yikmar/yikmar-yellow.png'  },
+            { minHealth: 1, maxHealth: 20, color: 'red',  image: '/assets/characters/yikmar/yikmar-red.png' }
         ],
-        'healthImages': [],
+        'deadimg' : '/assets/characters/yikmar/yikmar-dead.png'
 
 
     },

@@ -452,7 +452,7 @@ const events = {
             'update_message': null,
             'event_state' : true,
             'influence_event': {
-                'impact_chance': 3,
+                'impact_chance': 10,
                 'impact' : ['negative','health', 20],
                 'description' :  `${enemies.yikmar.name} Slashes your leg without warning. -20HP`,
                 'description2' :  ``,
@@ -468,7 +468,7 @@ const events = {
                 'needsweapon': true,
                 'name' : 'Fight',
                 'event' :'fight',
-                'description' : 'You may have to battle this big boy'
+                'description' : 'You may have to battle this little turd'
                 },
                 {
                 'karma_impact': ['negative', 1],
@@ -476,7 +476,7 @@ const events = {
                 'needsweapon': true,
                 'name' : 'Run',
                 'event' :'run',
-                'description' : `You may be able to run`
+                'description' : `You may be able to run...?`
                 }
             ],
             "access_directions_state" : false,

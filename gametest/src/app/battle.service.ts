@@ -314,24 +314,29 @@ export class BattleService {
 
 updateHealthColor() {
   if (this.currentEnemy) {
-    if (this.currentEnemy.health > 75 ) {
+    if (this.currentEnemy.health > this.currentEnemy.healthTiers[1].MaxHealth ) {
       this.currentEnemy.healthColor = 'green';
-    } else if (this.currentEnemy.health >= 50 && this.currentEnemy.health < 76) {
+    } else if (this.currentEnemy.health >= this.currentEnemy.healthTiers[1].minHealth
+      && this.currentEnemy.health < this.currentEnemy.healthTiers[1].MaxHealth) {
       this.currentEnemy.healthColor = 'yellow';
-    } else if (this.currentEnemy.health >= 25 && this.currentEnemy.health < 50) {
+    } else if (this.currentEnemy.health >= this.currentEnemy.healthTiers[2].minHealth
+      && this.currentEnemy.health <  this.currentEnemy.healthTiers[2].MaxHealth) {
       this.currentEnemy.healthColor = 'orange';
-    } else if (this.currentEnemy.health >= 0 && this.currentEnemy.health < 25) {
+    } else if (this.currentEnemy.health >=  this.currentEnemy.healthTiers[3].minHealth
+      && this.currentEnemy.health <  this.currentEnemy.healthTiers[3].minHealth) {
       this.currentEnemy.healthColor = 'red';
     }
-    console.log('ASDJFGKFJKGDSKGHCADSGHCASHCG' + this.currentEnemy.healthColor);
-  }if (this._characterService.Player) {
-    if (this._characterService.Player.health > 75 ) {
+  } if (this._characterService.Player) {
+    if (this._characterService.Player.health > this._characterService.Player.healthTiers[1].MaxHealth ) {
       this._characterService.Player.healthColor = 'green';
-    } else if (this._characterService.Player.health >= 50 && this._characterService.Player.health < 76) {
+    } else if (this._characterService.Player.health >= this._characterService.Player.healthTiers[1].minHealth
+      && this._characterService.Player.health < this._characterService.Player.healthTiers[1].MaxHealth ) {
       this._characterService.Player.healthColor = 'yellow';
-    } else if (this._characterService.Player.health >= 25 && this._characterService.Player.health < 50) {
+    } else if (this._characterService.Player.health >= this._characterService.Player.healthTiers[2].minHealth
+      && this._characterService.Player.health < this._characterService.Player.healthTiers[2].MaxHealth ) {
       this._characterService.Player.healthColor = 'orange';
-    } else if (this._characterService.Player.health >= 0 && this._characterService.Player.health < 25) {
+    } else if (this._characterService.Player.health >= 0
+      && this._characterService.Player.health < this._characterService.Player.healthTiers[3].MaxHealth ) {
       this._characterService.Player.healthColor = 'red';
     }
   }
