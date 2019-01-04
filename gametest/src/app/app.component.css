@@ -16,7 +16,7 @@ a  {
 
 }
 .jumbotron {
-    border: 5px groove;
+    /* border: 5px groove; */
   
 
     background-image:  url("/assets/landscapes/moria.jpg");

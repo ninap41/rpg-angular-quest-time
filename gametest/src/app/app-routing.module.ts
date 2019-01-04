@@ -8,7 +8,6 @@ import { BagComponent } from './bag/bag.component';
 import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
 import { HelpComponent } from './help/help.component';
 import { FullStatsComponent } from './full-stats/full-stats.component';
-import { RegComponent } from './reg/reg.component';
 
 const routes: Routes = [
     { path: '', component: HomepageComponent, pathMatch: 'full' },
