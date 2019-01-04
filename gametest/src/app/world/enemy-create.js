@@ -104,13 +104,13 @@ const enemies= {
         'flee_chance': 10,
         'healthColor' : 'green',
         'healthTiers' : [
-            { minHealth: 71, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
-            { minHealth: 51, maxHealth: 70, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
-            { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
-            { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            { minHealth: 71, maxHealth: 80, color: 'green', image: '/assets/characters/enemy-the-rider.png'},
+            { minHealth: 51, maxHealth: 70, color: 'orange', image: '/assets/characters/agmar/agmar-orange.png'},
+            { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/agmar/agmar-yellow.png' },
+            { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/agmar/agmar-red.png' },
         ],
         'healthImages': [],
-        'deadimg' : '/assets/characters/gaffer/gaffer-dead.png'
+        'deadimg' : '/assets/characters/agmar/agmar-dead.png'
 
 
 
@@ -137,7 +137,7 @@ const enemies= {
             { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/gaffer/gaffer-yellow.png' },
             { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/gaffer/gaffer-red.png' },
         ],
-        'healthImages': [],
+        'deadimg' : '/assets/characters/gaffer/gaffer-dead.png'
 
 
     },
