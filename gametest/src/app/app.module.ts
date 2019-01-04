@@ -21,14 +21,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { StatsComponent } from './stats/stats.component';
 import { BagComponent } from './bag/bag.component';
 import { FirstworldComponent } from './in-game/firstworld/firstworld.component';
-import { BattleComponent } from './battle/battle.component';
 import { ShopComponent } from './shop/shop.component';
 import { FullBagComponent } from './full-bag/full-bag.component';
 import { HelpComponent } from './help/help.component';
 import { FullStatsComponent } from './full-stats/full-stats.component';
-import { RegComponent } from './reg/reg.component';
 import { IntropageComponent } from './intropage/intropage.component';
-import { LogComponent } from './log/log.component';
 
 @NgModule({
   declarations: [
@@ -38,14 +35,11 @@ import { LogComponent } from './log/log.component';
     StatsComponent,
     BagComponent,
     FirstworldComponent,
-    BattleComponent,
     ShopComponent,
     FullBagComponent,
     HelpComponent,
     FullStatsComponent,
-    RegComponent,
     IntropageComponent,
-    LogComponent
   ],
   imports: [
     HttpModule,
