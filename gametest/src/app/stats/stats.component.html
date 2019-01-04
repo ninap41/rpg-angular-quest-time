@@ -9,7 +9,7 @@
     </div> 
 
     <i><i class="ra ra-player ra-lg"></i> </i> {{Player.name}}<BR>
-        <i><i class="ra ra-health ra-lg"></i> : </i> <span [ngClass]="[ _characterService.Player.healthColor]">{{Player.health}}</span>HP<BR>
+        <i><i class="ra ra-health ra-lg"></i> : </i> <span [ngClass]="[ this._characterService.Player.healthColor]">{{Player.health}}</span>HP<BR>
        <i>Race: </i> {{Player.race}}<BR>
         <i>Level: </i> <span class="green">{{Player.lvl}}</span><BR>
         <i><i alt="karma" class="ra ra-crystal-ball  ra-lg"></i>  <i alt="karma" class="ra ra-horseshoe ra-lg"></i>  : </i> <span class="green">{{Player.karma}}</span><BR>

@@ -33,9 +33,9 @@ use_item(item, idx) {
     }
     if (item.influence_health) {
       if (item.influence_health[0] === 'positive') {
-       if (this._characterService.Player.health + item.influence_health[1] > this._characterService.MaxHealth) {
+       if (this._characterService.Player.health + item.influence_health[1] >= this._characterService.MaxHealth) {
          const health_difference = this._characterService.MaxHealth - this._characterService.Player.health;
-        this._characterService.Player.health = this._characterService.MaxHealth;
+        this._characterService.Player.health += health_difference;
         str = `Your health increased by ${health_difference} point(s).
         Your health is Maxed at ${this._characterService.MaxHealth}. Consumables will have no effect.`;
        } else {

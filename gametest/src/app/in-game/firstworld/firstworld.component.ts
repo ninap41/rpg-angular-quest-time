@@ -43,6 +43,7 @@ temp_karma;
 temp_speed;
 audio;
 world_num = 1;
+currentEnemy;
 // all of map
 
 
@@ -54,6 +55,7 @@ world_num = 1;
     private _router: Router) {
       this.Player = this._characterService.retrievePlayer();
       this.WorldName = HumanWorldStart.name.replace('CHARHOMETOWN', this.Player.hometown);
+      this.currentEnemy = this._battleService.currentEnemy;
 
      }
 
@@ -403,6 +405,8 @@ if ( direction.world1_end) {
          this.temp_karma = this._characterService.Player.karma;
          this.temp_speed = this._characterService.Player.speed;
           this._battleService.fightStart(currentEnem, action, flee_token);
+          this._battleService.retrieveEnemy();
+
 
         }
       // this.currentEvent = null;
@@ -416,6 +420,7 @@ if ( direction.world1_end) {
       this.Check_all();
       const flee_token = false;
       this._battleService.fightStart(currentEnemy, action, flee_token);
+      this.currentEnemy = this._battleService.currentEnemy;
         }  else {
 
           }
@@ -496,12 +501,12 @@ if ( direction.world1_end) {
         points away from the next level. ${object} ${gold}`;
         this._characterService.global_update_message = win.concat('\n' + restore);
       }
-
-
+      this._battleService.currentEnemy = null;
       this.post_battle_unequip();
       this.Check_all();
     }  else {
       console.log('still fighting');
+      console.log('CURRENT ENEMY LOG: ' + JSON.stringify(this._battleService.currentEnemy));
      if (action === 'Strike') {
        this._battleService.enemyAttack(action);
        this.fight('dead');

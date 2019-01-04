@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module'; // Routing
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Materials
 
+
+
 import { FormsModule } from '@angular/forms';
 import { HttpModule} from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -64,8 +66,7 @@ import { LogComponent } from './log/log.component';
   providers: [
     CharacterService,
     BattleService,
-    AudioService
-
+    AudioService,
 
   ],
   bootstrap: [AppComponent]

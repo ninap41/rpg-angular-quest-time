@@ -55,6 +55,7 @@ currentEvent = false;
     localStorage.setItem('Player', JSON.stringify(this.Player));
     return this.Player;
   }
+
   isPlayer() {
     if (this.Player.name === '') {
       this.gameStart = false;

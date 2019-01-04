@@ -203,6 +203,8 @@ export class BattleService {
               console.log(enemy_action);
               this.battle_update_message = `${this.currentEnemy.name} attempted a retaliation, but you both asserted a defensive stance.`;
             }
+            this.updateHealthColor();
+
       }
 
       if (charAction === 'Taunt') {
@@ -230,6 +232,8 @@ export class BattleService {
         }
 
       }
+      this.updateHealthColor();
+
     }
   }
   use_battle_item(idx, item) {
@@ -295,13 +299,16 @@ export class BattleService {
   }
 
 
+  retrieveEnemy() {
+    return this.currentEnemy;
+  }
 
 
   fightEnd(currentEnemy) {
     this.Player.lvl += 1;
     this.Player.gold += this.currentEnemy.gold;
     this.currentEnemy = null;
-    return false;
+    return 
   }
 
 
@@ -314,33 +321,43 @@ export class BattleService {
 
 updateHealthColor() {
   if (this.currentEnemy) {
-    if (this.currentEnemy.health > this.currentEnemy.healthTiers[1].MaxHealth ) {
+    if (this.currentEnemy.health > this.currentEnemy.healthTiers[1].maxHealth ) {
+      console.log('ran enemy green IF ' +  this.currentEnemy.healthTiers[1].maxHealth);
       this.currentEnemy.healthColor = 'green';
     } else if (this.currentEnemy.health >= this.currentEnemy.healthTiers[1].minHealth
-      && this.currentEnemy.health < this.currentEnemy.healthTiers[1].MaxHealth) {
+      && this.currentEnemy.health < this.currentEnemy.healthTiers[1].maxHealth) {
+        console.log('ran enemy yellow IF');
+
       this.currentEnemy.healthColor = 'yellow';
     } else if (this.currentEnemy.health >= this.currentEnemy.healthTiers[2].minHealth
-      && this.currentEnemy.health <  this.currentEnemy.healthTiers[2].MaxHealth) {
+      && this.currentEnemy.health <  this.currentEnemy.healthTiers[2].maxHealth) {
+        console.log('ran enemy orange IF');
+
       this.currentEnemy.healthColor = 'orange';
     } else if (this.currentEnemy.health >=  this.currentEnemy.healthTiers[3].minHealth
-      && this.currentEnemy.health <  this.currentEnemy.healthTiers[3].minHealth) {
+      && this.currentEnemy.health <  this.currentEnemy.healthTiers[3].MaxHealth) {
       this.currentEnemy.healthColor = 'red';
     }
   } if (this._characterService.Player) {
-    if (this._characterService.Player.health > this._characterService.Player.healthTiers[1].MaxHealth ) {
+    if (this._characterService.Player.health > this._characterService.Player.healthTiers[1].maxHealth ) {
       this._characterService.Player.healthColor = 'green';
+      console.log('ran char green IF');
+
     } else if (this._characterService.Player.health >= this._characterService.Player.healthTiers[1].minHealth
-      && this._characterService.Player.health < this._characterService.Player.healthTiers[1].MaxHealth ) {
+      && this._characterService.Player.health < this._characterService.Player.healthTiers[1].maxHealth ) {
+        console.log('ran char yellow IF');
+
       this._characterService.Player.healthColor = 'yellow';
     } else if (this._characterService.Player.health >= this._characterService.Player.healthTiers[2].minHealth
-      && this._characterService.Player.health < this._characterService.Player.healthTiers[2].MaxHealth ) {
+      && this._characterService.Player.health < this._characterService.Player.healthTiers[2].maxHealth ) {
       this._characterService.Player.healthColor = 'orange';
     } else if (this._characterService.Player.health >= 0
-      && this._characterService.Player.health < this._characterService.Player.healthTiers[3].MaxHealth ) {
+      && this._characterService.Player.health < this._characterService.Player.healthTiers[3].maxHealth ) {
       this._characterService.Player.healthColor = 'red';
     }
+    console.log( this._characterService.Player.healthColor  + ' + in battleservice');
   }
-  return;
+    return;
 }
 
 }

@@ -20,13 +20,13 @@ const enemies= {
         'gold' : 10,
         'damage' : 5,
         'weapon' : orc_knife,
-        'flee_chance': 3,
+        'flee_chance': 2,
         'healthColor' : 'green',
         'healthTiers' : [
-            { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
-            { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
-            { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
-            { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+            { minHealth: 71, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+            { minHealth: 51, maxHealth: 70, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+            { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+            { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
         ],
         'deadimg' : '/assets/characters/baravder/baravder-dead.png'
 
@@ -47,13 +47,13 @@ const enemies= {
         'gold' : 80,
         'damage' : 5,
         'weapon' : orc_knife,
-        'flee_chance': 8,
+        'flee_chance': -1,
         'healthColor' : 'green',
         'healthTier' : [
-            { minHealth: 41, maxHealth: 50, color: 'green', image: '/assets/characters/yikmar/yikmar-green.png'  },
-            { minHealth: 31, maxHealth: 40, color: 'orange', image: '/assets/characters/yikmar/yikmar-orange.png'  },
-            { minHealth: 21, maxHealth: 30, color: 'yellow', image: '/assets/characters/yikmar/yikmar-yellow.png'  },
-            { minHealth: 1, maxHealth: 20, color: 'red',  image: '/assets/characters/yikmar/yikmar-red.png' }
+            { minHealth: 45, maxHealth: 50, color: 'green', image: '/assets/characters/yikmar/yikmar-green.png'  },
+            { minHealth: 35, maxHealth: 44, color: 'orange', image: '/assets/characters/yikmar/yikmar-orange.png'  },
+            { minHealth: 25, maxHealth: 34, color: 'yellow', image: '/assets/characters/yikmar/yikmar-yellow.png'  },
+            { minHealth: 1, maxHealth: 24, color: 'red',  image: '/assets/characters/yikmar/yikmar-red.png' }
         ],
         'deadimg' : '/assets/characters/yikmar/yikmar-dead.png'
 
@@ -75,13 +75,15 @@ const enemies= {
         'weapon' : orc_knife,
         'flee_chance': 5,
         'healthColor' : 'green',
-        'healthTier' : [
-            { minHealth: 46, maxHealth: 60, color: 'green' },
-            { minHealth: 31, maxHealth: 45, color: 'orange' },
-            { minHealth: 16, maxHealth: 30, color: 'yellow' },
-            { minHealth: 1, maxHealth: 15, color: 'red' }
+        'healthTiers' : [
+            { minHealth: 71, maxHealth: 80, color: 'green', image: '/assets/characters/caleth/caleth-green.png'},
+            { minHealth: 51, maxHealth: 70, color: 'orange', image: '/assets/characters/caleth/caleth-orange.png'},
+            { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/caleth/caleth-yellow.png' },
+            { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/caleth/caleth-red.png' },
         ],
-        'healthImages': [],
+        'img' : '/assets/characters/baravder/enemy-caleth.png',
+        'deadimg' : '/assets/characters/caleth/caleth-dead.png'
+
 
 
     },
@@ -101,13 +103,15 @@ const enemies= {
         'weapon' : orc_knife,
         'flee_chance': 10,
         'healthColor' : 'green',
-        'healthTier' : [
-            { minHealth: 101, maxHealth: 130, color: 'green' },
-            { minHealth: 71, maxHealth: 100, color: 'orange' },
-            { minHealth: 41, maxHealth: 70, color: 'yellow' },
-            { minHealth: 1, maxHealth: 41, color: 'red' }
+        'healthTiers' : [
+            { minHealth: 71, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
+            { minHealth: 51, maxHealth: 70, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
+            { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
+            { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
         ],
         'healthImages': [],
+        'deadimg' : '/assets/characters/gaffer/gaffer-dead.png'
+
 
 
     },
@@ -127,11 +131,11 @@ const enemies= {
         'weapon' : orc_knife,
         'flee_chance': 20,
         'healthColor' : 'green',
-        'healthTier' : [
-            { minHealth: 41, maxHealth: 50, color: 'green' },
-            { minHealth: 31, maxHealth: 40, color: 'orange' },
-            { minHealth: 21, maxHealth: 30, color: 'yellow' },
-            { minHealth: 1, maxHealth: 20, color: 'red' }
+        'healthTiers' : [
+            { minHealth: 71, maxHealth: 80, color: 'green', image: '/assets/characters/gaffer/gaffer=green.png'},
+            { minHealth: 51, maxHealth: 70, color: 'orange', image: '/assets/characters/gaffer/gaffer-orange.png'},
+            { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/gaffer/gaffer-yellow.png' },
+            { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/gaffer/gaffer-red.png' },
         ],
         'healthImages': [],
 

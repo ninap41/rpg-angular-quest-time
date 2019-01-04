@@ -67,12 +67,14 @@ class Player {
             this.healthColor = 'green',
             this.healthimages = [],
             this.healthTiers =  [
-                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
-                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
-                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
-                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+                { minHealth: 81, maxHealth: 100, color: 'green', image: '/assets/characters/human/human-green.png'},
+                { minHealth: 55, maxHealth: 80, color: 'yellow', image: '/assets/characters/human/human-yellow.png'},
+                { minHealth: 30, maxHealth: 54, color: 'orange', image:'/assets/characters/human/human-orange.png' },
+                { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/human/human-red.png' },
+                { minHealth: -100, maxHealth: 0, color: 'red', image: '/assets/characters/human/human-dead.png' },
+
             ],
-            this.deadImg = '/assets/characters/elf/elf-dead.png',
+            this.deadImg = '/assets/characters/human/human-dead.png',
             this.states = {
                 healthState : { change: null, val: null, increase: '+' , decrease: '-'},
                 luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
@@ -145,12 +147,14 @@ class Player {
             this.healthColor = 'green',
             this.healthimages = [],
             this.healthTiers =  [
-                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
-                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
-                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
-                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+                { minHealth: 81, maxHealth: 150, color: 'green', image: '/assets/characters/dwarf/dwarf-green.png'},
+                { minHealth: 55, maxHealth: 80, color: 'yellow', image: '/assets/characters/dwarf/dwarf-yellow.png'},
+                { minHealth: 30, maxHealth: 54, color: 'orange', image:'/assets/characters/dwarf/dwarf-orange.png' },
+                { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/dwarf/dwarf-red.png' },
+                { minHealth: -100, maxHealth: 0, color: 'red', image: '/assets/characters/dwarf/dwarf-dead.png' },
+
             ],
-            this.deadImg = '/assets/characters/elf/elf-dead.png',
+            this.deadImg = '/assets/characters/dwarf/dwarf-dead.png',
             this.states = {
                 healthState : { change: null, val: null, increase: '+' , decrease: '-'},
                 luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
@@ -184,12 +188,14 @@ class Player {
             this.healthColor = 'green',
             this.healthimages = [],
             this.healthTiers =  [
-                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
-                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
-                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
-                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+                { minHealth: 81, maxHealth: 150, color: 'green', image: '/assets/characters/wizard/wizard-green.png'},
+                { minHealth: 55, maxHealth: 80, color: 'yellow', image: '/assets/characters/wizard/wizard-yellow.png'},
+                { minHealth: 30, maxHealth: 54, color: 'orange', image:'/assets/characters/wizard/wizard-orange.png' },
+                { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/wizard/wizard-red.png' },
+                { minHealth: -100, maxHealth: 0, color: 'red', image: '/assets/characters/wizard/wizard-dead.png' },
+
             ],
-            this.deadImg = '/assets/characters/elf/elf-dead.png',
+            this.deadImg = '/assets/characters/wizard/wizard-dead.png',
             this.states = {
                 healthState : { change: null, val: null, increase: '+' , decrease: '-'},
                 luckState :{ change: null, val: null, increase: '+' , decrease: '-'},
@@ -222,12 +228,14 @@ class Player {
             this.healthColor = 'green',
             this.healthimages = [],
             this.healthTiers =  [
-                { minHealth: 61, maxHealth: 80, color: 'green', image: '/assets/characters/baravder/enemy-baravder.png'},
-                { minHealth: 41, maxHealth: 60, color: 'orange', image: '/assets/characters/baravder/baravder-orange.png'},
-                { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
-                { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
+                { minHealth: 81, maxHealth: 150, color: 'green', image: '/assets/characters/orc/orc-green.png'},
+                { minHealth: 55, maxHealth: 80, color: 'yellow', image: '/assets/characters/orc/orc-yellow.png'},
+                { minHealth: 30, maxHealth: 54, color: 'orange', image:'/assets/characters/orc/orc-orange.png' },
+                { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/orc/orc-red.png' },
+                { minHealth: -100, maxHealth: 0, color: 'red', image: '/assets/characters/orc/orc-dead.png' },
+
             ],
-            this.deadImg = '/assets/characters/elf/elf-dead.png',
+            this.deadImg = '/assets/characters/orc/orc-dead.png',
             this.states = {
                 healthState : { change: null, val: null, increase: '+' , decrease: '-'},
                 luckState :{ change: null, val: null, increase: '+' , decrease: '-'},

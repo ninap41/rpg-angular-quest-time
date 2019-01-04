@@ -876,7 +876,7 @@ let HumanWorldStart =
         'influence_event': null,
 
         "name" : "Mother's Room",
-        "description": "Amidst the commotion, your mother is still asleep. The room is slightly chilled. What should you do?",
+        "description": "Amidst the commotion, your mother is laying unconscious in her bed. The room is slightly chilled. What should you do?",
         "directions": [
             {
                 'karma_impact': ['negative', 4],

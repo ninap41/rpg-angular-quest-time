@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
   GameOn;
   message;
   audio;
+
   constructor (
     private _router: Router,
     private _route: ActivatedRoute,
@@ -56,6 +57,7 @@ export class AppComponent implements OnInit {
     // this._audioService.current_music.play();
     this.Player = this._characterService.retrievePlayer();
     this.error = this._characterService.error;
+
     // this.gameState = this._characterService.startGame();
     console.log(this.gameState);
     console.log(this.Player);
