@@ -12,6 +12,7 @@ I've been working on this close to a year. There is one chapter play through wit
 - One ending that is pretty difficult to get in order to progress story.
 - Original Music and painted assets.
 - RPG awesome.
+- improved secondary Bag UI
 
 #### Adding Features/Bug Fixes coming Soon...
 - Save feature with local storage.
