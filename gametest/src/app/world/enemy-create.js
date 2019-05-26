@@ -77,10 +77,10 @@ const enemies= {
         'flee_chance': 5,
         'healthColor' : 'green',
         'healthTiers' : [
-            { minHealth: 71, maxHealth: 80, color: 'green', image: '/assets/characters/caleth/caleth-green.png'},
-            { minHealth: 51, maxHealth: 70, color: 'orange', image: '/assets/characters/caleth/caleth-orange.png'},
-            { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/caleth/caleth-yellow.png' },
-            { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/caleth/caleth-red.png' },
+            { minHealth: 51, maxHealth: 60, color: 'green', image: '/assets/characters/caleth/caleth-green.png'},
+            { minHealth: 41, maxHealth: 50, color: 'orange', image: '/assets/characters/caleth/caleth-orange.png'},
+            { minHealth: 21, maxHealth: 40, color: 'yellow', image:'/assets/characters/caleth/caleth-yellow.png' },
+            { minHealth: 1, maxHealth: 20, color: 'red', image: '/assets/characters/caleth/caleth-red.png' },
         ],
         'img' : '/assets/characters/baravder/enemy-caleth.png',
         'deadimg' : '/assets/characters/caleth/caleth-dead.png'
