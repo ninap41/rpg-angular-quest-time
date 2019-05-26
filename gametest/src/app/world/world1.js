@@ -72,7 +72,8 @@ const events = {
                 'description' : 'Follow Thomas and his plan',
                 'room' : 'brandybuck_home'
             }
-        ]
+        ],
+        "audio" : null
 
     },
     "dead_mother" : {
@@ -116,7 +117,8 @@ const events = {
                 'description' : 'Now that you have those matches...',
                 'room' : 'storage_room'
             }
-        ]
+        ],
+        "audio" : null
 
     },
 
@@ -148,7 +150,8 @@ const events = {
                 "name":"Gaffers Room",
                 "description": "..."
             }
-        ]
+        ],
+        "audio" : null
     },
     "local_storage" : {    //LOCALSTORAGE EVENT  //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT
         'update_message': null,
@@ -188,7 +191,8 @@ const events = {
                 'description' : 'You wait until the sound of pillaging orcs pass. You hear them, huffing and shouting an incoherent chant. The top of their torches and banners wave out of view. It may be safe to move',
                 'room' : 'window_ledge'
             }
-        ]
+        ],
+        "audio" : null
 
     },
   
@@ -248,7 +252,8 @@ const events = {
                 'description' : 'You wait until the sound of pillaging orcs pass. You hear them, huffing and shouting an incoherent chant. The top of their torches and banners wave out of view. It may be safe to move',
                 'room' : 'window_ledge'
             }
-        ]
+        ],
+        "audio" : null
 
     },
 
@@ -282,7 +287,8 @@ const events = {
                 'room' : 'gaffer_thomas_house'
             },
          
-        ]
+        ],
+        "audio" : null
 
     },
     "light_storage_hurt" : {    //LOCALSTORAGE EVENT  //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT //LOCALSTORAGE EVENT
@@ -312,7 +318,8 @@ const events = {
                 'description' : 'This was a stupid idea',
                 'room' : 'outside2'
             }
-        ]
+        ],
+        "audio" : null
 
     },
     "firstspawn" : {    
@@ -369,7 +376,8 @@ const events = {
                 "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
                 // "color" : 'orange'
             }, 
-        ]
+        ],
+        "audio" : null
     },
     "orcs_in_road": {
         "description":`Darting out the door, you realize you've made a huge mistake. A whole horde of Orcs take turns poking you with their blades. Way to go.`,
@@ -443,7 +451,8 @@ const events = {
                     "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
                     // "color" : 'orange'
                 }, 
-            ]
+            ],
+            "audio" : null
     
         },
 
@@ -508,7 +517,8 @@ const events = {
                     "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
                     // "color" : 'orange'
                 }, 
-            ]
+            ],
+            "audio" : null
     
         },
         "gaffer_confrontation" : {    
@@ -544,8 +554,8 @@ const events = {
                     "world1_end" : 'end',
                     "description" : "The next chapter begins",
                 }, 
-            ]
-    
+            ],
+            "audio" : null
         },
 
         "fight_the_rider" : {    
@@ -598,7 +608,8 @@ const events = {
                     "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
                     // "color" : 'orange'
                 }, 
-            ]
+            ],
+            "audio" : null
     
         },
         "end_game": {
@@ -611,6 +622,7 @@ const events = {
         "access_directions_state" : true,
         'enemy_object': null,
         'inspects' :  null,
+        "audio" : null
         },
         "enemy_end": {
             "description":`Your enemy defeated you. What a shame.`,
@@ -622,6 +634,7 @@ const events = {
         "access_directions_state" : true,
         'enemy_object': null,
         'inspects' :  null,
+        "audio" : null
         },
         "hide_in_armory_dead": {
             "description":`Shaking in the darkness, the Orcs who saw you enter, tally in a line. At the forefront an Orcs teeth gleams as he triumphantly calls to his rally, '' I found the CHARRACE ! ''`,
@@ -633,6 +646,7 @@ const events = {
         "access_directions_state" : true,
         'enemy_object': null,
         'inspects' :  null,
+        "audio" : null
         },
         "hide_in_armory_peek_dead": {
             "description":`You gingerly creak the door open. You slowly stick out a trepid foot, until you see a blade come down before you. Pointing at your neck, an Orcs gleams it's teeth as he triumphantly calls to his rally, '' I found the CHARRACE ! ''. He slashes at your throat, watching you bleed out as the others gather around.`,
@@ -645,6 +659,7 @@ const events = {
         "access_directions_state" : true,
         'enemy_object': null,
         'inspects' :  null,
+        "audio" : null
         },
         "gaffer_dead": {
             "description":`Gaffer and you exclaim with joy as you enter the shed and approach your horse. You hear a muttering, "I'm sorry--" and a knife move passed your chin. Gaffer slits your throat, "I'm sorry! The dark wizard said he needed the blood 50 innocent souls... He said he'd spare me if I but gave him yours" You missed something. Try Again.`,
@@ -656,6 +671,7 @@ const events = {
         "access_directions_state" : true,
         'enemy_object': null,
         'inspects' :  null,
+        "audio" : null
         }
     }
 
@@ -671,7 +687,7 @@ let HumanWorldStart =
     'world_description' : 'You are in your hometown of CHARHOMETOWN.',
     "imageUrl":"/assets/world-background/town.jpg",
 
-    "home":{
+    "home": {
         'update_message': null,
         "name": "Home Main Room",
         'influence_event': null,
@@ -708,10 +724,11 @@ let HumanWorldStart =
            
 
         ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
  
  
-    "home_return":{
+    "home_return": {
         'update_message': null,
         'influence_event': null,
         "name": "Home Main Room",
@@ -738,7 +755,8 @@ let HumanWorldStart =
                 'description' : `You see the embroidery catch your eye. "READ THIS BOOK TO NOT SUCK AT THIS GAME". But maybe you're a hardcore player.`
                 },
 
-           ]
+           ],
+           "audio" : "../../../assets/sounds/town_on_fire.mp3"
      
         
     },
@@ -780,6 +798,7 @@ let HumanWorldStart =
                 'description' : `Enemies are all around you is this really the time to drink???`
                 }
         ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
         
     },
 
@@ -800,7 +819,8 @@ let HumanWorldStart =
                 "room": "stables1",
                 "description" :  `It would be an easy sprint backward to the horses.`
             }
-        ]
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
 
     "middle_of_town2" : {
@@ -818,7 +838,8 @@ let HumanWorldStart =
                 "description" : `Easy access to every possible part of town`
             },
 
-        ]
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
 
    
@@ -839,7 +860,8 @@ let HumanWorldStart =
                 "room": "middle_of_town2",
                 "description" :  `Maybe this wasnt a good idea. It's dark inside the armory.`
             }
-        ]
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
     "mothers_room":{
         'update_message': null,
@@ -869,9 +891,10 @@ let HumanWorldStart =
 
             }
         ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
 
-    "mothers_room_revisited":{
+    "mothers_room_revisited": {
         'update_message': null,
         'influence_event': null,
 
@@ -905,6 +928,7 @@ let HumanWorldStart =
            
 
         ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
     "gaffers_room":{
         'update_message': null,
@@ -932,6 +956,7 @@ let HumanWorldStart =
                     "description": "You should light the candle at the his bedside to see whats on his table.",
                 }
             ],
+            "audio" : "../../../assets/sounds/rpg_main_theme.mp3"
   
     },
     "storage_room":{
@@ -975,6 +1000,7 @@ let HumanWorldStart =
                     "description": "You have Matches in your Inventory!",
                 }
             ],
+            "audio" : "../../../assets/sounds/town_on_fire.mp3"
   
     },
     "stables1" : {
@@ -1042,10 +1068,10 @@ let HumanWorldStart =
                         "description": "Open the stables and get your horse. ",
                     }
             ],
-  
+            "audio" : "../../../assets/sounds/town_on_fire.mp3"
     
     },
-    "outside":{
+    "outside": {
 
         visits: 0,
         'name' : 'Outside',
@@ -1060,11 +1086,8 @@ let HumanWorldStart =
                 'description': 'You need to wake your mother, grab a weapon, and gather your things. This might be the smartest choice.',
                 "color" : 'green'
             }, 
-        ]
-        
-
-
-      
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
     "gaffer_thomas_house" : {
         'character' : 'Thomas',
@@ -1098,6 +1121,7 @@ let HumanWorldStart =
                 "description": "You could take some things from his kitchen",
             },
         ],
+        "audio" : "../../../assets/sounds/rpg_main_theme.mp3"
     },
     "brandybuck_home" : {
         'character' : 'Mendel',
@@ -1107,25 +1131,20 @@ let HumanWorldStart =
         "description" : "Scurrying around the front yard is Mendal, Mendal Brandybuck. he is being chased around his yard by an Orc Rider tugging his reins in circles. He hisses to an adjacent comrade who points down in disdain 'The Great Wizard of Barandtuk has orders to burn it to the ground. Not harrass halflings! ",
         "description2" : "Mendal lay's still on the grass. The dead rider beside him. ",
         "directions":[
-      
             {
-              
                 "name":"Back to Road",
                 'description': 'Towards Stables',
                 "room": "outside2"
             }, 
 
             {
-              
                 "name":"House Backdoor",
                 'description': 'Towards Stables',
                 "room": "brandybuck_backdoor",
             }, 
-          
     
         ],
         'inspects': [
-             
             {
                 'karma_impact': ['positive', 2],
                 'update_message': null,
@@ -1133,10 +1152,10 @@ let HumanWorldStart =
                 "event":"fight_the_rider",
                 "description": "You must check up on him.",
             },
-            
         ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
-    "brandybuck_backdoor":{
+    "brandybuck_backdoor": {
         'influence_event': null,
         'name' : 'Backdoor',
         "description":`You sneak up to the back of the brandybuck home. The door is locked but you see a window. `,
@@ -1188,16 +1207,13 @@ let HumanWorldStart =
                 }
             
             ],
-        
-
-
-        
-    },
+            "audio" : "../../../assets/sounds/town_on_fire.mp3"
+        },
 
     
 
     // OUTSIDE HOME REALMS  // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS // OUTSIDE HOME REALMS
-    "armory_back_door":{
+    "armory_back_door": {
         'influence_event': null,
         'name' : 'Armory Back Door',
         "description":`You feel safe, but there's a screaming coming from your neighbor's place. You slam the armory door shut, your hands are sweaty.`,
@@ -1216,7 +1232,8 @@ let HumanWorldStart =
                 // "color" : 'orange'
             }, 
 
-        ]
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
     "outside2":{
         'eventtriggerchance': 3, //fifty fifty chance
@@ -1249,12 +1266,11 @@ let HumanWorldStart =
                 "description" : "Maybe you missed some supplies in your home?",
                 // "color" : 'orange'
             }, 
-        
 
-
-        ]
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
-    "orcs_in_road":{
+    "orcs_in_road": {
         'eventtriggerchance': null, //for sure chance
         'event': 'orcs_in_road',
         'influence_event': null,
@@ -1279,10 +1295,8 @@ let HumanWorldStart =
                 "description" : "The Brandy Bucks are the little folk in town. They are most at risk.",
                 // "color" : 'orange'
             }, 
-        
-
-
-        ]
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
     "hide_in_armory_direction":{
         'influence_event': null,
@@ -1302,12 +1316,9 @@ let HumanWorldStart =
                     "event": "hide_in_armory_dead",
                     "description": "The coast could be clear",
                 }
-
-
-            ]
-
-        
-    },
+            ],
+            "audio" : "../../../assets/sounds/town_on_fire.mp3"
+        },
     "armory_inside":{
         // 'influence_event': {
         //     'impact_chance': 4,
@@ -1362,7 +1373,8 @@ let HumanWorldStart =
                         'event' :'take',
                         'description' : `Enemies are all around you is this really the time to drink???`
                         },
-        ]
+        ],
+        "audio" : "../../../assets/sounds/town_on_fire.mp3"
     },
 }
 

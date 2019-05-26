@@ -23,18 +23,17 @@ import { npcs } from './world/npc-create';
 
 export class CharacterService {
   WeaponList: any[] = [];
- gameStart = false;
- showNav = false;
- Player = new Player;
- playerfordeets;
- bag;
- error;
- serviceplayersPoint;
- MaxHealth;
- help = false;
-
-global_update_message;
-currentEvent = false;
+  gameStart = false;
+  showNav = false;
+  Player = new Player;
+  playerfordeets;
+  bag;
+  error;
+  serviceplayersPoint;
+  MaxHealth;
+  help = false;
+  global_update_message;
+  currentEvent = false;
 
   constructor(
     private _audioService: AudioService,
@@ -47,7 +46,6 @@ currentEvent = false;
     console.log(this.Player);
     return this.gameStart;
   }
-
 
 
 
@@ -65,6 +63,10 @@ currentEvent = false;
     console.log(this.Player);
       return this.Player;
     }
+  }
+
+  saveGame() {
+    // localStorage.setItem('Player', JSON.stringify(this.Player));
   }
 
   updatePlayerBag(item) {

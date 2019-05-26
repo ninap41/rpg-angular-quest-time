@@ -5,6 +5,7 @@
 class Player {
 
     constructor(name) {
+        this.id = 'tempID'
         this.name = 'Nina';
         this.lvl = 1;
         this.avatar = '/assets/characters/human.png',

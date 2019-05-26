@@ -50,7 +50,7 @@ const SecondWorldStart = {
             },
           
         ],
-
+        "audio" : "../../../assets/sounds/the_wizard.mp3"
     },
 
     "wizards_hut_inside" : {
@@ -76,6 +76,8 @@ const SecondWorldStart = {
             // },
           
         ], // take out
+        "audio" : "../../../assets/sounds/the_wizard.mp3"
+
     },
 }
 export { events, SecondWorldStart}

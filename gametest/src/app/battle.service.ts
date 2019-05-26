@@ -29,7 +29,7 @@ export class BattleService {
   weaponGuard = true;
   success_fail_message;
   showUsables = false;
-  max_Taunt = 0;
+  max_Taunt = 2;
   BattleItem;
   weapon_equip;
   char_min_speed;
@@ -207,7 +207,7 @@ export class BattleService {
 
       }
 
-      if (charAction === 'Taunt') {
+      if (charAction === 'Taunt') { // add a TOO LARGE TO TAUNT OPTION
         let char_taunt = this._characterService.Player.karma + this._characterService.Player.strength;
         // taunts are reps and strength, changed to karmaand strength;
         char_taunt = Math.floor(Math.random() * char_taunt);

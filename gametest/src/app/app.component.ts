@@ -51,16 +51,21 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._audioService.current_music = new Audio();
-    this._audioService.current_music.load();
-    this._audioService.current_music.src = '../../../assets/backingone.mp3';
-    // this._audioService.current_music.play();
+    this._audioService.initialMusic()
+    if(this.Player === undefined) {
+      var get = localStorage.getItem('Player');
+      console.log(get)
+      localStorage.setItem('Player', JSON.stringify(this.Player));
+
+      this.Player = this._characterService.retrievePlayer();
+
+    }
     this.Player = this._characterService.retrievePlayer();
     this.error = this._characterService.error;
-
     // this.gameState = this._characterService.startGame();
     console.log(this.gameState);
     console.log(this.Player);
+    this.startMusic()
 
   }
 

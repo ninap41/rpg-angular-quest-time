@@ -16,28 +16,42 @@ import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
 import {  WorldPlayer, HumanWorldStart } from './world/world1';
 import { weapons, items } from './world/item-create';
 import { npcs } from './world/npc-create';
+import { CharacterService } from './character.service';
 
 @Injectable()
 export class AudioService {
 
-main_theme = '../../../assets/backingone.mp3';
-fight_theme = '../../../assets/bensound-epic.mp3';
+// main_theme = '../../../assets/sounds/backingone.mp3';
+// fight_theme = '../../../assets/bensound-epic.mp3';
+main_theme = '../../../assets/sounds/rpg_main_theme.mp3';
+fight_theme = '../../../assets/sounds/battle_music.mp3';
 
-current_music = null;
+current_music = new Audio();
 sound_effect;
 delayed_sound;
 inventory_sound;
 enemy_sound;
+
 fight_theme_audio = new Audio();
 
   constructor(
-    // private _battleService: BattleService,
-
   ) {
     this.inventory_sound = new Audio();
     this.enemy_sound = new Audio();
+    if(this.current_music.src === null) {
+      this.current_music.src = this.main_theme;
+      this.current_music.load()
+      this.current_music.play()
+      this.current_music.loop;
+    }
+   }
 
-
+   initialMusic(){ // just in case of constructor not working.
+    this.current_music = new Audio();
+    this.current_music.load();
+    this.current_music.src = '../../../assets/sounds/rpg_main_theme.mp3';
+    this.current_music.play();
+    this.current_music.loop;
    }
 
    weaponEquip_sound(state) {
@@ -74,9 +88,9 @@ fight_theme_audio = new Audio();
 
    fight_music(fight_boolean) {
       if (fight_boolean === true) {
-        this.current_music.animate({volume: 1}, 0, 'swing', function() {
-          this.current_music[0].pause();
-      });
+      //   this.current_music.animate({volume: 1}, 0, 'swing', function() {
+      //     this.current_music[0].pause();
+      // });
          this.current_music.src = this.fight_theme;
          this.load_n_play(  this.current_music, this.current_music.src);
         } else {
@@ -91,11 +105,19 @@ fight_theme_audio = new Audio();
      this.load_n_play(rand_sound, path);
    }
 
-
+   loadRoomMusic(src) {
+     var tempAudio = new Audio();
+     tempAudio.src = src;
+     if(this.current_music.src !== tempAudio.src) {
+       this.current_music.src = src;
+       this.current_music.load()
+       this.current_music.play();
+       this.current_music.loop = true;
+     }
+   }
    load_n_play(sound, src) {
      sound.load();
      sound.play();
-
    }
 
 

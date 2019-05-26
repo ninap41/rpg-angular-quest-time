@@ -166,11 +166,14 @@
                     <button  style="display: inline-block;" (click)="fight('Strike')" class="btn btn-default red">Strike</button>
                     <button style="display: inline-block;" (click)="_battleService.showUsables = !_battleService.showUsables" class="btn btn-default yellow">Bag</button>
                     <button style="display: inline-block;" (click)="fight('Block')" class="btn btn-default green">Block</button>
-                    <button   [disabled]="_battleService.max_Taunt > 5" style="display: inline-block;" (click)="fight('Taunt')" class="btn btn-default orange">Taunt</button>
-                    <span *ngIf="_battleService.max_Taunt > 5 ">
+                    <button   [disabled]="_battleService.max_Taunt > 2 || this._battleService.currentEnemy.tauntDisabled" style="display: inline-block;" (click)="fight('Taunt')" class="btn btn-default orange">Taunt</button>
+                    <span *ngIf="_battleService.max_Taunt > 2 ">
                         <b [ngbTooltip]="tauntInfo">?</b>
-                    <ng-template type="button" class="btn btn-outline-secondary" #tauntInfo>Can only taunt a max of 5 times!</ng-template>
-                </span>
+                    <ng-template type="button" class="btn btn-outline-secondary" #tauntInfo>
+                        <span *ngIf="_battleService.max_Taunt > 2">Can only taunt a max of 2 times!</span>
+                        <span *ngIf="this._battleService.currentEnemy.tauntDisabled">This enemy is too tough to taunt.</span>
+                   </ng-template>
+                    </span>
                         <BR>
                         <div *ngIf="_battleService.showUsables === true" class="usables">
                         

@@ -28,7 +28,8 @@ const enemies= {
             { minHealth: 31, maxHealth: 50, color: 'yellow', image:'/assets/characters/baravder/baravder-yellow.png' },
             { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/baravder/baravder-red.png' },
         ],
-        'deadimg' : '/assets/characters/baravder/baravder-dead.png'
+        'deadimg' : '/assets/characters/baravder/baravder-dead.png',
+        "tauntDisabled": true
 
 
 
@@ -110,10 +111,8 @@ const enemies= {
             { minHealth: 1, maxHealth: 30, color: 'red', image: '/assets/characters/agmar/agmar-red.png' },
         ],
         'healthImages': [],
-        'deadimg' : '/assets/characters/agmar/agmar-dead.png'
-
-
-
+        'deadimg' : '/assets/characters/agmar/agmar-dead.png',
+        "tauntDisabled": true
     },
     'gaffer' : {
         'name': 'Gaffer The Back-Stabbing Coward',
