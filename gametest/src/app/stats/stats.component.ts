@@ -12,8 +12,8 @@ export class StatsComponent implements OnInit {
 Player;
 gameStart = true;
   constructor(
-    private _characterService: CharacterService,
-    private _battleService: BattleService,
+   public _characterService: CharacterService,
+   public _battleService: BattleService,
   ) {
 
   }

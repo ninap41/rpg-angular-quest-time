@@ -15,9 +15,9 @@ title = 'Bag';
 fightBool = 'You cannot access this bag while a fight is in progress. Refer to battle bag';
 
   constructor(
-    private _characterService: CharacterService,
-    private _battleService: BattleService,
-    private _audioService: AudioService,
+   public _characterService: CharacterService,
+   public _battleService: BattleService,
+   public _audioService: AudioService,
   ) { }
 
   ngOnInit() {

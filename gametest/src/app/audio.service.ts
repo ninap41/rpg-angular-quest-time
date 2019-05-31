@@ -38,7 +38,7 @@ fight_theme_audio = new Audio();
   ) {
     this.inventory_sound = new Audio();
     this.enemy_sound = new Audio();
-    if(this.current_music.src === null) {
+    if(this.current_music.src === null || this.current_music.src === undefined) {
       this.current_music.src = this.main_theme;
       this.current_music.load()
       this.current_music.play()

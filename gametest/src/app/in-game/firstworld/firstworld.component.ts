@@ -48,9 +48,9 @@ currentEnemy;
 
 
   constructor(
-    private _characterService: CharacterService,
-    private _battleService: BattleService,
-    private _audioService: AudioService,
+   public _characterService: CharacterService,
+   public _battleService: BattleService,
+   public _audioService: AudioService,
 
     private _router: Router) {
       this.Player = this._characterService.retrievePlayer();

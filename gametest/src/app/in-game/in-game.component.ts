@@ -19,7 +19,7 @@ Player;
 gameStart = true;
 message;
     constructor(
-      private _characterService: CharacterService,
+     public _characterService: CharacterService,
       private _router: Router) {
       this.Player = this._characterService.retrievePlayer();
 }

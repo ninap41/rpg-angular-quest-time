@@ -43,8 +43,8 @@ export class AppComponent implements OnInit {
   constructor (
     private _router: Router,
     private _route: ActivatedRoute,
-    private _characterService: CharacterService,
-    private _audioService: AudioService,
+   public _characterService: CharacterService,
+   public _audioService: AudioService,
     private _http: Http
   ) {
 
@@ -52,14 +52,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this._audioService.initialMusic()
-    if(this.Player === undefined) {
-      var get = localStorage.getItem('Player');
-      console.log(get)
-      localStorage.setItem('Player', JSON.stringify(this.Player));
-
-      this.Player = this._characterService.retrievePlayer();
-
-    }
     this.Player = this._characterService.retrievePlayer();
     this.error = this._characterService.error;
     // this.gameState = this._characterService.startGame();

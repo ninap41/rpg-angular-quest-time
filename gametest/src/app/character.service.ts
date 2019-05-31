@@ -36,7 +36,7 @@ export class CharacterService {
   currentEvent = false;
 
   constructor(
-    private _audioService: AudioService,
+   public _audioService: AudioService,
     private _router: Router,
     protected http: Http
   ) { }
