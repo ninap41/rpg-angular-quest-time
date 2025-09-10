@@ -1,15 +1,16 @@
-import { Component, OnInit} from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
-import { Http, Response, Headers, RequestOptions} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { CharacterService } from './character.service';
-import { ActivatedRoute } from '@angular/router';
-import { Wizard, Player, Ninja, Elf, Dwarf, Human, Orc } from './player-create';
-import { FormsModule } from '@angular/forms';
-import { ViewEncapsulation } from '@angular/core';
-import { AudioService } from './audio.service';
-import { trigger, animate, style, group, query, transition, state, stagger, keyframes } from '@angular/animations';
-import { Animations, routerTransition2, routerTransition, fadeAnimation} from './animate';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { CharacterService } from "./character.service";
+import { ActivatedRoute } from "@angular/router";
+import { Human } from "./player-create";
+
+import { AudioService } from "./audio.service";
+import {
+  Animations,
+  routerTransition2,
+  routerTransition,
+  fadeAnimation,
+} from "./animate";
 
 // import * as _ from 'lodash';
 
@@ -20,18 +21,18 @@ import { Animations, routerTransition2, routerTransition, fadeAnimation} from '.
 // import { animate } from '@angular/core/src/animation/dsl';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
   animations: [
     Animations.popoverTrigger,
     routerTransition2,
     routerTransition,
-    fadeAnimation
-  ]
+    fadeAnimation,
+  ],
 })
 export class AppComponent implements OnInit {
-  title = 'Quest Time';
+  title = "Quest Time";
   state;
   Player;
   error;
@@ -40,27 +41,29 @@ export class AppComponent implements OnInit {
   message;
   audio;
 
-  constructor (
+  constructor(
     private _router: Router,
     private _route: ActivatedRoute,
-   public _characterService: CharacterService,
-   public _audioService: AudioService,
-    private _http: Http
-  ) {
-
-  }
+    public _characterService: CharacterService,
+    public _audioService: AudioService
+  ) {}
 
   ngOnInit() {
-    this._audioService.initialMusic()
+    this._audioService.initialMusic();
     this.Player = this._characterService.retrievePlayer();
     this.error = this._characterService.error;
     // this.gameState = this._characterService.startGame();
     console.log(this.gameState);
     console.log(this.Player);
-    this.startMusic()
-
+    this.startMusic();
   }
 
+  goHomeAndReload() {
+    this._router.navigate(["/"]).then(() => {
+      console.log("new ");
+      window.location.reload();
+    });
+  }
   startMusic() {
     this._audioService.current_music.play();
   }
@@ -68,15 +71,12 @@ export class AppComponent implements OnInit {
     this._audioService.current_music.pause();
   }
   newGame() {
-    this._router.navigate(['/**']).then(() => {
-      this._characterService.Player = new Human;
+    this._router.navigate(["/**"]).then(() => {
+      this._characterService.Player = new Human();
     });
-
   }
 
   getRouterState(outlet) {
-      return outlet.isActivated ? outlet.activatedRoute : '';
-
+    return outlet.isActivated ? outlet.activatedRoute : "";
   }
-
 }

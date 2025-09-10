@@ -29,12 +29,13 @@ i {
 
 }
 .blue {
-    color: rgb(76, 71, 223);
+    color: rgb(184, 182, 248);
 
 }
 .btn {
-    font-size: .5em;
-    margin: .5em;
+    font-size: 1em;
+    margin: .2em;
+    padding:.2rem;
 }
 
 router-outlet ~ * {

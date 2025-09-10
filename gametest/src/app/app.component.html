@@ -1,52 +1,82 @@
 <!-- ANGULAR MATERIALS DOCUMENTATION 
 https://material.angular.io/guide/getting-started-->
 
-<div id='body' class="container">
-    <div style="text-align:center">
-            <h1 class="mainTitle" style="font-family: 'Cabin Sketch', cursive;">
-                &#10524; Wizards of the Realm &#10523;
-            </h1>
-    </div>
-    <div class="container">
- 
-            <!-- <div *ngIf="_characterService.gameStart === true"> -->
-            <fieldset>
-                    
-                    <i class="whiteDash">&#10524; </i>
-                    <i class="dash">&#9472; </i>
-                            <a style="text-decoration:none;" class="redDash" [routerLink]="['firstworld']"  routerLinkActive="active"> Map </a>
-                    <i class="dash">&#9472; </i>
-                            <a style="text-decoration:none;"  class="redDash" [routerLink]="['fullstats']"  routerLinkActive="active">  Stats </a>
-                    <i class="dash">&#9472; </i>
-                            <a style="text-decoration:none;"  class="redDash" [routerLink]="['bag']"  routerLinkActive="active"> Bag </a> 
-                    <i class="dash">&#9472; </i>
-                    
-                    <span *ngIf="_characterService.help === true"> 
-                        <a  [routerLink]="['help']"  class="redDash"  routerLinkActive="active">  Help  </a>
-                        <i class="dash">&#9472; </i>
-                    </span>
-                    <!-- <a class="redDash buttonNone" (click)="this._characterService.saveGame()"> Save Character </a> 
+<div id="body" class="container">
+  <div style="text-align: center">
+    <h1 class="mainTitle" style="font-family: 'Cabin Sketch', cursive">
+      &#10524; Wizards of the Realm &#10523;
+    </h1>
+  </div>
+  <div class="container">
+    <!-- <div *ngIf="_characterService.gameStart === true"> -->
+    <fieldset>
+      <i class="whiteDash">&#10524; </i>
+      <i class="dash">&#9472; </i>
+      <a
+        style="text-decoration: none"
+        class="redDash"
+        (click)="goHomeAndReload()"
+        routerLinkActive="active"
+      >
+        Restart
+      </a>
+
+      <i class="dash">&#9472; </i>
+      <a
+        style="text-decoration: none"
+        class="redDash"
+        [routerLink]="['firstworld']"
+        routerLinkActive="active"
+      >
+        Map
+      </a>
+      <i class="dash">&#9472; </i>
+      <a
+        style="text-decoration: none"
+        class="redDash"
+        [routerLink]="['fullstats']"
+        routerLinkActive="active"
+      >
+        Stats
+      </a>
+      <i class="dash">&#9472; </i>
+      <a
+        style="text-decoration: none"
+        class="redDash"
+        [routerLink]="['bag']"
+        routerLinkActive="active"
+      >
+        Bag
+      </a>
+      <i class="dash">&#9472; </i>
+
+      <span *ngIf="_characterService.help === true">
+        <a [routerLink]="['help']" class="redDash" routerLinkActive="active">
+          Help
+        </a>
+        <i class="dash">&#9472; </i>
+      </span>
+      <!-- <a class="redDash buttonNone" (click)="this._characterService.saveGame()"> Save Character </a> 
                     <i class="dash">&#9472; </i>
 
                    <a class="redDash buttonNone" href="http://localhost:4200/"> Restart </a> 
                    <i class="dash">&#9472; </i> -->
-                   
-                   <i class="whiteDash fa fa-music"> <b>:</b></i> 
-                   <i (click)="stopMusic()"class="fa fa-pause redDash"> </i>
-                   <i (click)="startMusic()"class="fa fa-play redDash"> </i>
 
-                  <!-- <a style="text-decoration:none;" [routerLink]="['updateplayer']"  routerLinkActive="active"> UPDATE </a>  -->
-                    <i class="whiteDash">&#10523; </i>
-                   
-             </fieldset>
-    </div><BR>
-            
-        
-        <main class="jumbotron" [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
-                <div class="background-image"></div>
-                <router-outlet #o="outlet"></router-outlet>
-        </main>
+      <i class="whiteDash fa fa-music"> <b>:</b></i>
+      <i (click)="stopMusic()" class="fa fa-pause redDash"> </i>
+      <i (click)="startMusic()" class="fa fa-play redDash"> </i>
 
+      <!-- <a style="text-decoration:none;" [routerLink]="['updateplayer']"  routerLinkActive="active"> UPDATE </a>  -->
+      <i class="whiteDash">&#10523; </i>
+    </fieldset>
+  </div>
+  <BR />
 
-
+  <main
+    class="jumbotron"
+    [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''"
+  >
+    <div class="background-image"></div>
+    <router-outlet #o="outlet"></router-outlet>
+  </main>
 </div>

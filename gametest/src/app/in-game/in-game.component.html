@@ -1,17 +1,20 @@
+<i style="color: rgb(219, 152, 152)">&#10524; </i>
+<a style="text-decoration: none" [routerLink]="['in-game/firstworld']">
+  Kingdom of Denethor <i style="color: rgb(219, 152, 152)">&#9472; </i></a
+>
+<a
+  *ngIf="_characterService.firstworldcomplete"
+  style="text-decoration: none"
+  [routerLink]="['in-game/secondworld']"
+>
+  To The Wizards
+</a>
+<i style="color: rgb(219, 152, 152)">&#10523; </i>
+<BR />
 
-    <i style="color:rgb(219, 152, 152)">&#10524; </i>
-            <a style="text-decoration:none;" [routerLink]="['in-game/firstworld']" > Kingdom of Denethor  <i style="color:rgb(219, 152, 152)">&#9472; </i></a>
-            <!-- <a *ngIf="_characterService.firstworldcomplete" style="text-decoration:none;" [routerLink]="['in-game/secondworld']">  To The Wizards   </a> -->
-    <i style="color:rgb(219, 152, 152)">&#10523; </i>
-  <BR>
+"{{ Player.name }} is {{ Player.backstory }}"
+<img *ngIf="Player.img" src="Player.img" />
 
+<BR />
 
-        "{{Player.name}} is {{Player.backstory}}"
-        <img *ngIf="Player.img" src="Player.img">
-
-<BR>
-
-   
-           <router-outlet ></router-outlet>
-
-   
+<router-outlet></router-outlet>

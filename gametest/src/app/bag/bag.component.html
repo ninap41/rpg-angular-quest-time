@@ -1,48 +1,65 @@
-<h2 [ngbTooltip]="battleBagInfot">{{Player.name}}'s Inventory</h2>
-    <ng-template #battleBagInfot>
-      <div *ngIf="this._battleService.currentFight"> Remember you can not use items here while in battle You must use your battle bag to the left</div>
-    </ng-template>
+<h2 [ngbTooltip]="battleBagInfot">{{ Player.name }}'s Inventory</h2>
+<ng-template #battleBagInfot>
+  <div *ngIf="this._battleService.currentFight">
+    Remember you can not use items here while in battle You must use your battle
+    bag to the left
+  </div>
+</ng-template>
 <i>(Hover over items)</i>
-  <BR>
+<BR />
 <div *ngFor="let item of Player.bag; let idx = index">
   <ng-template type="button" class="btn btn-outline-secondary" #tipContent>
-      <span *ngIf="item.img">
-          <img width="150px" src="{{item.img}}"><Br>
-      </span>
-      <span>
-          <i>'{{item.description}}'</i>
-      </span>
-      <span *ngIf="item.type === 'weapon'">
-          <br>
-          <span>Lvl: {{item.lvl}}</span><BR>
-          <span>Damage: {{item.damage}} </span><BR>
-          <span>Durability: {{item.durability}} </span><BR>
-          <span> Karma Effect: {{item.karma_effect.name}}  </span><BR>
-          <i>'{{item.karma_effect.description}}'</i><BR>
-          <span *ngIf="item.equipped === true"> Equipped</span>
-          <span [ngClass]="{'green': item.equipped === true, 'orange': item.equipped === false }">{{item.name}}<i class="ra ra-{{item.icon}} ra-lg"></i></span>
-      </span>
-      <span *ngIf="item.qty > 1"> Qty:  {{item.qty}}</span>
-      </ng-template>
-      <li [ngbTooltip]="tipContent">
-      <span [ngClass]="{'green': item.equipped === true}">
-          {{item.name}}
-      </span>
-      <span *ngIf="item.type === 'weapon' && this.Player.weapon === null;" (click)="_battleService.weaponequip(item, idx, 'equip')">
-          <span class="blue hover" >Equip <i class="ra ra-underhand ra-lg"></i></span> 
-      </span>
-      <span *ngIf="item.type === 'usable' && _battleService.currentFight === false; else otherItems" (click)="use_item(item, idx);">
-          <i class="ra ra-{{item.icon}} ra-lg"></i>
-      </span>
-      <ng-template #otherItems>
-          <i class="ra ra-{{item.icon}} ra-lg"></i>
-      </ng-template >
-    </li>
+    <span *ngIf="item.img">
+      <img width="150px" src="{{ item.img }}" /><Br />
+    </span>
+    <span>
+      <i>'{{ item.description }}'</i>
+    </span>
+    <span *ngIf="item.type === 'weapon'">
+      <br />
+      <span>Lvl: {{ item.lvl }}</span
+      ><BR /> <span>Damage: {{ item.damage }} </span><BR />
+      <span>Durability: {{ item.durability }} </span><BR />
+      <span> Karma Effect: {{ item.karma_effect.name }} </span><BR />
+      <i>'{{ item.karma_effect.description }}'</i><BR />
+      <span *ngIf="item.equipped === true"> Equipped</span>
+      <span
+        [ngClass]="{
+          green: item.equipped === true,
+          orange: item.equipped === false
+        }"
+        >{{ item.name }}<i class="ra ra-{{ item.icon }} ra-lg"></i
+      ></span>
+    </span>
+    <span *ngIf="item.qty > 1"> Qty: {{ item.qty }}</span>
+  </ng-template>
+  <li [ngbTooltip]="tipContent">
+    <span [ngClass]="{ green: item.equipped === true }">
+      {{ item.name }}
+    </span>
+    <span
+      *ngIf="item.type === 'weapon' && this.Player.weapon === null"
+      (click)="_battleService.weaponequip(item, idx, 'equip')"
+    >
+      <span class="blue hover"
+        >Equip <i class="ra ra-underhand ra-lg"></i
+      ></span>
+    </span>
+    <span
+      *ngIf="
+        item.type === 'usable' && _battleService.currentFight === false;
+        else otherItems
+      "
+      (click)="use_item(item, idx)"
+    >
+      <i class="ra ra-{{ item.icon }} ra-lg"></i>
+    </span>
+    <ng-template #otherItems>
+      <i class="ra ra-{{ item.icon }} ra-lg"></i>
+    </ng-template>
+  </li>
 </div>
 
 <div *ngIf="Player.bag.length === 0">
-    <p>Empty Bag</p>
+  <p>Empty Bag</p>
 </div>
-
-
-
