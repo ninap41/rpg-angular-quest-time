@@ -1,5 +1,23 @@
 # rpg-angular-quest-time
 
+## Running in 2025
+
+This game was built with node 8 / angular 5.2.x / RxJS 5.5.x in 2018, if you have a macbook with a m1 chip, node 8 does not have the `x86_64` binaries (intel) and instead uses arm64(m1). You must use Rosetta to use `-x86_64` binaries (lol)
+
+Steps:
+- install Rosetta: `softwareupdate --install-rosetta --agree-to-license`
+- spin up a new shell `arch -x86_64 zsh` or  bash `arch -x86_64 bash --login`
+- check that x86_64 `uname -m`
+- install with nvm like `arch -x86_64 nvm install 8`
+- use 8 `nvm use 8` 
+- run it
+``` 
+rm -rf node_modules package-lock.json
+npm install
+npm start or ng serve
+```
+
+
 ## Development Progress
 
 I've been working on this close to a year. There is one chapter play through with about 4-5 different endings. This is titled FIRSTWORLD. I just begun work on the second world. Where you meet the wizard and are going to aquire spell powers for when you're battling enemies.
