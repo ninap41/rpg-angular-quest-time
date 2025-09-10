@@ -20,7 +20,7 @@ npm start or ng serve
 
 ## Development Progress
 
-I've been working on this close to a year. There is one chapter play through with about 4-5 different endings. This is titled FIRSTWORLD. I just begun work on the second world. Where you meet the wizard and are going to aquire spell powers for when you're battling enemies.
+ There is one chapter play through with about 4-5 different endings. This is titled FIRSTWORLD. I just begun work on the second world. Where you meet the wizard and are going to aquire spell powers for when you're battling enemies.
 
 #### Includes Now..
 - Diverse story with multiple endings where you can play as 5 different races.
